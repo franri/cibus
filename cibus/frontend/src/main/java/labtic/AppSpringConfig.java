@@ -2,9 +2,9 @@ package labtic;
 
 
 import entities.Neighbourhood;
-import labtic.rmi.BackendService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import rmi.BackendService;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Consumer")
+@Entity
 //@DiscriminatorValue(value = "CONSUMER")
 public class Consumer extends User{
 

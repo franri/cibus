@@ -7,8 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.LoginController">
    <children>
       <GridPane prefHeight="75.0" prefWidth="600.0">
         <columnConstraints>
@@ -56,12 +55,12 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TextField prefHeight="30.0" prefWidth="800.0">
+                  <TextField fx:id="emailField" prefHeight="30.0" prefWidth="800.0">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <PasswordField prefHeight="30.0" prefWidth="800.0">
+                  <PasswordField fx:id="passwordField" prefHeight="30.0" prefWidth="800.0">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
@@ -73,9 +72,14 @@
             </VBox>
          </children>
       </HBox>
+      <VBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="errorLabel" text="Label" textFill="RED" visible="false" />
+         </children>
+      </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Confirmar" />
+            <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#tryToLogin" text="Confirmar" />
          </children>
       </HBox>
    </children>

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "Restaurant")
+@Entity
 //@DiscriminatorValue(value = "RESTAURANT")
 public class Restaurant extends User{
 

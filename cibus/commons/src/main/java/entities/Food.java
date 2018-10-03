@@ -13,13 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "Food")
 public class Food {
     @Id
     @NonNull
     @Column(name = "food_name", nullable = false)
     private String foodName;
-
     @ManyToMany(mappedBy = "foods")
     private transient List<Restaurant> list;
 }

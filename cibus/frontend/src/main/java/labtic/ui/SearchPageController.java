@@ -3,15 +3,18 @@ package labtic.ui;
 import entities.Food;
 import entities.Neighbourhood;
 import entities.Restaurant;
+import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.Callback;
-import labtic.rmi.BackendService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import rmi.BackendService;
 
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -19,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+@Data
 @Controller
 public class SearchPageController implements Initializable {
 
@@ -41,6 +45,8 @@ public class SearchPageController implements Initializable {
 
     @Autowired
     private BackendService bs;
+
+    User user;
 
     @FXML
     private ListView<Restaurant> listaRestaurantes;
@@ -103,7 +109,8 @@ public class SearchPageController implements Initializable {
 //        listaRestaurantes.getItems().add(res);
     }
 
-    public void cargarRestaurantes() throws RemoteException {
+    @FXML
+    public void cargarRestaurantes(ActionEvent event) throws RemoteException {
 
         String nombre = buscaNombre.getText()==null ? "" : buscaNombre.getText();
 
@@ -124,6 +131,12 @@ public class SearchPageController implements Initializable {
         }
 
         Integer lugaresReservados = (Integer)lugares.getSelectionModel().getSelectedItem();
+
+        if(lugaresReservados==null){
+            errorLabel.setText("Debe seleccionar cantidad de lugares");
+            errorLabel.setVisible(true);
+            return;
+        }
 
         List<Restaurant> restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, lugaresReservados);
 
