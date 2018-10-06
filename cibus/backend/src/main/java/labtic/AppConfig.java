@@ -1,6 +1,6 @@
 package labtic;
 
-import labtic.rmi.BackendService;
+import rmi.BackendService;
 import labtic.rmi.BackendServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

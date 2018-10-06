@@ -16,7 +16,6 @@ import java.io.Serializable;
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "Neighbourhood")
 public class Neighbourhood implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "Restaurant")
+@Entity
 //@DiscriminatorValue(value = "RESTAURANT")
 public class Restaurant extends User{
 
@@ -18,7 +18,7 @@ public class Restaurant extends User{
     @NonNull
     private String name;
 
-    @Column(name = "rut", nullable = false)
+    @Column(name = "rut", nullable = false, unique = true)
     @NonNull
     private String RUT;
 
