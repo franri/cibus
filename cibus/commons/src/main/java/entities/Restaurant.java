@@ -32,6 +32,14 @@ public class Restaurant extends User{
     @NonNull
     private Integer maxCapacity;
 
+    @Column(name = "Table_for_four", nullable = false)
+    @NonNull
+    private Integer table_for_four;
+
+    @Column(name = "Table_for:two", nullable = false)
+    @NonNull
+    private Integer tableForTwo;
+
     @ManyToOne
     @JoinColumn(name = "neighbourhood", nullable = false)
     @NonNull

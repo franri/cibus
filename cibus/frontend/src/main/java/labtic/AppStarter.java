@@ -17,7 +17,7 @@ public class AppStarter extends Application {
     public void start(Stage primaryStage) throws Exception {
         ApplicationContext context = SpringApplication.run(AppStarter.class);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/searchpage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/adminCreateRestaurant.fxml"));
         loader.setControllerFactory(context::getBean);
 
         Parent root = loader.load();
