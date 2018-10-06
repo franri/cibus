@@ -69,6 +69,8 @@ public class AdminPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+//        title.setText(title.getText().concat(" ").concat(admin.getUsername()));
+
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
         try {

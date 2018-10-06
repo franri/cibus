@@ -18,7 +18,6 @@ public class CreateOrLoginController {
     @Autowired
     AppStarter appStarter;
 
-
     @FXML
     void handleCreateNewAccount(ActionEvent event) {
 

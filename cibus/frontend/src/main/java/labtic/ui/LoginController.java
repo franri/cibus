@@ -40,6 +40,9 @@ public class LoginController{
     @Autowired
     BackendService bs;
 
+    @Autowired
+    AppStarter appStarter;
+
 //    @Autowired
 //    Stage stage;
 
@@ -92,7 +95,7 @@ public class LoginController{
     private void proceedToAdminPage(Admin admin) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/adminPage.fxml"));
         loader.setControllerFactory(AppStarter.getContext()::getBean);
-        AdminPageController controller = (AdminPageController) loader.getController();
+        AdminPageController controller = loader.getController();
         controller.setAdmin(admin);
 
         Parent root = loader.load();
