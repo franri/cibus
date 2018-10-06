@@ -19,6 +19,7 @@ public interface BackendService extends Remote {
     List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods, Integer seatsToReserve) throws RemoteException;
     User findUser(String email) throws RemoteException, NoUserFound;
     Restaurant findRestaurant(String email) throws RemoteException , NoRestaurantFound;
+    void saveRestaurant(Restaurant restaurant) throws RemoteException;
     //NO EXPONER AL RESTAURANT: DEVOLVER UN POJO QUE TENGA  LOS ATRIBUTOS, GETTERS Y SETTERS
 
 }

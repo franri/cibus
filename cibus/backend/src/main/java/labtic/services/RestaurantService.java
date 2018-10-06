@@ -24,10 +24,10 @@ public class RestaurantService {
     }
 
     public Restaurant findByEmail(String email) throws NoRestaurantFound {
-        Restaurant user = restaurantRepository.findOneByEmail(email);
-        if(user == null){
+        Restaurant restaurant = restaurantRepository.findOneByEmail(email);
+        if(restaurant == null){
             throw new NoRestaurantFound(null);
         }
-        return user;
+        return restaurant;
     }
 }

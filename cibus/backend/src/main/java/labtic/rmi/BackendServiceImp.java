@@ -69,4 +69,9 @@ public class BackendServiceImp implements BackendService {
         return rs.findByEmail(email);
     }
 
+    @Override
+    public void saveRestaurant(Restaurant restaurant) throws RemoteException {
+        rs.save(restaurant);
+    }
+
 }

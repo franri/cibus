@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.AdminPageController">
    <children>
       <Label fx:id="title" text="Página de Administrador">
          <font>
@@ -33,6 +33,7 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -48,30 +49,28 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Contraseña" GridPane.rowIndex="2">
+                  <Label text="Contraseña" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Dirección" GridPane.rowIndex="3">
+                  <Label text="Dirección" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <TextField fx:id="nameField" GridPane.columnIndex="1" />
                   <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="confirmButton" mnemonicParsing="false" text="Confirmar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#tryToRegisterRestaurant" text="Confirmar" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label text="RUT" GridPane.rowIndex="2" />
+                  <TextField fx:id="rutField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
                   <MenuButton fx:id="comidasMenu" mnemonicParsing="false" text="Seleccionar comidas">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
                      <VBox.margin>
                         <Insets top="15.0" />
                      </VBox.margin>

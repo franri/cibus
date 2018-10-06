@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 //@DiscriminatorValue(value = "RESTAURANT")
-public class Restaurant extends User{
+public class Restaurant extends User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "name", unique=true, nullable = false)
     @NonNull

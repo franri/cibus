@@ -3,6 +3,7 @@ package labtic.ui;
 import entities.Admin;
 import entities.Food;
 import entities.Neighbourhood;
+import entities.Restaurant;
 import exceptions.NoRestaurantFound;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import rmi.BackendService;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -33,6 +35,9 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private TextField emailField;
+
+    @FXML
+    private TextField rutField;
 
     @FXML
     private PasswordField passwordField;
@@ -63,6 +68,7 @@ public class AdminPageController implements Initializable {
     @SuppressWarnings("Duplicates")
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
         try {
@@ -73,9 +79,9 @@ public class AdminPageController implements Initializable {
             errorLabel.setVisible(true);
         }
 
-        ObservableList<CheckMenuItem> barriosToAdd = FXCollections.observableArrayList();
-        barrios.forEach(item -> barriosToAdd.add(new CheckMenuItem(item.getName())));
-        barriosMenu.getItems().addAll(barriosToAdd);
+        ObservableList<String> barriosToAdd = FXCollections.observableArrayList();
+        barrios.forEach(item -> barriosToAdd.add(item.getName()));
+        barriosMenu.setItems(barriosToAdd);
 
 
         ObservableList<CustomMenuItem> comidasToAdd = FXCollections.observableArrayList();
@@ -93,7 +99,8 @@ public class AdminPageController implements Initializable {
     @FXML
     void tryToRegisterRestaurant(ActionEvent event) throws RemoteException {
         if(emailField == null || "".equals(emailField.getText()) || passwordField == null || "".equals(passwordField.getText())
-        || nameField == null || "".equals(nameField.getText()) || addressField == null || "".equals(addressField.getText())){
+        || nameField == null || "".equals(nameField.getText()) || addressField == null || "".equals(addressField.getText())
+        || rutField == null || "".equals(rutField.getText())){
             errorLabel.setText("Inserte los datos requeridos");
             errorLabel.setVisible(true);
             return;
@@ -116,14 +123,34 @@ public class AdminPageController implements Initializable {
         }
 
         try {
-            bs.findRestaurant(emailField.getText());
+            if(bs.findRestaurant(emailField.getText()) != null){
+                errorLabel.setText("Restaurante ya ingresado con ese email");
+                errorLabel.setVisible(true);
+                return;
+            }
         } catch (NoRestaurantFound noRestaurantFound) {
-            errorLabel.setText("Restaurante ya ingresado con ese email");
+            // a gozar
+        }
+
+        List<Food> comidas = new ArrayList<>();
+        for (MenuItem item : comidasMenu.getItems()){
+            CheckBox deItem = (CheckBox) ((CustomMenuItem) item).getContent();
+            if(deItem.isSelected()){
+                comidas.add(new Food(deItem.getText()));
+            }
+        }
+        if (comidas.isEmpty()){
+            errorLabel.setText("Debe seleccionar comidas");
             errorLabel.setVisible(true);
             return;
         }
 
+        Restaurant res = new Restaurant(emailField.getText(), nameField.getText(), passwordField.getText(), nameField.getText(), rutField.getText(), capacidad, neighbourhood);
+        res.getFoods().addAll(comidas);
+        bs.saveRestaurant(res);
 
+        errorLabel.setText("Agregado con éxito");
+        errorLabel.setVisible(true);
     }
 
 }

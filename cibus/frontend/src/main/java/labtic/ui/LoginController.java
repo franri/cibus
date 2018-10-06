@@ -40,8 +40,8 @@ public class LoginController{
     @Autowired
     BackendService bs;
 
-    @Autowired
-    Stage stage;
+//    @Autowired
+//    Stage stage;
 
     @FXML
     void tryToLogin(ActionEvent event) throws IOException {
@@ -84,6 +84,7 @@ public class LoginController{
         controller.setConsumer(consumer);
 
         Parent root = loader.load();
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -95,6 +96,7 @@ public class LoginController{
         controller.setAdmin(admin);
 
         Parent root = loader.load();
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
     }

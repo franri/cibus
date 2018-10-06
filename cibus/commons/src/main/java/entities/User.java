@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +15,9 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorColumn(name = "DISCRIMINATOR",discriminatorType = DiscriminatorType.STRING)
 //@DiscriminatorValue(value = "USER")
-public class User{
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "email", unique = true)

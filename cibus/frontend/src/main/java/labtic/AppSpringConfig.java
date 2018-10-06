@@ -1,6 +1,7 @@
 package labtic;
 
 
+import entities.Food;
 import entities.Neighbourhood;
 import javafx.stage.Stage;
 import org.springframework.context.annotation.Bean;
@@ -24,18 +25,18 @@ public class AppSpringConfig {
 
         Registry oRegistry = LocateRegistry.getRegistry(4444);
         BackendService bs = (BackendService) oRegistry.lookup(sObjectService);
-        List<Neighbourhood> lista = bs.getListaBarrios();
-        for(Neighbourhood barrio : lista){
-            System.out.println(barrio.getName());
-        }
+//        List<Food> lista = bs.getListaComidas();
+//        for(Food food : lista){
+//            System.out.println(food.getFoodName());
+//        }
         System.out.println("Bien cargado");
         return bs;
 //        return new BackendServiceImpl();
     }
 
-    @Bean
-    public Stage stage(){
-        return new Stage();
-    }
+//    @Bean
+//    public Stage stage(){
+//        return new Stage();
+//    }
 
 }
