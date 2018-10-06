@@ -28,7 +28,6 @@ public class UserService {
         if(user == null){
             throw new NoUserFound(null);
         }
-
         return user;
     }
 }

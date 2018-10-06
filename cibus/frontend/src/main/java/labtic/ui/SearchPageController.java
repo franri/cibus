@@ -1,9 +1,6 @@
 package labtic.ui;
 
-import entities.Food;
-import entities.Neighbourhood;
-import entities.Restaurant;
-import entities.User;
+import entities.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,11 +43,12 @@ public class SearchPageController implements Initializable {
     @Autowired
     private BackendService bs;
 
-    User user;
+    Consumer consumer;
 
     @FXML
     private ListView<Restaurant> listaRestaurantes;
 
+    @SuppressWarnings("Duplicates")
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //  Cargo lista de barrios, comidas a drop-down
@@ -99,14 +97,6 @@ public class SearchPageController implements Initializable {
                 };
             }
         });
-
-//        Restaurant res = new Restaurant();
-//        res.setName("Pepe");
-//        res.setRUT("44");
-//        res.setAddress("Av. Brasil");
-//        res.setPhoneNumber(4478L);
-//        res.setMaxCapacity(10);
-//        listaRestaurantes.getItems().add(res);
     }
 
     @FXML
@@ -121,6 +111,7 @@ public class SearchPageController implements Initializable {
                 comidas.add(new Food(deItem.getText()));
             }
         }
+        //TODO que pasa si la lista de comidas está vacía?
 
         List<Neighbourhood> barrios = new ArrayList<>();
         for (MenuItem item : listaBarrios.getItems()){
@@ -128,6 +119,9 @@ public class SearchPageController implements Initializable {
             if(deItem.isSelected()){
                 barrios.add(new Neighbourhood(deItem.getText()));
             }
+        }
+        if(barrios.size()==0){
+            barrios = bs.getListaBarrios();
         }
 
         Integer lugaresReservados = (Integer)lugares.getSelectionModel().getSelectedItem();
@@ -143,39 +137,6 @@ public class SearchPageController implements Initializable {
         listaRestaurantes.getItems().addAll(restaurants);
 
     }
-
-//        ObservableList<CustomMenuItem> barrios = FXCollections.observableArrayList();
-//        barrios.add(new CustomMenuItem(new CheckBox("Pocitos"), false));
-//        barrios.add(new CustomMenuItem(new CheckBox("Centro"), false));
-//        barrios.add(new CustomMenuItem(new CheckBox("Punta Carretas"), false));
-//
-//        for (CustomMenuItem item : barrios) {
-//            listaBarrios.getItems().add(item);
-//        }
-//        CheckBox hola = (CheckBox) ((CustomMenuItem) listaBarrios.getItems().get(1)).getContent();
-//        String hallo = hola.getText();
-//        hola.setSelected(true);
-//        boolean checked = hola.isSelected();
-//        System.out.println(checked+hallo);
-//
-//
-//        ObservableList<Integer> lugaresList = FXCollections.observableArrayList();
-//        for(int i=1; i<AMOUNT_OF_SEATS+1; i++){
-//            lugaresList.add(i);
-//        }
-//
-//            lugares.setItems(lugaresList);
-//
-//            Integer halla = (Integer)lugares.getSelectionModel().getSelectedItem();
-//            System.out.println(halla);
-//
-////        boolean halla = lugares.get
-////        System.out.println(halla);
-//        }
-//
-//        public void printalgo(){
-//            System.out.println(lugares.getSelectionModel().getSelectedItem());
-//            System.out.println(lugares.getSelectionModel().isEmpty());
 
 }
 

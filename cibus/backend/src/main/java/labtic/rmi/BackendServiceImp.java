@@ -6,6 +6,7 @@ import entities.Food;
 import entities.Neighbourhood;
 import entities.Restaurant;
 import entities.User;
+import exceptions.NoRestaurantFound;
 import exceptions.NoUserFound;
 import labtic.services.FoodService;
 import labtic.services.NeighbourhoodService;
@@ -61,6 +62,11 @@ public class BackendServiceImp implements BackendService {
     @Override
     public User findUser(String email) throws NoUserFound, RemoteException {
         return us.findByEmail(email);
+    }
+
+    @Override
+    public Restaurant findRestaurant(String email) throws NoRestaurantFound, RemoteException {
+        return rs.findByEmail(email);
     }
 
 }

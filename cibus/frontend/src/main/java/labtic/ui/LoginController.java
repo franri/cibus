@@ -40,6 +40,9 @@ public class LoginController{
     @Autowired
     BackendService bs;
 
+    @Autowired
+    Stage stage;
+
     @FXML
     void tryToLogin(ActionEvent event) throws IOException {
         if(emailField == null || "".equals(emailField.getText()) || passwordField == null || "".equals(passwordField.getText())){
@@ -67,27 +70,33 @@ public class LoginController{
         //Usuario con todas las cosas ok, paso a ver que usuario es
         //Por ahora intento solo admin y comensal
         if(user instanceof Consumer){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/searchPage.fxml"));
-            loader.setControllerFactory(AppStarter.getContext()::getBean);
-            SearchPageController controller = (SearchPageController) loader.getController();
-            controller.setUser((Consumer) user);
-
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            proceedToSearchpage((Consumer) user);
         }else if(user instanceof Admin){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/adminPage.fxml"));
-            loader.setControllerFactory(AppStarter.getContext()::getBean);
-            AdminPageController controller = (AdminPageController) loader.getController();
-            controller.setUser((Admin) user);
-
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+            proceedToAdminPage((Admin) user);
         }
 
+    }
+
+    private void proceedToSearchpage(Consumer consumer) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/searchPage.fxml"));
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        SearchPageController controller = loader.getController();
+        controller.setConsumer(consumer);
+
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void proceedToAdminPage(Admin admin) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/adminPage.fxml"));
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        AdminPageController controller = (AdminPageController) loader.getController();
+        controller.setAdmin(admin);
+
+        Parent root = loader.load();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

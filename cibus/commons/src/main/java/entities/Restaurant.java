@@ -18,7 +18,7 @@ public class Restaurant extends User{
     @NonNull
     private String name;
 
-    @Column(name = "rut", nullable = false)
+    @Column(name = "rut", nullable = false, unique = true)
     @NonNull
     private String RUT;
 

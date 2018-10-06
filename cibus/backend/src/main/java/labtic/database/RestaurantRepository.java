@@ -10,4 +10,5 @@ import java.util.List;
 public interface RestaurantRepository extends JpaRepository<Restaurant,String> {
 
     List<Restaurant> findByNameContainingAndFoodsAndNeighbourhoodInAndMaxCapacityGreaterThanEqual(String name, List<Food> foods, List<Neighbourhood> neighbourhood, Integer maxCapacity);
+    Restaurant findOneByEmail(String email);
 }

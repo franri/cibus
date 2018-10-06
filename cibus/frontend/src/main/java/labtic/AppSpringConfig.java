@@ -2,6 +2,7 @@ package labtic;
 
 
 import entities.Neighbourhood;
+import javafx.stage.Stage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import rmi.BackendService;
@@ -30,6 +31,11 @@ public class AppSpringConfig {
         System.out.println("Bien cargado");
         return bs;
 //        return new BackendServiceImpl();
+    }
+
+    @Bean
+    public Stage stage(){
+        return new Stage();
     }
 
 }
