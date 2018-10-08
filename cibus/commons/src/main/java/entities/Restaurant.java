@@ -34,6 +34,15 @@ public class Restaurant extends User implements Serializable {
     @NonNull
     private Long maxCapacity;
 
+
+    @Column(name = "Table_for_four", nullable = false)
+    @NonNull
+    private Integer tableForFour;
+
+    @Column(name = "Table_for_two", nullable = false)
+    @NonNull
+    private Integer tableForTwo;
+                                                                                                                                                
     @ManyToOne
     @JoinColumn(name = "neighbourhood", nullable = false)
     @NonNull
