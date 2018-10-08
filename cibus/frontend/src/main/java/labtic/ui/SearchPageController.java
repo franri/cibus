@@ -124,7 +124,7 @@ public class SearchPageController implements Initializable {
             barrios = bs.getListaBarrios();
         }
 
-        Integer lugaresReservados = (Integer)lugares.getSelectionModel().getSelectedItem();
+        Integer lugaresReservados = (Integer) lugares.getSelectionModel().getSelectedItem();
 
         if(lugaresReservados==null){
             errorLabel.setText("Debe seleccionar cantidad de lugares");
@@ -132,7 +132,10 @@ public class SearchPageController implements Initializable {
             return;
         }
 
-        List<Restaurant> restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, lugaresReservados);
+        Long size = (long) comidas.size();
+
+        List<Restaurant> restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados),
+                size);
 
         listaRestaurantes.getItems().addAll(restaurants);
 
