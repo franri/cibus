@@ -32,12 +32,17 @@ public class Restaurant extends User implements Serializable {
     private Long phoneNumber;
 
     @NonNull
-    private Integer maxCapacity;
+    private Long maxCapacity;
 
-    private Integer tablesForFour;
 
-    private Integer tablesForTwo;
+    @Column(name = "Table_for_four", nullable = false)
+    @NonNull
+    private Integer tableForFour;
 
+    @Column(name = "Table_for_two", nullable = false)
+    @NonNull
+    private Integer tableForTwo;
+                                                                                                                                                
     @ManyToOne
     @JoinColumn(name = "neighbourhood", nullable = false)
     @NonNull
@@ -46,7 +51,8 @@ public class Restaurant extends User implements Serializable {
     @ManyToMany
     private List<Food> foods = new ArrayList<>();
 
-    public Restaurant(String email, String username, String password, String name, String RUT, Integer maxCapacity, Neighbourhood neighbourhood) {
+    public Restaurant(String email, String username, String password, String name, String RUT, Long maxCapacity,
+                      Neighbourhood neighbourhood) {
         super(email, username, password);
         this.name = name;
         this.RUT = RUT;

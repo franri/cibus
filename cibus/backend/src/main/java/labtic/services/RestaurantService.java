@@ -19,8 +19,9 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-    public List<Restaurant> findWithFilters(String name, List<Food> foods, List<Neighbourhood> neighbourhoods, Integer maxCapacity){
-        return restaurantRepository.findByNameContainingAndFoodsAndNeighbourhoodInAndMaxCapacityGreaterThanEqual(name, foods, neighbourhoods, maxCapacity);
+    public List<Restaurant> findWithFilters(String name, List<Food> foods, List<Neighbourhood> neighbourhoods,
+                                            Long maxCapacity, Long size){
+        return restaurantRepository.findWithFilters(name, foods, neighbourhoods, maxCapacity, size);
     }
 
     public Restaurant findByEmail(String email) throws NoRestaurantFound {

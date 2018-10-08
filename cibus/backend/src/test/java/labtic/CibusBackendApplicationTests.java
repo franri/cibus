@@ -53,11 +53,11 @@ public class CibusBackendApplicationTests {
 		fs.save(ensalada);
 		fs.save(fideos);
 
-		Restaurant res1 = new Restaurant("pepe@gmail.com", "Pepe", "pepe123", "Pepe", "44", 44, barrio);
+		Restaurant res1 = new Restaurant("pepe@gmail.com", "Pepe", "pepe123", "Pepe", "44", 44L, barrio);
 		res1.getFoods().add(papas);
 		res1.getFoods().add(burguer);
 
-		Restaurant res2 = new Restaurant("maria@gmail.com", "Maria", "maria123", "Maria", "99", 123, barrio2);
+		Restaurant res2 = new Restaurant("maria@gmail.com", "Maria", "maria123", "Maria", "99", 123L, barrio2);
 		res2.getFoods().add(papas);
 		res2.getFoods().add(ensalada);
 
@@ -74,7 +74,7 @@ public class CibusBackendApplicationTests {
 		barrios.add(barrio);
 		barrios.add(barrio2);
 
-        List<Restaurant> filtrados = rs.findWithFilters("", foods, barrios, 3);
+        List<Restaurant> filtrados = rs.findWithFilters("", foods, barrios, 3L, Long.valueOf(foods.size()));
         String lista = "";
         for (Restaurant filtrado : filtrados) {
             lista = lista.concat(filtrado.getName());

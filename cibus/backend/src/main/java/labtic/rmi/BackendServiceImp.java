@@ -55,8 +55,9 @@ public class BackendServiceImp implements BackendService {
     }
 
 
-    public List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods, Integer seatsToReserve) throws RemoteException {
-        return rs.findWithFilters(name, foods, neighbourhoods, seatsToReserve);
+    public List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods,
+                                               Long seatsToReserve, Long size) throws RemoteException {
+        return rs.findWithFilters(name, foods, neighbourhoods, seatsToReserve, size);
     }
 
     @Override

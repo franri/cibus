@@ -124,6 +124,7 @@ public class AdminPageController implements Initializable {
             return;
         }
 
+
         try {
             if(bs.findRestaurant(emailField.getText()) != null){
                 errorLabel.setText("Restaurante ya ingresado con ese email");
@@ -148,7 +149,8 @@ public class AdminPageController implements Initializable {
             return;
         }
 
-        Restaurant res = new Restaurant(emailField.getText(), nameField.getText(), passwordField.getText(), nameField.getText(), rutField.getText(), capacidad, neighbourhood);
+        Restaurant res = new Restaurant(emailField.getText(), nameField.getText(), passwordField.getText(),
+                nameField.getText(), rutField.getText(), Long.valueOf(capacidad), neighbourhood);
         res.getFoods().addAll(comidas);
         bs.saveRestaurant(res);
 

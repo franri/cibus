@@ -16,7 +16,8 @@ public interface BackendService extends Remote {
 
     List<Neighbourhood> getListaBarrios() throws RemoteException;
     List<Food> getListaComidas() throws RemoteException;
-    List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods, Integer seatsToReserve) throws RemoteException;
+    List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods,
+                                        Long seatsToReserve, Long size) throws RemoteException;
     User findUser(String email) throws RemoteException, NoUserFound;
     Restaurant findRestaurant(String email) throws RemoteException , NoRestaurantFound;
     void saveRestaurant(Restaurant restaurant) throws RemoteException;
