@@ -18,6 +18,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 @Controller
 public class adminCreateRestaurantController implements Initializable {
 

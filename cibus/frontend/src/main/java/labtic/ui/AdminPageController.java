@@ -140,6 +140,7 @@ public class AdminPageController implements Initializable {
             CheckBox deItem = (CheckBox) ((CustomMenuItem) item).getContent();
             if(deItem.isSelected()){
                 comidas.add(new Food(deItem.getText()));
+
             }
         }
         if (comidas.isEmpty()){
