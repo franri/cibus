@@ -3,6 +3,7 @@ package entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -46,7 +47,7 @@ public class Restaurant extends User implements Serializable {
     @NonNull
     private Neighbourhood neighbourhood;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Food> foods = new ArrayList<>();
 
     public Restaurant(String email, String username, String password, String name, String RUT, Long maxCapacity,

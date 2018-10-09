@@ -15,9 +15,6 @@ import java.io.IOException;
 @Controller
 public class CreateOrLoginController {
 
-    @Autowired
-    AppStarter appStarter;
-
     @FXML
     void handleCreateNewAccount(ActionEvent event) {
 
@@ -29,7 +26,7 @@ public class CreateOrLoginController {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
 
-        Parent root = loader.load(getClass().getResource("../ui/Login.fxml"));
+        Parent root = loader.load(LoginController.class.getResourceAsStream("Login.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();

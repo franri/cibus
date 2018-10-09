@@ -17,6 +17,9 @@ public class AppStarter extends Application {
     @Getter
     private static ApplicationContext context;
 
+    @Getter
+    private static Stage mainStage;
+
     @Override
     public void init() throws Exception {
         context = SpringApplication.run(AppStarter.class);
@@ -24,8 +27,8 @@ public class AppStarter extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/AdminPage.fxml"));
+        mainStage = primaryStage;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/SearchPage.fxml"));
         loader.setControllerFactory(AppStarter.getContext()::getBean);
 
         Parent root = loader.load();

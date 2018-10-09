@@ -19,8 +19,7 @@ public class RestaurantService {
         restaurantRepository.save(restaurant);
     }
 
-    public List<Restaurant> findWithFilters(String name, List<Food> foods, List<Neighbourhood> neighbourhoods,
-                                            Long maxCapacity, Long size){
+    public List<Restaurant> findWithFilters(String name, List<Food> foods, List<Neighbourhood> neighbourhoods, Long maxCapacity, Long size){
         return restaurantRepository.findWithFilters(name, foods, neighbourhoods, maxCapacity, size);
     }
 

@@ -40,12 +40,12 @@ public class LoginController{
     @Autowired
     BackendService bs;
 
-    @Autowired
-    AppStarter appStarter;
-
 //    @Autowired
 //    Stage stage;
+    public LoginController() {
+        System.out.println("Hola!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
+    }
     @FXML
     void tryToLogin(ActionEvent event) throws IOException {
         if(emailField == null || "".equals(emailField.getText()) || passwordField == null || "".equals(passwordField.getText())){
@@ -81,24 +81,24 @@ public class LoginController{
     }
 
     private void proceedToSearchpage(Consumer consumer) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/searchPage.fxml"));
+        FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
+
+        Parent root = loader.load(SearchPageController.class.getResourceAsStream("SearchPage.fxml"));
         SearchPageController controller = loader.getController();
         controller.setConsumer(consumer);
-
-        Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
     private void proceedToAdminPage(Admin admin) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ui/adminPage.fxml"));
+        FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
+
+        Parent root = loader.load(AdminPageController.class.getResourceAsStream("AdminPage.fxml"));
         AdminPageController controller = loader.getController();
         controller.setAdmin(admin);
-
-        Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
