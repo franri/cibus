@@ -69,7 +69,7 @@ public class AdminPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        title.setText(title.getText().concat(" ").concat(admin.getUsername()));
+        title.setText(title.getText().concat(" ").concat(admin.getUsername()));
 
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
@@ -81,13 +81,20 @@ public class AdminPageController implements Initializable {
             errorLabel.setVisible(true);
         }
 
-        ObservableList<String> barriosToAdd = FXCollections.observableArrayList();
-        barrios.forEach(item -> barriosToAdd.add(item.getName()));
+        ObservableList<Neighbourhood> barriosToAdd = FXCollections.observableArrayList();
+        barrios.forEach(item -> {
+           barriosToAdd.add(item);
+        });
         barriosMenu.setItems(barriosToAdd);
 
 
         ObservableList<CustomMenuItem> comidasToAdd = FXCollections.observableArrayList();
-        comidas.forEach(item -> comidasToAdd.add(new CustomMenuItem(new CheckBox(item.getFoodName()), false)));
+        comidas.forEach(item -> {
+            CheckBox checkBox = new CheckBox(item.getName());
+            checkBox.setUserData(item);
+            CustomMenuItem customMenuItem = new CustomMenuItem(checkBox, false);
+            comidasToAdd.add(customMenuItem);
+        });
         comidasMenu.getItems().addAll(comidasToAdd);
 
 //        Meto lista para elegir lugares
@@ -108,13 +115,12 @@ public class AdminPageController implements Initializable {
             return;
         }
 
-        String barrioString = (String)barriosMenu.getSelectionModel().getSelectedItem();
-        if(barrioString==null){
+        Neighbourhood barrio = (Neighbourhood)barriosMenu.getSelectionModel().getSelectedItem();
+        if(barrio==null){
             errorLabel.setText("Debe seleccionar un barrio");
             errorLabel.setVisible(true);
             return;
         }
-        Neighbourhood neighbourhood = new Neighbourhood(barrioString);
 
         Integer capacidad = (Integer)capacidadMenu.getSelectionModel().getSelectedItem();
 
@@ -139,7 +145,7 @@ public class AdminPageController implements Initializable {
         for (MenuItem item : comidasMenu.getItems()){
             CheckBox deItem = (CheckBox) ((CustomMenuItem) item).getContent();
             if(deItem.isSelected()){
-                comidas.add(new Food(deItem.getText()));
+                comidas.add((Food)deItem.getUserData());
 
             }
         }
@@ -150,7 +156,7 @@ public class AdminPageController implements Initializable {
         }
 
         Restaurant res = new Restaurant(emailField.getText(), nameField.getText(), passwordField.getText(),
-                nameField.getText(), rutField.getText(), Long.valueOf(capacidad), neighbourhood);
+                nameField.getText(), rutField.getText(), Long.valueOf(capacidad), barrio);
         res.getFoods().addAll(comidas);
         bs.saveRestaurant(res);
 

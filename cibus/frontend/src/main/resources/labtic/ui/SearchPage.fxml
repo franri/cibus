@@ -28,18 +28,7 @@
                   <TextField fx:id="buscaNombre" promptText="Buscar por nombre..." />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
-               <children>
-                  <ImageView fitHeight="45.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../Downloads/alarm-clock-icon_2006659.jpg" />
-                     </image>
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label fx:id="errorLabel" visible="false" />

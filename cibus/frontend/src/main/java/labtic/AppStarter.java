@@ -28,7 +28,7 @@ public class AppStarter extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/SearchPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/CreateOrLogin.fxml"));
         loader.setControllerFactory(AppStarter.getContext()::getBean);
 
         Parent root = loader.load();
