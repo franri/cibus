@@ -6,7 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +55,7 @@ public class SearchPageController implements Initializable {
     @SuppressWarnings("Duplicates")
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(consumer.getFirstName());
         //  Cargo lista de barrios, comidas a drop-down
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
@@ -63,12 +68,21 @@ public class SearchPageController implements Initializable {
         }
 
         ObservableList<CustomMenuItem> barriosToAdd = FXCollections.observableArrayList();
-        barrios.forEach(item -> barriosToAdd.add(new CustomMenuItem(new CheckBox(item.getName()), false)));
+        barrios.forEach(item -> {
+            CheckBox checkBox = new CheckBox(item.getName());
+            checkBox.setUserData(item);
+            CustomMenuItem customMenuItem = new CustomMenuItem(checkBox, false);
+            barriosToAdd.add(customMenuItem);
+                });
         listaBarrios.getItems().addAll(barriosToAdd);
 
-
         ObservableList<CustomMenuItem> comidasToAdd = FXCollections.observableArrayList();
-        comidas.forEach(item -> comidasToAdd.add(new CustomMenuItem(new CheckBox(item.getFoodName()), false)));
+        comidas.forEach(item -> {
+                CheckBox checkBox = new CheckBox(item.getName());
+                checkBox.setUserData(item);
+                CustomMenuItem customMenuItem = new CustomMenuItem(checkBox, false);
+                comidasToAdd.add(customMenuItem);
+                });
         listaComidas.getItems().addAll(comidasToAdd);
 
 //        Meto lista para elegir lugares
@@ -84,17 +98,7 @@ public class SearchPageController implements Initializable {
         listaRestaurantes.setCellFactory(new Callback<ListView<Restaurant>, ListCell<Restaurant>>() {
             @Override
             public ListCell<Restaurant> call(ListView<Restaurant> param) {
-                return new ListCell<Restaurant>(){
-                    @Override
-                    protected void updateItem(Restaurant item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setText(null);
-                        } else {
-                            setText(item.toString());
-                        }
-                    }
-                };
+                return new CustomListCell();
             }
         });
     }
@@ -108,7 +112,7 @@ public class SearchPageController implements Initializable {
         for (MenuItem item : listaComidas.getItems()){
             CheckBox deItem = (CheckBox) ((CustomMenuItem) item).getContent();
             if(deItem.isSelected()){
-                comidas.add(new Food(deItem.getText()));
+                comidas.add((Food)deItem.getUserData());
             }
         }
         //TODO que pasa si la lista de comidas está vacía?
@@ -117,7 +121,7 @@ public class SearchPageController implements Initializable {
         for (MenuItem item : listaBarrios.getItems()){
             CheckBox deItem = (CheckBox) ((CustomMenuItem) item).getContent();
             if(deItem.isSelected()){
-                barrios.add(new Neighbourhood(deItem.getText()));
+                barrios.add((Neighbourhood)deItem.getUserData());
             }
         }
         if(barrios.size()==0){
@@ -137,9 +141,49 @@ public class SearchPageController implements Initializable {
         List<Restaurant> restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados),
                 size);
 
+        listaRestaurantes.getItems().clear();
         listaRestaurantes.getItems().addAll(restaurants);
 
     }
 
+
+    private class CustomListCell extends ListCell<Restaurant>{
+        private HBox content;
+        private Text name;
+        private Text rating;
+        private Text avgPrice;
+
+        public CustomListCell() {
+            super();
+            name = new Text();
+            rating = new Text();
+            avgPrice = new Text();
+            VBox vBoxName = new VBox();
+            vBoxName.getChildren().add(name);
+            VBox vBoxData = new VBox();
+            vBoxData.getChildren().addAll(rating, avgPrice);
+            vBoxData.setSpacing(10);
+            vBoxData.setAlignment(Pos.TOP_CENTER);
+            content = new HBox(new Label("Imagen"), vBoxName, vBoxData);
+            content.setSpacing(10);
+        }
+
+        @Override
+        protected void updateItem(Restaurant item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null && !empty) { // <== test for null item and empty parameter
+                name.setText(item.getName());
+                rating.setText(item.getRating().toString());
+                avgPrice.setText(item.getAvgPrice().toString());
+                setGraphic(content);
+            } else {
+                setGraphic(null);
+            }
+        }
+
+
+
+
+    }
 }
 

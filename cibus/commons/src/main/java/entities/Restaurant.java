@@ -3,9 +3,12 @@ package entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,18 +38,27 @@ public class Restaurant extends User implements Serializable {
     private Long maxCapacity;
 
 
-    @Column(name = "Table_for_four")
+    @Column(name = "tableForFour")
     private Long tableForFour;
 
-    @Column(name = "Table_for_two")
+    @Column(name = "tableForTwo")
     private Long tableForTwo;
-                                                                                                                                                
+
+    @Column(name = "canBeShown")
+    private boolean canBeShown; //default = false
+
+    @Column(precision = 2, scale = 1)
+    private BigDecimal rating = new BigDecimal(0);
+
+    @Column(precision = 5, scale = 2)
+    private BigDecimal avgPrice = new BigDecimal(0);
+
     @ManyToOne
     @JoinColumn(name = "neighbourhood", nullable = false)
     @NonNull
     private Neighbourhood neighbourhood;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Food> foods = new ArrayList<>();
 
     public Restaurant(String email, String username, String password, String name, String RUT, Long maxCapacity,

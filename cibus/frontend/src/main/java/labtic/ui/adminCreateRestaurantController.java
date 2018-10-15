@@ -96,7 +96,7 @@ public class adminCreateRestaurantController implements Initializable {
             listaBarrios.getItems().addAll(barriosToAdd);
 
             ObservableList<CustomMenuItem> comidasToAdd = FXCollections.observableArrayList();
-            comidas.forEach(item -> comidasToAdd.add(new CustomMenuItem(new CheckBox(item.getFoodName()), false)));
+            comidas.forEach(item -> comidasToAdd.add(new CustomMenuItem(new CheckBox(item.getName()), false)));
             listaComidas.getItems().addAll(comidasToAdd);
         }
 

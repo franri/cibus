@@ -19,9 +19,12 @@ public class Food implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue
+    Long id;
+
     @NonNull
-    @Column(name = "food_name", nullable = false)
-    private String foodName;
+    @Column(name = "name", nullable = false)
+    private String name;
 
 //    @ManyToMany(mappedBy = "foods")
 //    private  List<Restaurant> list;

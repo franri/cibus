@@ -14,6 +14,7 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="413.0" layoutY="51.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #A03324;">
          <children>
+
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sing in">
                <font>
                   <Font name="Arial" size="24.0" />
@@ -27,19 +28,18 @@
                   <Insets top="45.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="password" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
+            <JFXPasswordField focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Password" unFocusColor="#18a0e4">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
-            </JFXTextField>
+            </JFXPasswordField>
             <JFXButton prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Sing in">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
             </JFXButton>
+
+
          </children>
          <padding>
             <Insets top="20.0" />

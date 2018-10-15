@@ -4,22 +4,23 @@ package labtic;
 import entities.Food;
 import entities.Neighbourhood;
 import entities.Restaurant;
+import exceptions.NoRestaurantFound;
 import labtic.services.FoodService;
 import labtic.services.NeighbourhoodService;
 import labtic.services.RestaurantService;
 import labtic.services.UserService;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -37,7 +38,7 @@ public class CibusBackendApplicationTests {
 	@Autowired
 	FoodService fs;
 
-	@Test
+	@Ignore
 	public void contextLoads() {
 
 		Neighbourhood barrio = new Neighbourhood("Pocitos");
@@ -80,6 +81,17 @@ public class CibusBackendApplicationTests {
             lista = lista.concat(filtrado.getName());
         }
         System.out.println(lista);
+	}
+
+	@Test
+	public void checkIfFilterWorks() throws NoRestaurantFound {
+		List<Food> foods = new ArrayList<>();
+		foods.add(new Food("Asado"));
+		List<Neighbourhood> neighbourhoods = ns.findAllNeighbourhoods();
+		System.out.println(rs.findByEmail("pepe").getName());
+		List<Restaurant> restaurants = rs.findWithFilters("", foods, neighbourhoods, 1L, Long.valueOf(foods.size()));
+
+		assertEquals(3, restaurants.size());
 	}
 
 }
