@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,97 +10,67 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.AdminPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="646.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="title" text="Página de Administrador">
-         <font>
-            <Font size="25.0" />
-         </font>
-         <VBox.margin>
-            <Insets bottom="40.0" />
-         </VBox.margin>
-      </Label>
-      <Label text="Ingresar datos de restaurante">
-         <VBox.margin>
-            <Insets bottom="15.0" />
-         </VBox.margin>
-      </Label>
-      <HBox alignment="CENTER_LEFT" prefHeight="283.0" prefWidth="600.0">
+      <AnchorPane layoutX="66.0" layoutY="20.0" prefHeight="500.0" prefWidth="515.0" style="-fx-background-color: #A03324;">
          <children>
-            <GridPane prefHeight="178.0" prefWidth="343.0">
-              <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="134.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="198.0" minWidth="10.0" prefWidth="170.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Nombre">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Email" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Contraseña" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Dirección" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <TextField fx:id="nameField" GridPane.columnIndex="1" />
-                  <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="addressField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#tryToRegisterRestaurant" text="Confirmar" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label text="RUT " GridPane.rowIndex="2" />
-                  <TextField fx:id="rutField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mesa para dos " GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mesa para cuatro" GridPane.rowIndex="6" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-               </children>
-            </GridPane>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <MenuButton fx:id="comidasMenu" mnemonicParsing="false" text="Seleccionar comidas">
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </MenuButton>
-                  <ComboBox fx:id="barriosMenu" prefWidth="150.0" promptText="Elegir Barrio">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </ComboBox>
-                  <ComboBox fx:id="capacidadMenu" prefWidth="150.0" promptText="Elegir capacidad máxima">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </ComboBox>
-               </children>
-            </VBox>
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="112.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="174.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="49.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="235.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="302.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="359.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para dos" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="424.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para cuatro" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
+            <MenuButton fx:id="comidasMenu" layoutX="301.0" layoutY="93.0" mnemonicParsing="false" text="Seleccionar comidas">
+               <effect>
+                  <ColorAdjust contrast="1.0" />
+               </effect>
+            </MenuButton>
+            <ComboBox fx:id="barriosMenu" layoutX="296.0" layoutY="162.0" prefWidth="150.0" promptText="Elegir Barrio">
+               <effect>
+                  <ColorAdjust brightness="-0.28" contrast="1.0" hue="0.02" />
+               </effect>
+            </ComboBox>
+            <ComboBox fx:id="capacidadMenu" layoutX="277.0" layoutY="238.0" prefHeight="25.0" prefWidth="189.0" promptText="Elegir capacidad máxima">
+               <effect>
+                  <ColorAdjust contrast="1.0" />
+               </effect>
+            </ComboBox>
+            <JFXButton layoutX="276.0" layoutY="427.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
+            <Label layoutX="166.0" layoutY="1.0" text="Crear Restaurante" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
          </children>
-      </HBox>
-      <VBox alignment="CENTER" prefHeight="51.0" prefWidth="600.0">
-         <children>
-            <Label fx:id="errorLabel" text="Label" textFill="RED" visible="false" />
-         </children>
-      </VBox>
+      </AnchorPane>
    </children>
-</VBox>
+</AnchorPane>
