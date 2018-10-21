@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.*?>
-<?import javafx.scene.effect.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="454.0" style="-fx-background-color: #201210;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.CreateUserController">
@@ -40,7 +37,7 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXButton layoutX="128.0" layoutY="411.0" onAction="#guardarDatos" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
+            <JFXButton layoutX="128.0" layoutY="411.0" onAction="#registerNewConsumer" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
             <JFXTextField fx:id="LastNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="128.0" layoutY="158.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Apellido" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />

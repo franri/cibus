@@ -18,7 +18,7 @@ public class UserService {
         if (userRepository.findOneByEmail(emailAddress) != null){
             throw new UserAlreadyRegistered("Este usuario ya existe");
         }
-        userRepository.save(new User(emailAddress, username, password));
+        userRepository.save(new User(emailAddress,password));
     }
 
     public void save(User user){userRepository.save(user);}
