@@ -17,7 +17,7 @@ public class CreateUserController {
 
 
     @FXML
-    private JFXTextField nameText;
+    public JFXTextField nameText;
 
     @FXML
     void guardarDatos(ActionEvent event) {
