@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
@@ -55,7 +56,7 @@ public class SearchPageController implements Initializable {
     @SuppressWarnings("Duplicates")
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(consumer.getFirstName());
+//        System.out.println(consumer.getFirstName());
         //  Cargo lista de barrios, comidas a drop-down
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
@@ -152,19 +153,25 @@ public class SearchPageController implements Initializable {
         private Text name;
         private Text rating;
         private Text avgPrice;
+        private Text workingHours;
 
         public CustomListCell() {
             super();
             name = new Text();
             rating = new Text();
             avgPrice = new Text();
+            workingHours = new Text();
             VBox vBoxName = new VBox();
-            vBoxName.getChildren().add(name);
+            vBoxName.setAlignment(Pos.TOP_CENTER);
+            vBoxName.getChildren().addAll(name, workingHours);
+            VBox.setVgrow(name, Priority.ALWAYS);
+            VBox.setVgrow(workingHours, Priority.ALWAYS);
             VBox vBoxData = new VBox();
             vBoxData.getChildren().addAll(rating, avgPrice);
             vBoxData.setSpacing(10);
             vBoxData.setAlignment(Pos.TOP_CENTER);
             content = new HBox(new Label("Imagen"), vBoxName, vBoxData);
+            HBox.setHgrow(vBoxName, Priority.ALWAYS);
             content.setSpacing(10);
         }
 
@@ -175,6 +182,7 @@ public class SearchPageController implements Initializable {
                 name.setText(item.getName());
                 rating.setText(item.getRating().toString());
                 avgPrice.setText(item.getAvgPrice().toString());
+                workingHours.setText(item.getOpeningHour().toString().concat(" - ").concat(item.getClosingHour().toString()));
                 setGraphic(content);
             } else {
                 setGraphic(null);
