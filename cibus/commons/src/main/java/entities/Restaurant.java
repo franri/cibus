@@ -65,7 +65,7 @@ public class Restaurant extends User implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Food> foods = new ArrayList<>();
 
-    public Restaurant(String email, String username, String password, String name, String RUT, Long maxCapacity,
+    public Restaurant(String email, String password, String name, String RUT, Long maxCapacity,
                       Neighbourhood neighbourhood) {
         super(email,password);
         this.name = name;

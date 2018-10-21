@@ -80,7 +80,7 @@ public class LoginController{
             proceedToAdminPage((Admin) user);
         }
         else if(user instanceof Restaurant){
-            proceedToRestaurantDetailsPage((Restaurant) user);
+//            proceedToRestaurantDetailsPage((Restaurant) user);
         }
 
     }

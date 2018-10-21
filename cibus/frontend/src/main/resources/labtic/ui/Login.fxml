@@ -24,7 +24,7 @@
                   <Font name="Arial" size="24.0" />
                </font>
             </Text>
-            <JFXTextField fx:id="emailField" focusColor="WHITE" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -32,7 +32,7 @@
                   <Insets top="45.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Contraseña" unFocusColor="#18a0e4">
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>

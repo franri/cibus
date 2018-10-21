@@ -54,11 +54,11 @@ public class CibusBackendApplicationTests {
 		fs.save(ensalada);
 		fs.save(fideos);
 
-		Restaurant res1 = new Restaurant("pepe@gmail.com", "Pepe", "pepe123", "Pepe", "44", 44L, barrio);
+		Restaurant res1 = new Restaurant("pepe@gmail.com", "Pepe", "Pepe", "44", 44L, barrio);
 		res1.getFoods().add(papas);
 		res1.getFoods().add(burguer);
 
-		Restaurant res2 = new Restaurant("maria@gmail.com", "Maria", "maria123", "Maria", "99", 123L, barrio2);
+		Restaurant res2 = new Restaurant("maria@gmail.com", "Maria", "Maria", "99", 123L, barrio2);
 		res2.getFoods().add(papas);
 		res2.getFoods().add(ensalada);
 
