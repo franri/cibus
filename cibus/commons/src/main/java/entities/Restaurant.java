@@ -67,7 +67,7 @@ public class Restaurant extends User implements Serializable {
 
     public Restaurant(String email, String username, String password, String name, String RUT, Long maxCapacity,
                       Neighbourhood neighbourhood) {
-        super(email, username, password);
+        super(email,password);
         this.name = name;
         this.RUT = RUT;
         this.maxCapacity = maxCapacity;

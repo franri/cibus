@@ -56,7 +56,9 @@ public class SearchPageController implements Initializable {
     @SuppressWarnings("Duplicates")
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 //        System.out.println(consumer.getFirstName());
+
         //  Cargo lista de barrios, comidas a drop-down
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;

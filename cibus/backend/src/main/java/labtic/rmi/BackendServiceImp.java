@@ -2,16 +2,10 @@ package labtic.rmi;
 
 
 
-import entities.Food;
-import entities.Neighbourhood;
-import entities.Restaurant;
-import entities.User;
+import entities.*;
 import exceptions.NoRestaurantFound;
 import exceptions.NoUserFound;
-import labtic.services.FoodService;
-import labtic.services.NeighbourhoodService;
-import labtic.services.RestaurantService;
-import labtic.services.UserService;
+import labtic.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rmi.BackendService;
@@ -34,6 +28,9 @@ public class BackendServiceImp implements BackendService {
 
     @Autowired
     UserService us;
+
+    @Autowired
+    ConsumerService cs;
 
     public List<Neighbourhood> getListaBarrios() throws RemoteException {
         List<Neighbourhood> nList = new ArrayList<>();
@@ -74,4 +71,13 @@ public class BackendServiceImp implements BackendService {
         rs.save(restaurant);
     }
 
+    @Override
+    public void saveNewUser(User user) throws RemoteException {
+        us.save(user);
+    }
+
+    @Override
+    public void saveNewConsumer(Consumer consumer) throws RemoteException {
+        cs.save(consumer);
+    }
 }

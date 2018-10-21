@@ -23,10 +23,6 @@ public class User implements Serializable {
     @Column(name = "email", unique = true)
     protected String email;
 
-    @Column(name = "username", unique = true)
-    @NonNull
-    protected String username;
-
     @NonNull
     protected String password;
 }

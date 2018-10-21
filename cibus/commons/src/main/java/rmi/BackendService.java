@@ -1,10 +1,7 @@
 package rmi;
 
 
-import entities.Food;
-import entities.Neighbourhood;
-import entities.Restaurant;
-import entities.User;
+import entities.*;
 import exceptions.NoRestaurantFound;
 import exceptions.NoUserFound;
 
@@ -20,6 +17,8 @@ public interface BackendService extends Remote {
                                         Long seatsToReserve, Long size) throws RemoteException;
     User findUser(String email) throws RemoteException, NoUserFound;
     Restaurant findRestaurant(String email) throws RemoteException , NoRestaurantFound;
+    void saveNewUser(User user) throws RemoteException;
+    void saveNewConsumer(Consumer consumer) throws RemoteException;
     void saveRestaurant(Restaurant restaurant) throws RemoteException;
     //NO EXPONER AL RESTAURANT: DEVOLVER UN POJO QUE TENGA  LOS ATRIBUTOS, GETTERS Y SETTERS
 
