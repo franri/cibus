@@ -16,9 +16,14 @@ import java.io.IOException;
 public class CreateOrLoginController {
 
     @FXML
-    void handleCreateNewAccount(ActionEvent event) {
+    void handleCreateNewAccount(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
 
-
+        Parent root = loader.load(LoginController.class.getResourceAsStream("CreateUser.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML

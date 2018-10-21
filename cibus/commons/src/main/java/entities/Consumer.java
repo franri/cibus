@@ -23,4 +23,10 @@ public class Consumer extends User{
     @Column(name = "phone")
     private Long phoneNumber;
 
+    public Consumer(String email, String password, String firstName, String lastName, Long phoneNumber) {
+        super(email, password);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+    }
 }

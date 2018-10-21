@@ -67,11 +67,6 @@ public class adminCreateRestaurantController implements Initializable {
        int rTableForFour= Integer.parseInt(restaurantTablesForFour.getText());
        int rTableForTwo= Integer.parseInt(restaurantTablesForTwo.getText());
 
-
-
-
-
-
     }
 
 
