@@ -155,7 +155,7 @@ public class AdminPageController implements Initializable {
             return;
         }
 
-        Restaurant res = new Restaurant(emailField.getText(), nameField.getText(), passwordField.getText(),
+        Restaurant res = new Restaurant(emailField.getText(), passwordField.getText(),
                 nameField.getText(), rutField.getText(), Long.valueOf(capacidad), barrio);
         res.getFoods().addAll(comidas);
         bs.saveRestaurant(res);

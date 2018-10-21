@@ -30,7 +30,9 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.2'
     annotationProcessor "org.projectlombok:lombok:1.18.2"
+
     compile 'com.jfoenix:jfoenix:8.0.7' // Java 8
+
 
 }
 

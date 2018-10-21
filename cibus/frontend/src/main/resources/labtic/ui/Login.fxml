@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="736.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="736.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.LoginController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="413.0" layoutY="51.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #A03324;">
+      <VBox alignment="TOP_CENTER" layoutX="413.0" layoutY="51.0" prefHeight="312.0" prefWidth="300.0" style="-fx-background-color: #A03324;">
          <children>
 
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sing in">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Text>
-            <JFXTextField focusColor="WHITE" labelFloat="true" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -28,15 +32,23 @@
                   <Insets top="45.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXPasswordField focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Password" unFocusColor="#18a0e4">
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
             </JFXPasswordField>
-            <JFXButton prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Sing in">
+            <Label fx:id="errorLabel" text="Label" textFill="WHITE" visible="false">
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets top="20.0" />
                </VBox.margin>
+            </Label>
+            <JFXButton fx:id="confirmButton" prefHeight="25.0" prefWidth="215.0" ripplerFill="#078614" style="-fx-background-color: #18a0e4;" text="Sign In">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <effect>
+                  <GaussianBlur radius="26.54" />
+               </effect>
             </JFXButton>
 
 
@@ -50,17 +62,12 @@
             <Image url="@restaurant.PNG" />
          </image>
       </ImageView>
-      <Label layoutX="93.0" layoutY="126.0" text="Welcome to Cibus" textFill="WHITE">
+      <Label layoutX="93.0" layoutY="126.0" text="Bienvenido a Cibus" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="201.0" prefHeight="27.0" prefWidth="180.0" text="An aplication that will" textFill="#fffefe">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="194.0" layoutY="201.0" text="make your meals easy" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="201.0" prefHeight="27.0" prefWidth="202.0" text="Reservar. Ir. Comer." textAlignment="CENTER" textFill="#fffefe">
          <font>
             <Font size="18.0" />
          </font>

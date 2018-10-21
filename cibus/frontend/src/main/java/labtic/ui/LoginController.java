@@ -2,6 +2,7 @@ package labtic.ui;
 
 import entities.Admin;
 import entities.Consumer;
+import entities.Restaurant;
 import entities.User;
 import exceptions.IncorrectPassword;
 import exceptions.NoUserFound;
@@ -43,7 +44,7 @@ public class LoginController{
 //    @Autowired
 //    Stage stage;
     public LoginController() {
-        System.out.println("Hola!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("Hola!");
 
     }
 
@@ -74,14 +75,17 @@ public class LoginController{
         //Usuario con todas las cosas ok, paso a ver que usuario es
         //Por ahora intento solo admin y comensal
         if(user instanceof Consumer){
-            proceedToSearchpage((Consumer) user);
+            proceedToSearchPage((Consumer) user);
         }else if(user instanceof Admin){
             proceedToAdminPage((Admin) user);
+        }
+        else if(user instanceof Restaurant){
+//            proceedToRestaurantDetailsPage((Restaurant) user);
         }
 
     }
 
-    private void proceedToSearchpage(Consumer consumer) throws IOException {
+    private void proceedToSearchPage(Consumer consumer) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
@@ -104,5 +108,17 @@ public class LoginController{
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+//    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setControllerFactory(AppStarter.getContext()::getBean);
+//        RestaurantDetailsController controller = AppStarter.getContext().getBean(RestaurantDetailsController.class);
+//        controller.setRestaurant(restaurant);
+//        Parent root = loader.load(RestaurantDetailsController.class.getResourceAsStream("RestaurantDetails.fxml"));
+//
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.show();
+//    }
 
 }

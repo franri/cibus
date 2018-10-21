@@ -9,6 +9,7 @@ import org.hibernate.annotations.Fetch;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,6 @@ public class Restaurant extends User implements Serializable {
     @NonNull
     private Long maxCapacity;
 
-
     @Column(name = "tableForFour")
     private Long tableForFour;
 
@@ -46,6 +46,10 @@ public class Restaurant extends User implements Serializable {
 
     @Column(name = "canBeShown")
     private boolean canBeShown; //default = false
+
+    private LocalDate openingHour;
+
+    private LocalDate closingHour;
 
     @Column(precision = 2, scale = 1)
     private BigDecimal rating = new BigDecimal(0);
@@ -61,7 +65,7 @@ public class Restaurant extends User implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Food> foods = new ArrayList<>();
 
-    public Restaurant(String email, String username, String password, String name, String RUT, Long maxCapacity,
+    public Restaurant(String email, String password, String name, String RUT, Long maxCapacity,
                       Neighbourhood neighbourhood) {
         super(email,password);
         this.name = name;

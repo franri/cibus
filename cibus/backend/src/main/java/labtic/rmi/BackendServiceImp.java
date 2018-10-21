@@ -3,6 +3,7 @@ package labtic.rmi;
 
 
 import entities.*;
+import exceptions.NoConsumerFound;
 import exceptions.NoRestaurantFound;
 import exceptions.NoUserFound;
 import labtic.services.*;
@@ -59,6 +60,11 @@ public class BackendServiceImp implements BackendService {
     @Override
     public User findUser(String email) throws NoUserFound, RemoteException {
         return us.findByEmail(email);
+    }
+
+    @Override
+    public Consumer findConsumer(String email) throws RemoteException, NoConsumerFound {
+        return cs.findByEmail(email);
     }
 
     @Override
