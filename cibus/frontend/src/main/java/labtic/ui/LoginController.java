@@ -43,7 +43,7 @@ public class LoginController{
 //    @Autowired
 //    Stage stage;
     public LoginController() {
-        System.out.println("Hola!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("Hola!");
 
     }
 
