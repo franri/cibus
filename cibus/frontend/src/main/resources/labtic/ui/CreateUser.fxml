@@ -10,8 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="454.0" style="-fx-background-color: #201210;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="454.0" style="-fx-background-color: #201210;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.CreateUserController">
    <children>
       <ImageView fitHeight="480.0" fitWidth="476.0" layoutX="-3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,32 +25,37 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="103.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="nameText" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="103.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="157.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Celular" unFocusColor="#18a0e4">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="204.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Celular" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="212.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="252.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="270.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="303.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="328.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Reinsertar Contaseña" unFocusColor="#18a0e4">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="358.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Reinsertar Contaseña" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXButton layoutX="128.0" layoutY="411.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
+            <JFXButton layoutX="128.0" layoutY="411.0" onAction="#guardarDatos" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="128.0" layoutY="158.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Apellido" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </JFXTextField>
          </children>
       </AnchorPane>
    </children>
