@@ -1,5 +1,6 @@
 package labtic.ui;
 
+import com.jfoenix.controls.*;
 import entities.Admin;
 import entities.Consumer;
 import entities.Restaurant;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import labtic.AppStarter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +29,19 @@ import java.io.IOException;
 public class LoginController{
 
     @FXML
-    private TextField emailField;
+    private JFXTextField emailField;
 
     @FXML
-    private PasswordField passwordField;
+    private JFXPasswordField passwordField;
 
     @FXML
     private Label errorLabel;
 
     @FXML
-    private Button confirmButton;
+    private JFXButton confirmButton;
+
+    @FXML
+    private ImageView fondo;
 
     @Autowired
     BackendService bs;
@@ -44,7 +49,7 @@ public class LoginController{
 //    @Autowired
 //    Stage stage;
     public LoginController() {
-        System.out.println("Hola!");
+        System.out.println("Hola!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
     }
 
@@ -90,7 +95,7 @@ public class LoginController{
         loader.setControllerFactory(AppStarter.getContext()::getBean);
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
         controller.setConsumer(consumer);
-        Parent root = loader.load(SearchPageController.class.getResourceAsStream("SearchPage.fxml"));
+        Parent root = loader.load(SearchPageController.class.getResource("SearchPage.fxml"));
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -100,10 +105,8 @@ public class LoginController{
     private void proceedToAdminPage(Admin admin) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
-        AdminPageController controller = AppStarter.getContext().getBean(AdminPageController.class);
-        controller.setAdmin(admin);
-        Parent root = loader.load(AdminPageController.class.getResourceAsStream("AdminPage.fxml"));
-//
+        loader.setLocation(AdminPageController.class.getResource("AdminPage.fxml"));
+        Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();

@@ -6,7 +6,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -42,13 +41,10 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <JFXButton fx:id="confirmButton" prefHeight="25.0" prefWidth="215.0" ripplerFill="#078614" style="-fx-background-color: #18a0e4;" text="Sign In">
+            <JFXButton fx:id="confirmButton" onAction="#tryToLogin" prefHeight="25.0" prefWidth="215.0" ripplerFill="#078614" style="-fx-background-color: #18a0e4;" text="Sign In">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
-               <effect>
-                  <GaussianBlur radius="26.54" />
-               </effect>
             </JFXButton>
 
 
@@ -57,9 +53,9 @@
             <Insets top="20.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="390.0" fitWidth="382.0" layoutY="6.0" opacity="0.17" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="6.0">
+      <ImageView fx:id="fondo" fitHeight="390.0" fitWidth="382.0" layoutY="6.0" opacity="0.17" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="6.0">
          <image>
-            <Image url="@restaurant.PNG" />
+            <Image url="@restaurant.png" />
          </image>
       </ImageView>
       <Label layoutX="93.0" layoutY="126.0" text="Bienvenido a Cibus" textFill="WHITE">

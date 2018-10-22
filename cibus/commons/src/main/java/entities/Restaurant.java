@@ -38,13 +38,10 @@ public class Restaurant extends User implements Serializable {
     @NonNull
     private Long maxCapacity;
 
-    @Column(name = "tableForFour")
     private Long tableForFour;
 
-    @Column(name = "tableForTwo")
     private Long tableForTwo;
-
-    @Column(name = "canBeShown")
+    
     private boolean canBeShown; //default = false
 
     private LocalDate openingHour;

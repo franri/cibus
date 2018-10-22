@@ -1,9 +1,11 @@
 package labtic;
 
 
+import entities.Admin;
 import entities.Food;
 import entities.Neighbourhood;
 import entities.Restaurant;
+import labtic.services.AdminService;
 import labtic.services.FoodService;
 import labtic.services.NeighbourhoodService;
 import labtic.services.RestaurantService;
@@ -20,6 +22,9 @@ import java.util.Arrays;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FillingDatabaseTest {
+
+    @Autowired
+    AdminService as;
 
     @Autowired
     FoodService fs;
@@ -59,6 +64,9 @@ public class FillingDatabaseTest {
         rs.save(r1);
         rs.save(r2);
         rs.save(r3);
+
+        Admin admin = new Admin("admin@gmail.com", "admin");
+        as.save(admin);
 
     }
 

@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="603.0" fitWidth="572.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@restaurant.PNG" />
+            <Image url="@restaurant.png" />
          </image>
       </ImageView>
       <AnchorPane layoutX="29.0" opacity="0.91" prefHeight="591.0" prefWidth="515.0" style="-fx-background-color: #A03324;">

@@ -19,6 +19,9 @@ import java.util.List;
 public class BackendServiceImp implements BackendService {
 
     @Autowired
+    AdminService as;
+
+    @Autowired
     NeighbourhoodService ns;
 
     @Autowired
@@ -85,5 +88,10 @@ public class BackendServiceImp implements BackendService {
     @Override
     public void saveNewConsumer(Consumer consumer) throws RemoteException {
         cs.save(consumer);
+    }
+
+    @Override
+    public void saveAdmin(Admin admin){
+        as.save(admin);
     }
 }

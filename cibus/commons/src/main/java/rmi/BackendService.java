@@ -22,6 +22,7 @@ public interface BackendService extends Remote {
     void saveNewUser(User user) throws RemoteException;
     void saveNewConsumer(Consumer consumer) throws RemoteException;
     void saveRestaurant(Restaurant restaurant) throws RemoteException;
+    void saveAdmin(Admin admin) throws RemoteException;
     //NO EXPONER AL RESTAURANT: DEVOLVER UN POJO QUE TENGA  LOS ATRIBUTOS, GETTERS Y SETTERS
 
 }
