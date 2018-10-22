@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="561.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.AdminPageController">
    <children>
       <ImageView fitHeight="96.0" fitWidth="583.0" pickOnBounds="true">
@@ -24,7 +23,7 @@
       </ImageView>
       <AnchorPane layoutY="96.0" opacity="0.91" prefHeight="471.0" prefWidth="583.0" style="-fx-background-color: #1c1c1c;">
          <children>
-            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="158.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="119.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -32,7 +31,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="rutField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="rutField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="175.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -40,7 +39,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="95.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="62.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -48,12 +47,15 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="281.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="241.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
             </JFXPasswordField>
-            <JFXTextField fx:id="addressField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="343.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="addressField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="307.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -61,7 +63,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="353.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para dos" unFocusColor="#18a0e4">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="365.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para dos" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -69,7 +71,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="413.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para cuatro" unFocusColor="#18a0e4">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="415.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para cuatro" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -77,12 +79,12 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <MenuButton fx:id="comidasMenu" layoutX="382.0" layoutY="122.0" mnemonicParsing="false" text="Seleccionar comidas">
+            <MenuButton fx:id="comidasMenu" layoutX="333.0" layoutY="122.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" text="Seleccionar comidas">
                <effect>
                   <ColorAdjust contrast="1.0" />
                </effect>
             </MenuButton>
-            <ComboBox fx:id="barriosMenu" layoutX="372.0" layoutY="175.0" prefWidth="150.0" promptText="Elegir Barrio">
+            <ComboBox fx:id="barriosMenu" layoutX="333.0" layoutY="175.0" prefHeight="25.0" prefWidth="189.0" promptText="Elegir Barrio">
                <effect>
                   <ColorAdjust brightness="-0.28" contrast="1.0" hue="0.02" />
                </effect>
@@ -92,7 +94,7 @@
                   <ColorAdjust contrast="1.0" />
                </effect>
             </ComboBox>
-            <JFXButton layoutX="328.0" layoutY="368.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear">
+            <JFXButton layoutX="320.0" layoutY="326.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
