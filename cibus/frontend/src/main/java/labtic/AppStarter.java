@@ -3,15 +3,19 @@ package labtic;
 import javafx.application.*;
 import javafx.fxml.*;
 import javafx.scene.*;
+import javafx.scene.image.Image;
 import javafx.stage.*;
 import lombok.Getter;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class AppStarter extends Application {
 
     @Getter
@@ -29,10 +33,10 @@ public class AppStarter extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         mainStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/CreateUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/AdminPage.fxml"));
 
         loader.setControllerFactory(AppStarter.getContext()::getBean);
-
+        primaryStage.getIcons().add(new Image("labtic/ui/logo cibus.png"));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

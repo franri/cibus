@@ -15,7 +15,7 @@
       <VBox alignment="TOP_CENTER" layoutX="413.0" layoutY="51.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #A03324;">
          <children>
 
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sing in">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Iniciar Sesión">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -27,16 +27,36 @@
                <VBox.margin>
                   <Insets top="45.0" />
                </VBox.margin>
+               <effect>
+                  <Lighting bumpInput="$null" diffuseConstant="2.0" specularConstant="2.0" specularExponent="0.0" surfaceScale="0.0">
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </JFXTextField>
             <JFXPasswordField focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Password" unFocusColor="#18a0e4">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
+               <effect>
+                  <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="0.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
             </JFXPasswordField>
-            <JFXButton prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Sing in">
+            <JFXButton prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Iniciar Sesión" underline="true">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
 
 
@@ -50,19 +70,25 @@
             <Image url="@restaurant.PNG" />
          </image>
       </ImageView>
-      <Label layoutX="93.0" layoutY="126.0" text="Welcome to Cibus" textFill="WHITE">
+      <Label layoutX="46.0" layoutY="39.0" text="Bienvenido a Cibus" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="201.0" prefHeight="27.0" prefWidth="180.0" text="An aplication that will" textFill="#fffefe">
+      <Label layoutX="27.0" layoutY="201.0" prefHeight="27.0" prefWidth="354.0" text="Una aplicación para facilitar tus comidas." textFill="#fffefe">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="194.0" layoutY="201.0" text="make your meals easy" textFill="WHITE">
+      <JFXButton layoutX="122.0" layoutY="330.0" text="Registrarse" textFill="WHITE" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="33.0" layoutY="334.0" text="¿Eres nuevo?" textFill="WHITE" />
+      <Label layoutX="115.0" layoutY="86.0" text="Reservar. Ir. Comer." textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
    </children>
