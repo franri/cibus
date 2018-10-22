@@ -66,6 +66,11 @@ public class BackendServiceImp implements BackendService {
     }
 
     @Override
+    public boolean existsConsumerByEmail(String email) throws RemoteException {
+        return cs.existsByEmail(email);
+    }
+
+    @Override
     public Consumer findConsumer(String email) throws RemoteException, NoConsumerFound {
         return cs.findByEmail(email);
     }

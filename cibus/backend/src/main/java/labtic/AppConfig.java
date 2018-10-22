@@ -19,7 +19,7 @@ public class AppConfig {
         String name = "backend";
         BackendService bs = bsImp;
         BackendService oStub = (BackendService) UnicastRemoteObject.exportObject(bs, 0);
-        Registry oRegistry = LocateRegistry.createRegistry(4444);
+        Registry oRegistry = LocateRegistry.createRegistry(1111);
         oRegistry.rebind(name, oStub);
         System.out.println("Server loaded");
         return bs;
