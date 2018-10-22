@@ -93,10 +93,10 @@ public class LoginController{
     private void proceedToSearchPage(Consumer consumer) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(SearchPageController.class.getResource("SearchPage.fxml"));
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
         controller.setConsumer(consumer);
-        Parent root = loader.load(SearchPageController.class.getResource("SearchPage.fxml"));
-
+        Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
@@ -106,6 +106,8 @@ public class LoginController{
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
         loader.setLocation(AdminPageController.class.getResource("AdminPage.fxml"));
+        AdminPageController controller = AppStarter.getContext().getBean(AdminPageController.class);
+        controller.setAdmin(admin);
         Parent root = loader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

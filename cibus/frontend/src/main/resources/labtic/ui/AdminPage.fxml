@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.effect.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="561.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="561.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.AdminPageController">
    <children>
       <ImageView fitHeight="603.0" fitWidth="572.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,27 +22,27 @@
       </ImageView>
       <AnchorPane layoutX="29.0" opacity="0.91" prefHeight="591.0" prefWidth="515.0" style="-fx-background-color: #A03324;">
          <children>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="158.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="158.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="rutField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="95.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="95.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="281.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="281.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="343.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
+            </JFXPasswordField>
+            <JFXTextField fx:id="addressField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="343.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -70,10 +72,15 @@
                   <ColorAdjust contrast="1.0" />
                </effect>
             </ComboBox>
-            <JFXButton layoutX="277.0" layoutY="467.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
-            <Label layoutX="159.0" layoutY="48.0" text="Crear Restaurante" textFill="WHITE">
+            <JFXButton fx:id="confirmButton" layoutX="277.0" layoutY="467.0" onAction="#tryToRegisterRestaurant" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
+            <Label fx:id="title" layoutX="159.0" layoutY="48.0" text="Crear Restaurante" textFill="WHITE">
                <font>
                   <Font name="Arial" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorLabel" alignment="CENTER" layoutX="290.0" layoutY="374.0" prefHeight="31.0" prefWidth="200.0" style="-fx-background-color: white;" text="Label" textFill="RED" visible="false">
+               <font>
+                  <Font name="System Italic" size="17.0" />
                </font>
             </Label>
          </children>
