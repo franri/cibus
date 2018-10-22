@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import entities.Consumer;
 import exceptions.NoConsumerFound;
 import exceptions.PasswordsDontMatch;
+import exceptions.UserAlreadyRegistered;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ public class CreateUserController {
     @FXML
     private JFXTextField emailNewUser;
     @FXML
-    private JFXTextField LastNameNewUser;
+    private JFXTextField lastNameNewUser;
     @FXML
     private JFXPasswordField passwordField;
     @FXML
@@ -39,39 +40,48 @@ public class CreateUserController {
     @FXML
     void registerNewConsumer(ActionEvent event) throws RemoteException{
         Long longPhoneNumber = null;
-        if(passwordField == null || "".equals(passwordField.getText()) || emailNewUser == null || "".equals(emailNewUser.getText()) || phoneNewUser == null || "".equals(phoneNewUser.getText())
-                ){
+        if(reEnterPasswordField == null || "".equals(reEnterPasswordField.getText())|| passwordField == null || "".equals(passwordField.getText()) || emailNewUser == null || "".equals(emailNewUser.getText()) || phoneNewUser == null || "".equals(phoneNewUser.getText())
+        ){
             errorLabel.setText("Inserte los datos requeridos");
             errorLabel.setVisible(true);
             return;
         } else {
-          try {
-              longPhoneNumber = Long.parseLong(phoneNewUser.getText());
-          } catch(NumberFormatException e) {
-              errorLabel.setText("Inserte correctamente el numero de telefono");
-              errorLabel.setVisible(true);
-              return;
+            try {
+                longPhoneNumber = Long.parseLong(phoneNewUser.getText());
+            } catch(NumberFormatException e) {
+                errorLabel.setText("Inserte correctamente el número de telefono");
+                errorLabel.setVisible(true);
+                return;
             }
         }
 
         Consumer consumer = null;
-        try {
-            consumer = bs.findConsumer(consumer.getEmail());
+
+        try{
+
+            if(bs.existsConsumerByEmail(emailNewUser.getText())){
+                throw new UserAlreadyRegistered("Usuario ya registrado");
+            }
+
             if (!passwordField.getText().equals(reEnterPasswordField.getText())) {
                 throw new PasswordsDontMatch("Las contraseñas no son coinciden");
             }
-        } catch (NoConsumerFound noConsumerFound) {
-            errorLabel.setText("Usuario incorrecto");
+
+        } catch (UserAlreadyRegistered userAlreadyRegistered) {
+
+            errorLabel.setText(userAlreadyRegistered.getMessage());
             errorLabel.setVisible(true);
             return;
+
         } catch (PasswordsDontMatch passwordsDontMatch) {
-            errorLabel.setText("Las contraseñas no coinciden");
+
+            errorLabel.setText(passwordsDontMatch.getMessage());
             errorLabel.setVisible(true);
             return;
+
         }
 
-
-        Consumer newConsumser = new Consumer(emailNewUser.getText(),passwordField.getText(),firstNameNewUser.getText(),getLastNameNewUser().getText(),longPhoneNumber);
+        Consumer newConsumser = new Consumer(emailNewUser.getText(),passwordField.getText(),firstNameNewUser.getText(),lastNameNewUser.getText(),longPhoneNumber);
         bs.saveNewConsumer(newConsumser);
         errorLabel.setText("Usuario creado con éxito");
         errorLabel.setVisible(true);

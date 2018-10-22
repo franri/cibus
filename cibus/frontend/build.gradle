@@ -30,16 +30,9 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.2'
     annotationProcessor "org.projectlombok:lombok:1.18.2"
-<<<<<<< HEAD
-    compile 'com.jfoenix:jfoenix:8.0.7' // Java 8
-=======
-
     compile 'com.jfoenix:jfoenix:8.0.7' // Java 8
 
-
->>>>>>> 1b4a3cbe6ff308b9a38f1b896c0ce1e5d75c7842
 }
-
 // In this section you declare where to find the dependencies of your project
 repositories {
     jcenter()

@@ -17,6 +17,7 @@ public interface BackendService extends Remote {
     List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods,
                                         Long seatsToReserve, Long size) throws RemoteException;
     User findUser(String email) throws NoUserFound, RemoteException;
+    boolean existsConsumerByEmail(String email) throws RemoteException;
     Consumer findConsumer(String email) throws RemoteException, NoConsumerFound;
     Restaurant findRestaurant(String email) throws RemoteException , NoRestaurantFound;
     void saveNewUser(User user) throws RemoteException;
