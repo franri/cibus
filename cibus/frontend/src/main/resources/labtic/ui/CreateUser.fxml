@@ -49,7 +49,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXButton layoutX="120.0" layoutY="402.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear" underline="true">
+            <JFXButton layoutX="120.0" layoutY="402.0" onAction="#registerNewConsumer" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear" underline="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

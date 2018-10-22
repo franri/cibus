@@ -72,8 +72,7 @@ public class AdminPageController implements Initializable {
     @SuppressWarnings("Duplicates")
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        title.setText(title.getText().concat(" ").concat(admin.getEmail()));
+       title.setText("Administrador: ".concat(admin.getEmail()));
 
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;

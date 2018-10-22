@@ -114,6 +114,18 @@ public class LoginController{
         stage.show();
     }
 
+    @FXML
+    void handleCreateNewAccount(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(CreateUserController.class.getResource("CreateUser.fxml"));
+        CreateUserController controller = AppStarter.getContext().getBean(CreateUserController.class);
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 //    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {
 //        FXMLLoader loader = new FXMLLoader();
 //        loader.setControllerFactory(AppStarter.getContext()::getBean);

@@ -47,7 +47,7 @@
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <JFXButton prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Iniciar Sesión" underline="true" />
+            <JFXButton fx:id="confirmButton" onAction="#tryToLogin" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Iniciar Sesión" underline="true" />
          </children>
          <padding>
             <Insets top="20.0" />
@@ -68,7 +68,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXButton layoutX="122.0" layoutY="330.0" text="Registrarse" textFill="WHITE" underline="true">
+      <JFXButton layoutX="122.0" layoutY="330.0" onAction="#handleCreateNewAccount" text="Registrarse" textFill="WHITE" underline="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
