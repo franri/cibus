@@ -33,7 +33,11 @@ public class AppStarter extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         mainStage = primaryStage;
+<<<<<<< HEAD
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/AdminPage.fxml"));
+=======
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/CreateOrLogin.fxml"));
+>>>>>>> 1b4a3cbe6ff308b9a38f1b896c0ce1e5d75c7842
 
         loader.setControllerFactory(AppStarter.getContext()::getBean);
         primaryStage.getIcons().add(new Image("labtic/ui/logo cibus.png"));

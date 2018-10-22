@@ -1,9 +1,11 @@
 package labtic;
 
 
+import entities.Admin;
 import entities.Food;
 import entities.Neighbourhood;
 import entities.Restaurant;
+import labtic.services.AdminService;
 import labtic.services.FoodService;
 import labtic.services.NeighbourhoodService;
 import labtic.services.RestaurantService;
@@ -20,6 +22,9 @@ import java.util.Arrays;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class FillingDatabaseTest {
+
+    @Autowired
+    AdminService as;
 
     @Autowired
     FoodService fs;
@@ -47,18 +52,21 @@ public class FillingDatabaseTest {
         ns.save(n2);
         ns.save(n3);
 
-        Restaurant r1 = new Restaurant("pepe@gmail.com", "pepe", "pepe", "Restaurante de Pepe", "1234", 50L, n1);
+        Restaurant r1 = new Restaurant("pepe@gmail.com", "pepe", "Restaurante de Pepe", "1234", 50L, n1);
         r1.setFoods(new ArrayList<Food>(Arrays.asList(f1,f2,f3)));
 
-        Restaurant r2 = new Restaurant("maria@gmail.com", "maria", "pepe", "Restaurante de Maria", "1111", 50L, n1);
+        Restaurant r2 = new Restaurant("maria@gmail.com", "maria", "Restaurante de Maria", "1111", 50L, n1);
         r2.setFoods(new ArrayList<Food>(Arrays.asList(f1)));
 
-        Restaurant r3 = new Restaurant("juan@gmail.com", "juan", "juan", "Restaurante de Juan", "4321", 50L, n2);
+        Restaurant r3 = new Restaurant("juan@gmail.com","juan", "Restaurante de Juan", "4321", 50L, n2);
         r3.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
 
         rs.save(r1);
         rs.save(r2);
         rs.save(r3);
+
+        Admin admin = new Admin("admin@gmail.com", "admin");
+        as.save(admin);
 
     }
 

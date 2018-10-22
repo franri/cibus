@@ -1,5 +1,8 @@
 package labtic.ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import entities.Admin;
 import entities.Food;
 import entities.Neighbourhood;
@@ -11,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.Callback;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,28 +35,28 @@ public class AdminPageController implements Initializable {
     private Label title;
 
     @FXML
-    private TextField nameField;
+    private JFXTextField nameField;
 
     @FXML
-    private TextField emailField;
+    private JFXTextField emailField;
 
     @FXML
-    private TextField rutField;
+    private JFXTextField rutField;
 
     @FXML
-    private PasswordField passwordField;
+    private JFXPasswordField passwordField;
 
     @FXML
-    private TextField addressField;
+    private JFXTextField addressField;
 
     @FXML
-    private Button confirmButton;
+    private JFXButton confirmButton;
 
     @FXML
     private MenuButton comidasMenu;
 
     @FXML
-    private ComboBox barriosMenu;
+    private ComboBox<Neighbourhood> barriosMenu;
 
     @FXML
     private ComboBox capacidadMenu;
@@ -69,7 +73,7 @@ public class AdminPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        title.setText(title.getText().concat(" ").concat(admin.getUsername()));
+        title.setText(title.getText().concat(" ").concat(admin.getEmail()));
 
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
@@ -80,6 +84,26 @@ public class AdminPageController implements Initializable {
             errorLabel.setText("Error en conexión al servidor");
             errorLabel.setVisible(true);
         }
+
+        barriosMenu.setCellFactory(new Callback<ListView<Neighbourhood>,ListCell<Neighbourhood>>(){
+            @Override
+            public ListCell<Neighbourhood> call(ListView<Neighbourhood> l){
+                return new ListCell<Neighbourhood>(){
+                    @Override
+                    protected void updateItem(Neighbourhood item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setGraphic(null);
+                        } else {
+                            setText(item.getName());
+                        }
+                    }
+                } ;
+            }
+        });
+//      NO FUNCIONAAAA
+        //TODO hacer que muestre bien esto
+        barriosMenu.valueProperty().addListener((observable, oldValue, newValue) -> barriosMenu.setPromptText(newValue.getName()));
 
         ObservableList<Neighbourhood> barriosToAdd = FXCollections.observableArrayList();
         barrios.forEach(item -> {
@@ -155,7 +179,7 @@ public class AdminPageController implements Initializable {
             return;
         }
 
-        Restaurant res = new Restaurant(emailField.getText(), nameField.getText(), passwordField.getText(),
+        Restaurant res = new Restaurant(emailField.getText(), passwordField.getText(),
                 nameField.getText(), rutField.getText(), Long.valueOf(capacidad), barrio);
         res.getFoods().addAll(comidas);
         bs.saveRestaurant(res);

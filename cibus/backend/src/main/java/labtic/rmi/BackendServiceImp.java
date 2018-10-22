@@ -2,16 +2,11 @@ package labtic.rmi;
 
 
 
-import entities.Food;
-import entities.Neighbourhood;
-import entities.Restaurant;
-import entities.User;
+import entities.*;
+import exceptions.NoConsumerFound;
 import exceptions.NoRestaurantFound;
 import exceptions.NoUserFound;
-import labtic.services.FoodService;
-import labtic.services.NeighbourhoodService;
-import labtic.services.RestaurantService;
-import labtic.services.UserService;
+import labtic.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rmi.BackendService;
@@ -24,6 +19,9 @@ import java.util.List;
 public class BackendServiceImp implements BackendService {
 
     @Autowired
+    AdminService as;
+
+    @Autowired
     NeighbourhoodService ns;
 
     @Autowired
@@ -34,6 +32,9 @@ public class BackendServiceImp implements BackendService {
 
     @Autowired
     UserService us;
+
+    @Autowired
+    ConsumerService cs;
 
     public List<Neighbourhood> getListaBarrios() throws RemoteException {
         List<Neighbourhood> nList = new ArrayList<>();
@@ -65,6 +66,11 @@ public class BackendServiceImp implements BackendService {
     }
 
     @Override
+    public Consumer findConsumer(String email) throws RemoteException, NoConsumerFound {
+        return cs.findByEmail(email);
+    }
+
+    @Override
     public Restaurant findRestaurant(String email) throws NoRestaurantFound, RemoteException {
         return rs.findByEmail(email);
     }
@@ -74,4 +80,18 @@ public class BackendServiceImp implements BackendService {
         rs.save(restaurant);
     }
 
+    @Override
+    public void saveNewUser(User user) throws RemoteException {
+        us.save(user);
+    }
+
+    @Override
+    public void saveNewConsumer(Consumer consumer) throws RemoteException {
+        cs.save(consumer);
+    }
+
+    @Override
+    public void saveAdmin(Admin admin){
+        as.save(admin);
+    }
 }

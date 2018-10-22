@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="736.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="736.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.LoginController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="413.0" layoutY="51.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #A03324;">
+      <VBox alignment="TOP_CENTER" layoutX="413.0" layoutY="51.0" prefHeight="312.0" prefWidth="300.0" style="-fx-background-color: #A03324;">
          <children>
-
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Iniciar Sesión">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Text>
-            <JFXTextField focusColor="WHITE" labelFloat="true" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -28,46 +31,31 @@
                   <Insets top="45.0" />
                </VBox.margin>
                <effect>
-                  <Lighting bumpInput="$null" diffuseConstant="2.0" specularConstant="2.0" specularExponent="0.0" surfaceScale="0.0">
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
+                  <ColorAdjust brightness="1.0" />
                </effect>
             </JFXTextField>
-            <JFXPasswordField focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Password" unFocusColor="#18a0e4">
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
                <effect>
-                  <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="0.0" surfaceScale="0.0">
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
+                  <ColorAdjust brightness="1.0" />
                </effect>
             </JFXPasswordField>
-            <JFXButton prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Iniciar Sesión" underline="true">
+            <Label fx:id="errorLabel" text="Label" textFill="WHITE" visible="false">
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-
-
+            </Label>
+            <JFXButton prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Iniciar Sesión" underline="true" />
          </children>
          <padding>
             <Insets top="20.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="390.0" fitWidth="382.0" layoutY="6.0" opacity="0.17" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="6.0">
+      <ImageView fx:id="fondo" fitHeight="390.0" fitWidth="382.0" layoutY="6.0" opacity="0.17" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="6.0">
          <image>
-            <Image url="@restaurant.PNG" />
+            <Image url="@restaurant.png" />
          </image>
       </ImageView>
       <Label layoutX="46.0" layoutY="39.0" text="Bienvenido a Cibus" textFill="WHITE">
