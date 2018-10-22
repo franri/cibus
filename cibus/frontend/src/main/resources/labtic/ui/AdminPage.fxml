@@ -18,7 +18,7 @@
    <children>
       <ImageView fitHeight="96.0" fitWidth="583.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../../../milanesa-2.jpg" />
+            <Image url="@milanesa-2.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutY="96.0" opacity="0.91" prefHeight="471.0" prefWidth="583.0" style="-fx-background-color: #1c1c1c;">
