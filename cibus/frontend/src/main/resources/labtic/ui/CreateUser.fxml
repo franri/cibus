@@ -26,7 +26,7 @@
                   <Font name="System Bold" size="40.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="firstNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="104.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Nombre" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="firstNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="110.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -37,7 +37,18 @@
                   <Insets />
                </opaqueInsets>
             </JFXTextField>
-            <JFXTextField fx:id="phoneNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="212.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Celular" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="firstNameNewUser1" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="160.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Apellido" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXTextField>
+            <JFXTextField fx:id="phoneNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="210.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Celular" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -45,7 +56,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="emailNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="262.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="260.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -53,32 +64,29 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXButton layoutX="120.0" layoutY="413.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear" underline="true">
+            <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="310.0" prefHeight="25.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXPasswordField>
+            <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="360.0" prefHeight="25.0" prefWidth="225.0" promptText="Reinsertar Contraseña" unFocusColor="#18a0e4">
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXPasswordField>
+            <JFXButton layoutX="129.0" layoutY="411.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 100;" text="Crear" underline="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="312.0" prefHeight="25.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXPasswordField>
-            <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="362.0" prefHeight="25.0" prefWidth="225.0" promptText="Reinsertar Contraseña" unFocusColor="#18a0e4">
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXPasswordField>
-            <JFXTextField fx:id="firstNameNewUser1" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="161.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Apellido" unFocusColor="#18a0e4">
+            <ImageView fx:id="backArrow" fitHeight="58.0" fitWidth="42.0" layoutX="14.0" layoutY="5.0" onMouseClicked="#goBack" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@flecha%20para%20atras.png" />
+               </image>
                <cursor>
-                  <Cursor fx:constant="TEXT" />
+                  <Cursor fx:constant="HAND" />
                </cursor>
-               <effect>
-                  <SepiaTone />
-               </effect>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </JFXTextField>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

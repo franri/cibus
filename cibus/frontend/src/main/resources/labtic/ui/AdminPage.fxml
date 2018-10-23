@@ -23,6 +23,14 @@
       </ImageView>
       <AnchorPane layoutY="96.0" opacity="0.91" prefHeight="471.0" prefWidth="583.0" style="-fx-background-color: #1c1c1c;">
          <children>
+            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="62.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXTextField>
             <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="119.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -32,14 +40,6 @@
                </effect>
             </JFXTextField>
             <JFXTextField fx:id="rutField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="175.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXTextField>
-            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="62.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -94,7 +94,7 @@
                   <ColorAdjust contrast="1.0" />
                </effect>
             </ComboBox>
-            <JFXButton layoutX="320.0" layoutY="326.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear">
+            <JFXButton layoutX="320.0" layoutY="326.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 100;" text="Crear">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -118,8 +118,16 @@
       </AnchorPane>
       <Label layoutX="116.0" layoutY="25.0" text="Crear Restaurante" textFill="WHITE">
          <font>
-            <Font name="Arial" size="40.0" />
+            <Font name="System Bold" size="40.0" />
          </font>
       </Label>
+      <ImageView fx:id="backArrow" fitHeight="55.0" fitWidth="51.0" layoutX="7.0" layoutY="7.0" onMouseClicked="#goBack" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@flecha%20para%20atras.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

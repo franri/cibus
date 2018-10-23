@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +65,14 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private Label errorLabel;
+
+    @FXML
+    private ImageView backArrow;
+
+    @FXML
+    void goBack(MouseEvent event) {
+
+    }
 
     @Autowired
     BackendService bs;

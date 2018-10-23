@@ -9,6 +9,8 @@ import exceptions.UserAlreadyRegistered;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,12 +32,20 @@ public class CreateUserController {
     private JFXTextField phoneNewUser;
     @FXML
     private JFXTextField firstNameNewUser;
+    @FXML
+    private ImageView backArrow;
 
     @FXML
     private Label errorLabel;
 
     @Autowired
     private BackendService bs;
+
+    @FXML
+    void goBack(MouseEvent event) {
+        System.out.println("Hola!");
+        //estabamos probando. CAMBIAR.
+    }
 
     @FXML
     void registerNewConsumer(ActionEvent event) throws RemoteException{
