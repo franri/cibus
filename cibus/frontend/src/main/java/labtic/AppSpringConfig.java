@@ -23,7 +23,7 @@ public class AppSpringConfig {
 
         String sObjectService = "backend";
 
-        Registry oRegistry = LocateRegistry.getRegistry(1111);
+        Registry oRegistry = LocateRegistry.getRegistry(4444);
         BackendService bs = (BackendService) oRegistry.lookup(sObjectService);
 //        List<Food> lista = bs.getListaComidas();
 //        for(Food food : lista){

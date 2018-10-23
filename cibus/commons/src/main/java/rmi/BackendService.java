@@ -21,6 +21,7 @@ public interface BackendService extends Remote {
     Consumer findConsumer(String email) throws RemoteException, NoConsumerFound;
     Restaurant findRestaurant(String email) throws RemoteException , NoRestaurantFound;
     void saveNewUser(User user) throws RemoteException;
+    void saveReservation(Reservation reservation) throws RemoteException;
     void saveNewConsumer(Consumer consumer) throws RemoteException;
     void saveRestaurant(Restaurant restaurant) throws RemoteException;
     void saveAdmin(Admin admin) throws RemoteException;

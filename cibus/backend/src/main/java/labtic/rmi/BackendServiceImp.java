@@ -22,6 +22,9 @@ public class BackendServiceImp implements BackendService {
     AdminService as;
 
     @Autowired
+    ReservationService bs;
+
+    @Autowired
     NeighbourhoodService ns;
 
     @Autowired
@@ -93,6 +96,11 @@ public class BackendServiceImp implements BackendService {
     @Override
     public void saveNewUser(User user){
         us.save(user);
+    }
+
+    @Override
+    public void saveReservation(Reservation reservation) throws RemoteException {
+        bs.save(reservation);
     }
 
     @Override
