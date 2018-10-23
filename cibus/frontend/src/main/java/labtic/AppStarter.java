@@ -11,8 +11,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
@@ -36,7 +34,7 @@ public class AppStarter extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/Login.fxml"));
 
         loader.setControllerFactory(AppStarter.getContext()::getBean);
-        primaryStage.getIcons().add(new Image("labtic/ui/logo cibus.png"));
+        primaryStage.getIcons().add(new Image("labtic/ui/CibusLogo.png"));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

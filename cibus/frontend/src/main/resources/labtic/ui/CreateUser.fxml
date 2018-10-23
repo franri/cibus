@@ -18,7 +18,7 @@
             <children>
                 <ImageView fitHeight="177.0" fitWidth="454.0" layoutY="-84.0" pickOnBounds="true">
                     <image>
-                        <Image url="@pizza.jpg" />
+                        <Image url="@Pizza.jpg" />
                     </image>
                 </ImageView>
                 <Label layoutX="114.0" layoutY="14.0" text="Crear Cuenta" textFill="WHITE">
@@ -84,7 +84,7 @@
         </AnchorPane>
       <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#goBack" opacity="0.7" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@flecha%20para%20atras.png" />
+            <Image url="@BackArrow.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />

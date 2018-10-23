@@ -13,16 +13,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import labtic.AppStarter;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -57,11 +62,6 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private ImageView backArrow;
-
-    @FXML
-    void goBack(MouseEvent event) {
-
-    }
 
     @Autowired
     BackendService bs;
@@ -99,6 +99,18 @@ public class AdminPageController implements Initializable {
 //                } ;
 //            }
 //        });
+    }
+
+
+    @SuppressWarnings("Duplicates")
+    @FXML
+    void goBack(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(LoginController.class.getResource("Login.fxml"));
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
     @FXML

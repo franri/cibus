@@ -8,13 +8,19 @@ import exceptions.PasswordsDontMatch;
 import exceptions.UserAlreadyRegistered;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import labtic.AppStarter;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
+
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 @Data
@@ -42,9 +48,13 @@ public class CreateUserController {
     private BackendService bs;
 
     @FXML
-    void goBack(MouseEvent event) {
-        System.out.println("Hola!");
-        //estabamos probando. CAMBIAR.
+    void goBack(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(LoginController.class.getResource("Login.fxml"));
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
     @FXML
