@@ -31,10 +31,10 @@ public class AppStarter extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         mainStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/CreateUser.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/Login.fxml"));
 
         loader.setControllerFactory(AppStarter.getContext()::getBean);
-        primaryStage.getIcons().add(new Image("labtic/ui/CibusLogo.png"));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("ui/CibusLogo.png")));
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

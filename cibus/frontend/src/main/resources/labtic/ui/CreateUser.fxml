@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="454.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.CreateUserController">
-<<<<<<< Updated upstream
     <children>
         <AnchorPane prefHeight="503.0" prefWidth="454.0">
             <children>
@@ -92,97 +91,4 @@
          </cursor>
       </ImageView>
     </children>
-=======
-   <children>
-      <AnchorPane prefHeight="503.0" prefWidth="454.0">
-         <children>
-            <ImageView fitHeight="177.0" fitWidth="454.0" layoutY="-84.0" pickOnBounds="true">
-               <image>
-                  <Image url="@pizza.jpg" />
-               </image>
-            </ImageView>
-            <Label layoutX="114.0" layoutY="14.0" text="Crear Cuenta" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="40.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="firstNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="93.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Nombre" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <effect>
-                  <SepiaTone />
-               </effect>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </JFXTextField>
-            <JFXTextField fx:id="phoneNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="188.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Celular" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXTextField>
-            <JFXTextField fx:id="emailNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="235.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Email" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXTextField>
-<<<<<<< Updated upstream
-            <JFXButton layoutX="120.0" layoutY="447.0" onAction="#registerNewConsumer" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear" underline="true">
-=======
-            <JFXButton layoutX="120.0" layoutY="413.0" onAction="#registerNewConsumer" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear" underline="true">
->>>>>>> Stashed changes
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </JFXButton>
-<<<<<<< Updated upstream
-            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="312.0" prefHeight="25.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
-=======
-            <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="285.0" prefHeight="25.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
->>>>>>> Stashed changes
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXPasswordField>
-<<<<<<< Updated upstream
-            <JFXPasswordField fx:id="reEnterPasswordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="362.0" prefHeight="25.0" prefWidth="225.0" promptText="Reinsertar Contraseña" unFocusColor="#18a0e4">
-=======
-            <JFXPasswordField focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="335.0" prefHeight="25.0" prefWidth="225.0" promptText="Reinsertar Contraseña" unFocusColor="#18a0e4">
->>>>>>> Stashed changes
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXPasswordField>
-<<<<<<< Updated upstream
-            <JFXTextField fx:id="lastNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="161.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Apellido" unFocusColor="#18a0e4">
-=======
-            <JFXTextField fx:id="firstNameNewUser1" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="141.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Apellido" unFocusColor="#18a0e4">
->>>>>>> Stashed changes
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <effect>
-                  <SepiaTone />
-               </effect>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </JFXTextField>
-<<<<<<< Updated upstream
-            <Label fx:id="errorLabel" alignment="CENTER" layoutX="123.0" layoutY="412.0" prefHeight="21.0" prefWidth="225.0" text="Label" textFill="WHITE" visible="false" />
-=======
-            <Label fx:id="errorLabel" alignment="CENTER" layoutX="126.0" layoutY="379.0" prefHeight="16.0" prefWidth="225.0" text="Label" textAlignment="JUSTIFY" textFill="#979393" visible="false" />
->>>>>>> Stashed changes
-         </children>
-      </AnchorPane>
-      <Label text="Label" />
-   </children>
->>>>>>> Stashed changes
 </AnchorPane>
