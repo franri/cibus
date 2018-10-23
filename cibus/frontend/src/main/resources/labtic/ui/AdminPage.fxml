@@ -20,6 +20,14 @@
       </ImageView>
       <AnchorPane layoutY="96.0" opacity="0.91" prefHeight="348.0" prefWidth="583.0" style="-fx-background-color: #1c1c1c;">
          <children>
+            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="62.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXTextField>
             <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="119.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -36,14 +44,6 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="62.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </JFXTextField>
             <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="241.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -52,7 +52,7 @@
                   <SepiaTone />
                </effect>
             </JFXPasswordField>
-            <JFXButton fx:id="confirmButton" layoutX="326.0" layoutY="223.0" onAction="#tryToRegisterRestaurant" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32;" text="Crear">
+            <JFXButton fx:id="confirmButton" layoutX="326.0" layoutY="223.0" onAction="#tryToRegisterRestaurant" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Crear">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -76,5 +76,13 @@
             <Font name="Arial" size="40.0" />
          </font>
       </Label>
+      <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#goBack" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@flecha%20para%20atras.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>
