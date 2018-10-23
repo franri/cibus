@@ -77,15 +77,9 @@ public class CreateUserController {
                 throw new PasswordsDontMatch("Las contraseñas no son coinciden");
             }
 
-        } catch (UserAlreadyRegistered userAlreadyRegistered) {
+        } catch (UserAlreadyRegistered | PasswordsDontMatch error) {
 
-            errorLabel.setText(userAlreadyRegistered.getMessage());
-            errorLabel.setVisible(true);
-            return;
-
-        } catch (PasswordsDontMatch passwordsDontMatch) {
-
-            errorLabel.setText(passwordsDontMatch.getMessage());
+            errorLabel.setText(error.getMessage());
             errorLabel.setVisible(true);
             return;
 
