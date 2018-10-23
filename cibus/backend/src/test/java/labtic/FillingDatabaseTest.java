@@ -1,14 +1,8 @@
 package labtic;
 
 
-import entities.Admin;
-import entities.Food;
-import entities.Neighbourhood;
-import entities.Restaurant;
-import labtic.services.AdminService;
-import labtic.services.FoodService;
-import labtic.services.NeighbourhoodService;
-import labtic.services.RestaurantService;
+import entities.*;
+import labtic.services.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -34,6 +30,9 @@ public class FillingDatabaseTest {
 
     @Autowired
     RestaurantService rs;
+
+    @Autowired
+    ConsumerService cs;
 
     @Before
     public void filling(){
@@ -54,12 +53,20 @@ public class FillingDatabaseTest {
 
         Restaurant r1 = new Restaurant("pepe@gmail.com", "pepe", "Restaurante de Pepe", "1234", 50L, n1);
         r1.setFoods(new ArrayList<Food>(Arrays.asList(f1,f2,f3)));
+        r1.setOpeningHour(LocalTime.of(9,30));
+        r1.setClosingHour(LocalTime.of(22,45));
+        r1.setCanBeShown(true);
 
         Restaurant r2 = new Restaurant("maria@gmail.com", "maria", "Restaurante de Maria", "1111", 50L, n1);
         r2.setFoods(new ArrayList<Food>(Arrays.asList(f1)));
+        r2.setOpeningHour(LocalTime.of(9,30));
+        r2.setClosingHour(LocalTime.of(22,45));
 
         Restaurant r3 = new Restaurant("juan@gmail.com","juan", "Restaurante de Juan", "4321", 50L, n2);
         r3.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
+        r3.setOpeningHour(LocalTime.of(9,30));
+        r3.setClosingHour(LocalTime.of(22,45));
+        r1.setCanBeShown(true);
 
         rs.save(r1);
         rs.save(r2);
@@ -67,6 +74,9 @@ public class FillingDatabaseTest {
 
         Admin admin = new Admin("admin@gmail.com", "admin");
         as.save(admin);
+
+        Consumer consumer = new Consumer("consumer@gmail.com", "consumer", "Juan", "Gómez", 91444555L);
+        cs.save(consumer);
 
     }
 

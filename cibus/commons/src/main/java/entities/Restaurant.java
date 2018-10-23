@@ -3,13 +3,11 @@ package entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class Restaurant extends User implements Serializable {
 
     @Column(name = "rut", nullable = false, unique = true)
     @NonNull
-    private String RUT;
+    private String rut;
 
     @Column(name = "address")
     private String address;
@@ -35,7 +33,6 @@ public class Restaurant extends User implements Serializable {
     @Column(name = "phone")
     private Long phoneNumber;
 
-    @NonNull
     private Long maxCapacity;
 
     private Long tableForFour;
@@ -44,9 +41,9 @@ public class Restaurant extends User implements Serializable {
     
     private boolean canBeShown; //default = false
 
-    private LocalDate openingHour;
+    private LocalTime openingHour;
 
-    private LocalDate closingHour;
+    private LocalTime closingHour;
 
     @Column(precision = 2, scale = 1)
     private BigDecimal rating = new BigDecimal(0);
@@ -55,18 +52,23 @@ public class Restaurant extends User implements Serializable {
     private BigDecimal avgPrice = new BigDecimal(0);
 
     @ManyToOne
-    @JoinColumn(name = "neighbourhood", nullable = false)
-    @NonNull
+    @JoinColumn(name = "neighbourhood")
     private Neighbourhood neighbourhood;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Food> foods = new ArrayList<>();
 
+    public Restaurant(String email, String password, String name, String RUT) {
+        super(email,password);
+        this.name = name;
+        this.rut = RUT;
+    }
+
     public Restaurant(String email, String password, String name, String RUT, Long maxCapacity,
                       Neighbourhood neighbourhood) {
         super(email,password);
         this.name = name;
-        this.RUT = RUT;
+        this.rut = RUT;
         this.maxCapacity = maxCapacity;
         this.neighbourhood = neighbourhood;
     }
