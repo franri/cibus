@@ -15,4 +15,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, String> 
     List<Restaurant> findWithFilters(@Param("name") String name, @Param("foods") List<Food> foods, @Param("neighbourhoods") List<Neighbourhood> neighbourhoods, @Param("maxCapacity") Long maxCapacity, @Param("sizeList") Long size);
 
     Restaurant findOneByEmail(String email);
+
+    boolean existsByRut(String rut);
+
 }

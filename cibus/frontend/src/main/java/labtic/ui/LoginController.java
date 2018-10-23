@@ -37,21 +37,8 @@ public class LoginController{
     @FXML
     private Label errorLabel;
 
-    @FXML
-    private JFXButton confirmButton;
-
-    @FXML
-    private ImageView fondo;
-
     @Autowired
     BackendService bs;
-
-//    @Autowired
-//    Stage stage;
-    public LoginController() {
-        System.out.println("Hola!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
-    }
 
     @FXML
     void tryToLogin(ActionEvent event) throws IOException {
@@ -85,9 +72,17 @@ public class LoginController{
             proceedToAdminPage((Admin) user);
         }
         else if(user instanceof Restaurant){
-//            proceedToRestaurantDetailsPage((Restaurant) user);
+            proceedToRestaurantDetailsPage((Restaurant) user);
         }
 
+    }
+
+    private void proceedToRestaurantDetailsPage(Restaurant restaurant) {
+        if(restaurant.isCanBeShown()){
+            //TODO poner pantalla de restaurante
+        }else{
+            //TODO poner pantalla de opciones
+        }
     }
 
     private void proceedToSearchPage(Consumer consumer) throws IOException {
@@ -97,9 +92,8 @@ public class LoginController{
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
         controller.setConsumer(consumer);
         Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
     private void proceedToAdminPage(Admin admin) throws IOException {
@@ -109,9 +103,8 @@ public class LoginController{
         AdminPageController controller = AppStarter.getContext().getBean(AdminPageController.class);
         controller.setAdmin(admin);
         Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
     @FXML
@@ -119,11 +112,9 @@ public class LoginController{
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
         loader.setLocation(CreateUserController.class.getResource("CreateUser.fxml"));
-        CreateUserController controller = AppStarter.getContext().getBean(CreateUserController.class);
         Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
 //    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {

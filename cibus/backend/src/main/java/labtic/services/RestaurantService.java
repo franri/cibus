@@ -30,4 +30,8 @@ public class RestaurantService {
         }
         return restaurant;
     }
+
+    public boolean existsByRut(String rut){
+        return restaurantRepository.existsByRut(rut);
+    }
 }
