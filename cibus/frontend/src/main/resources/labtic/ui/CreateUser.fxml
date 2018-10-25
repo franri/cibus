@@ -48,7 +48,7 @@
             </JFXTextField>
             <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="292.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Contraseña" unFocusColor="#18a0e4" />
             <JFXPasswordField fx:id="reEnterPasswordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="344.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Reinsertar contraseña" unFocusColor="#18a0e4" />
-            <Label fx:id="errorLabel" layoutX="132.0" layoutY="372.0" prefHeight="25.0" prefWidth="208.0" text="Label" visible="false" />
+            <Label fx:id="errorLabel" layoutX="132.0" layoutY="372.0" prefHeight="25.0" prefWidth="208.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
    </children>
