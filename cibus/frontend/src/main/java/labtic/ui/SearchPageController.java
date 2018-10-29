@@ -1,6 +1,7 @@
 package labtic.ui;
 
 import entities.*;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +33,7 @@ public class SearchPageController implements Initializable {
 
     @FXML
     Label errorLabel;
+
 
     @FXML
     private TextField buscaNombre;
@@ -137,7 +139,7 @@ public class SearchPageController implements Initializable {
             errorLabel.setText("Debe seleccionar cantidad de lugares");
             errorLabel.setVisible(true);
             return;
-        }
+        }else{errorLabel.setVisible(false);}
 
         Long size = (long) comidas.size();
 
