@@ -1,15 +1,18 @@
 package labtic.ui;
 
+import com.jfoenix.controls.JFXButton;
 import entities.*;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -23,6 +26,7 @@ import rmi.BackendService;
 
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -155,11 +159,13 @@ public class SearchPageController implements Initializable {
 
 
     private class CustomListCell extends ListCell<Restaurant>{
+        private Restaurant restaurant;
         private HBox content;
         private Text name;
         private Text rating;
         private Text avgPrice;
         private Text workingHours;
+        private JFXButton confirmReservation;
 
         public CustomListCell() {
             super();
@@ -176,12 +182,29 @@ public class SearchPageController implements Initializable {
             vBoxData.getChildren().addAll(rating, avgPrice);
             vBoxData.setSpacing(10);
             vBoxData.setAlignment(Pos.TOP_CENTER);
-            content = new HBox(new Label("Imagen"), vBoxName, vBoxData);
+            content = new HBox(new Label("Imagen"), vBoxName, vBoxData,confirmReservation);
             HBox.setHgrow(vBoxName, Priority.ALWAYS);
             content.setSpacing(15);
             content.setPadding(new Insets(15, 12, 15, 12));
             content.setStyle("-fx-border-style: solid inside;"
                     + "-fx-border-width: 2;" + "-fx-border-color: grey;");
+
+
+            confirmReservation = new JFXButton("Reservar");
+
+            confirmReservation.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Long lugaresReservados = (Long) lugares.getSelectionModel().getSelectedItem();
+                    Reservation newReservation = new Reservation((LocalTime.now()).plusMinutes(30),restaurant,consumer,lugaresReservados,ReservationStatus.PENDING);
+                    try {
+                        bs.saveReservation(newReservation);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(restaurant.getName());
+                }
+            });
 
         }
 
@@ -189,6 +212,7 @@ public class SearchPageController implements Initializable {
         protected void updateItem(Restaurant item, boolean empty) {
             super.updateItem(item, empty);
             if (item != null && !empty) { // <== test for null item and empty parameter
+                restaurant = item;
                 name.setText(item.getName());
                 rating.setText(item.getRating().toString());
                 avgPrice.setText(item.getAvgPrice().toString());
