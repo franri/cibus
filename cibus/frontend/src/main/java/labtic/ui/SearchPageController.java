@@ -7,8 +7,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -176,7 +178,11 @@ public class SearchPageController implements Initializable {
             vBoxData.setAlignment(Pos.TOP_CENTER);
             content = new HBox(new Label("Imagen"), vBoxName, vBoxData);
             HBox.setHgrow(vBoxName, Priority.ALWAYS);
-            content.setSpacing(10);
+            content.setSpacing(15);
+            content.setPadding(new Insets(15, 12, 15, 12));
+            content.setStyle("-fx-border-style: solid inside;"
+                    + "-fx-border-width: 2;" + "-fx-border-color: grey;");
+
         }
 
         @Override
