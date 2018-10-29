@@ -19,6 +19,12 @@ import java.util.List;
 public class BackendServiceImp implements BackendService {
 
     @Autowired
+    AdminService as;
+
+    @Autowired
+    ReservationService bs;
+
+    @Autowired
     NeighbourhoodService ns;
 
     @Autowired
@@ -33,7 +39,7 @@ public class BackendServiceImp implements BackendService {
     @Autowired
     ConsumerService cs;
 
-    public List<Neighbourhood> getListaBarrios() throws RemoteException {
+    public List<Neighbourhood> getListaBarrios(){
         List<Neighbourhood> nList = new ArrayList<>();
         List<Neighbourhood> lista = ns.findAllNeighbourhoods();
         System.out.println("JEJE");
@@ -44,7 +50,7 @@ public class BackendServiceImp implements BackendService {
         return nList;
     }
 
-    public List<Food> getListaComidas() throws RemoteException {
+    public List<Food> getListaComidas(){
         List<Food> fList = new ArrayList<>();
         fs.findAllFoodTypes().forEach(food -> {
             fList.add(food);
@@ -53,37 +59,57 @@ public class BackendServiceImp implements BackendService {
     }
 
 
-    public List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods, Long seatsToReserve, Long size) throws RemoteException {
+    public List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods, Long seatsToReserve, Long size){
         return rs.findWithFilters(name, foods, neighbourhoods, seatsToReserve, size);
     }
 
     @Override
-    public User findUser(String email) throws NoUserFound, RemoteException {
+    public User findUser(String email) throws NoUserFound{
         return us.findByEmail(email);
     }
 
     @Override
-    public Consumer findConsumer(String email) throws RemoteException, NoConsumerFound {
+    public boolean existsByRut(String rut){
+        return rs.existsByRut(rut);
+    }
+
+    @Override
+    public boolean existsConsumerByEmail(String email){
+        return cs.existsByEmail(email);
+    }
+
+    @Override
+    public Consumer findConsumer(String email) throws NoConsumerFound {
         return cs.findByEmail(email);
     }
 
     @Override
-    public Restaurant findRestaurant(String email) throws NoRestaurantFound, RemoteException {
+    public Restaurant findRestaurant(String email) throws NoRestaurantFound{
         return rs.findByEmail(email);
     }
 
     @Override
-    public void saveRestaurant(Restaurant restaurant) throws RemoteException {
+    public void saveRestaurant(Restaurant restaurant){
         rs.save(restaurant);
     }
 
     @Override
-    public void saveNewUser(User user) throws RemoteException {
+    public void saveNewUser(User user){
         us.save(user);
     }
 
     @Override
-    public void saveNewConsumer(Consumer consumer) throws RemoteException {
+    public void saveReservation(Reservation reservation) throws RemoteException {
+        bs.save(reservation);
+    }
+
+    @Override
+    public void saveNewConsumer(Consumer consumer){
         cs.save(consumer);
+    }
+
+    @Override
+    public void saveAdmin(Admin admin){
+        as.save(admin);
     }
 }

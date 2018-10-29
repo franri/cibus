@@ -16,6 +16,7 @@ public class CibusBackendApplication {
 
     public static void main(String[] args) throws RemoteException {
         SpringApplication.run(CibusBackendApplication.class, args);
+        System.out.println(org.hibernate.Version.getVersionString() + "HOLAAAAA");
     }
 
 }

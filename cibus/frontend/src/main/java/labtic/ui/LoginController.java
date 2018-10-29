@@ -1,5 +1,6 @@
 package labtic.ui;
 
+import com.jfoenix.controls.*;
 import entities.Admin;
 import entities.Consumer;
 import entities.Restaurant;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import labtic.AppStarter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,26 +29,16 @@ import java.io.IOException;
 public class LoginController{
 
     @FXML
-    private TextField emailField;
+    private JFXTextField emailField;
 
     @FXML
-    private PasswordField passwordField;
+    private JFXPasswordField passwordField;
 
     @FXML
     private Label errorLabel;
 
-    @FXML
-    private Button confirmButton;
-
     @Autowired
     BackendService bs;
-
-//    @Autowired
-//    Stage stage;
-    public LoginController() {
-        System.out.println("Hola!");
-
-    }
 
     @FXML
     void tryToLogin(ActionEvent event) throws IOException {
@@ -80,33 +72,49 @@ public class LoginController{
             proceedToAdminPage((Admin) user);
         }
         else if(user instanceof Restaurant){
-//            proceedToRestaurantDetailsPage((Restaurant) user);
+            proceedToRestaurantDetailsPage((Restaurant) user);
         }
 
+    }
+
+    private void proceedToRestaurantDetailsPage(Restaurant restaurant) {
+        if(restaurant.isCanBeShown()){
+            //TODO poner pantalla de restaurante
+        }else{
+            //TODO poner pantalla de opciones
+        }
     }
 
     private void proceedToSearchPage(Consumer consumer) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(SearchPageController.class.getResource("SearchPage.fxml"));
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
         controller.setConsumer(consumer);
-        Parent root = loader.load(SearchPageController.class.getResourceAsStream("SearchPage.fxml"));
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
     private void proceedToAdminPage(Admin admin) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(AdminPageController.class.getResource("AdminPage.fxml"));
         AdminPageController controller = AppStarter.getContext().getBean(AdminPageController.class);
         controller.setAdmin(admin);
-        Parent root = loader.load(AdminPageController.class.getResourceAsStream("AdminPage.fxml"));
-//
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
+    }
+
+    @FXML
+    void handleCreateNewAccount(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(CreateUserController.class.getResource("CreateUser.fxml"));
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
 //    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {

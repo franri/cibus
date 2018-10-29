@@ -1,21 +1,33 @@
 package labtic.ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import entities.Admin;
 import entities.Food;
 import entities.Neighbourhood;
 import entities.Restaurant;
 import exceptions.NoRestaurantFound;
+import exceptions.RestaurantAlreadyRegistered;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
+import labtic.AppStarter;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -31,34 +43,25 @@ public class AdminPageController implements Initializable {
     private Label title;
 
     @FXML
-    private TextField nameField;
+    private JFXTextField nameField;
 
     @FXML
-    private TextField emailField;
+    private JFXTextField emailField;
 
     @FXML
-    private TextField rutField;
+    private JFXTextField rutField;
 
     @FXML
-    private PasswordField passwordField;
+    private JFXPasswordField passwordField;
 
     @FXML
-    private TextField addressField;
-
-    @FXML
-    private Button confirmButton;
-
-    @FXML
-    private MenuButton comidasMenu;
-
-    @FXML
-    private ComboBox barriosMenu;
-
-    @FXML
-    private ComboBox capacidadMenu;
+    private JFXButton confirmButton;
 
     @FXML
     private Label errorLabel;
+
+    @FXML
+    private ImageView backArrow;
 
     @Autowired
     BackendService bs;
@@ -68,8 +71,7 @@ public class AdminPageController implements Initializable {
     @SuppressWarnings("Duplicates")
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        title.setText(title.getText().concat(" ").concat(admin.getEmail()));
+       title.setText("Administrador: ".concat(admin.getEmail()));
 
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
@@ -80,56 +82,45 @@ public class AdminPageController implements Initializable {
             errorLabel.setText("Error en conexión al servidor");
             errorLabel.setVisible(true);
         }
+//
+//        barriosMenu.setCellFactory(new Callback<ListView<Neighbourhood>,ListCell<Neighbourhood>>(){
+//            @Override
+//            public ListCell<Neighbourhood> call(ListView<Neighbourhood> l){
+//                return new ListCell<Neighbourhood>(){
+//                    @Override
+//                    protected void updateItem(Neighbourhood item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (item == null || empty) {
+//                            setGraphic(null);
+//                        } else {
+//                            setText(item.getName());
+//                        }
+//                    }
+//                } ;
+//            }
+//        });
+    }
 
-        ObservableList<Neighbourhood> barriosToAdd = FXCollections.observableArrayList();
-        barrios.forEach(item -> {
-           barriosToAdd.add(item);
-        });
-        barriosMenu.setItems(barriosToAdd);
 
-
-        ObservableList<CustomMenuItem> comidasToAdd = FXCollections.observableArrayList();
-        comidas.forEach(item -> {
-            CheckBox checkBox = new CheckBox(item.getName());
-            checkBox.setUserData(item);
-            CustomMenuItem customMenuItem = new CustomMenuItem(checkBox, false);
-            comidasToAdd.add(customMenuItem);
-        });
-        comidasMenu.getItems().addAll(comidasToAdd);
-
-//        Meto lista para elegir lugares
-        ObservableList<Integer> lugaresList = FXCollections.observableArrayList();
-        for(int i=1; i<AMOUNT_OF_SEATS+1; i++){
-            lugaresList.add(i);
-        }
-        capacidadMenu.setItems(lugaresList);
+    @SuppressWarnings("Duplicates")
+    @FXML
+    void goBack(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(LoginController.class.getResource("Login.fxml"));
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 
     @FXML
     void tryToRegisterRestaurant(ActionEvent event) throws RemoteException {
         if(emailField == null || "".equals(emailField.getText()) || passwordField == null || "".equals(passwordField.getText())
-        || nameField == null || "".equals(nameField.getText()) || addressField == null || "".equals(addressField.getText())
-        || rutField == null || "".equals(rutField.getText())){
+        || nameField == null || "".equals(nameField.getText()) || rutField == null || "".equals(rutField.getText())){
             errorLabel.setText("Inserte los datos requeridos");
             errorLabel.setVisible(true);
             return;
         }
-
-        Neighbourhood barrio = (Neighbourhood)barriosMenu.getSelectionModel().getSelectedItem();
-        if(barrio==null){
-            errorLabel.setText("Debe seleccionar un barrio");
-            errorLabel.setVisible(true);
-            return;
-        }
-
-        Integer capacidad = (Integer)capacidadMenu.getSelectionModel().getSelectedItem();
-
-        if(capacidad==null){
-            errorLabel.setText("Debe seleccionar cantidad de lugares");
-            errorLabel.setVisible(true);
-            return;
-        }
-
 
         try {
             if(bs.findRestaurant(emailField.getText()) != null){
@@ -141,23 +132,14 @@ public class AdminPageController implements Initializable {
             // a gozar
         }
 
-        List<Food> comidas = new ArrayList<>();
-        for (MenuItem item : comidasMenu.getItems()){
-            CheckBox deItem = (CheckBox) ((CustomMenuItem) item).getContent();
-            if(deItem.isSelected()){
-                comidas.add((Food)deItem.getUserData());
-
-            }
-        }
-        if (comidas.isEmpty()){
-            errorLabel.setText("Debe seleccionar comidas");
+        if(bs.existsByRut(rutField.getText())){
+            errorLabel.setText("Restaurante ya ingresado con ese RUT");
             errorLabel.setVisible(true);
             return;
         }
 
         Restaurant res = new Restaurant(emailField.getText(), passwordField.getText(),
-                nameField.getText(), rutField.getText(), Long.valueOf(capacidad), barrio);
-        res.getFoods().addAll(comidas);
+                nameField.getText(), rutField.getText());
         bs.saveRestaurant(res);
 
         errorLabel.setText("Agregado con éxito");

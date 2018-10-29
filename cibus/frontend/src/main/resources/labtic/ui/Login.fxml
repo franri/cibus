@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import com.jfoenix.controls.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="736.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.LoginController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="413.0" layoutY="51.0" prefHeight="312.0" prefWidth="300.0" style="-fx-background-color: #A03324;">
          <children>
-
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Iniciar Sesión">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
@@ -27,42 +30,56 @@
                <VBox.margin>
                   <Insets top="45.0" />
                </VBox.margin>
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
             </JFXTextField>
             <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" maxWidth="220.0" minWidth="220.0" prefHeight="31.0" prefWidth="220.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
+               <effect>
+                  <ColorAdjust brightness="1.0" />
+               </effect>
             </JFXPasswordField>
             <Label fx:id="errorLabel" text="Label" textFill="WHITE" visible="false">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <JFXButton fx:id="confirmButton" prefHeight="25.0" prefWidth="215.0" ripplerFill="#078614" style="-fx-background-color: #18a0e4;" text="Sign In">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </JFXButton>
-
-
+            <JFXButton fx:id="confirmButton" onAction="#tryToLogin" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D; -fx-background-radius: 200;" text="Iniciar Sesión" underline="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
          </children>
          <padding>
             <Insets top="20.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="390.0" fitWidth="382.0" layoutY="6.0" opacity="0.17" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="6.0">
+      <ImageView fx:id="fondo" fitHeight="390.0" fitWidth="382.0" layoutY="6.0" opacity="0.17" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="6.0">
          <image>
-            <Image url="@restaurant.PNG" />
+            <Image url="@restaurant.png" />
          </image>
       </ImageView>
-      <Label layoutX="93.0" layoutY="126.0" text="Bienvenido a Cibus" textFill="WHITE">
+      <Label layoutX="46.0" layoutY="39.0" text="Bienvenido a Cibus" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="32.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="201.0" prefHeight="27.0" prefWidth="202.0" text="Reservar. Ir. Comer." textAlignment="CENTER" textFill="#fffefe">
+      <Label layoutX="27.0" layoutY="201.0" prefHeight="27.0" prefWidth="354.0" text="Una aplicación para facilitar tus comidas." textFill="#fffefe">
          <font>
             <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="122.0" layoutY="330.0" onAction="#handleCreateNewAccount" text="Registrarse" textFill="WHITE" underline="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="33.0" layoutY="334.0" text="¿Eres nuevo?" textFill="WHITE" />
+      <Label layoutX="115.0" layoutY="86.0" text="Reservar. Ir. Comer." textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
    </children>

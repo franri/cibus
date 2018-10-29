@@ -1,55 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="452.0" prefWidth="454.0" style="-fx-background-color: #201210;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.CreateUserController">
-   <children>
-      <ImageView fitHeight="480.0" fitWidth="476.0" layoutX="-3.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="454.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.CreateUserController">
+    <children>
+        <AnchorPane prefHeight="503.0" prefWidth="454.0">
+            <children>
+                <ImageView fitHeight="177.0" fitWidth="454.0" layoutY="-84.0" pickOnBounds="true">
+                    <image>
+                        <Image url="@Pizza.jpg" />
+                    </image>
+                </ImageView>
+                <Label layoutX="114.0" layoutY="14.0" text="Crear Cuenta" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="firstNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="104.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Nombre" unFocusColor="#18a0e4">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <effect>
+                        <SepiaTone />
+                    </effect>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </JFXTextField>
+                <JFXTextField fx:id="lastNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="161.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Apellido" unFocusColor="#18a0e4">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <effect>
+                        <SepiaTone />
+                    </effect>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                </JFXTextField>
+                <JFXTextField fx:id="phoneNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="212.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Celular" unFocusColor="#18a0e4">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <effect>
+                        <SepiaTone />
+                    </effect>
+                </JFXTextField>
+                <JFXTextField fx:id="emailNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="262.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Email" unFocusColor="#18a0e4">
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                    <effect>
+                        <SepiaTone />
+                    </effect>
+                </JFXTextField>
+                <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="312.0" prefHeight="25.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+                    <effect>
+                        <SepiaTone />
+                    </effect>
+                </JFXPasswordField>
+                <JFXPasswordField fx:id="reEnterPasswordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="362.0" prefHeight="25.0" prefWidth="225.0" promptText="Reinsertar Contraseña" unFocusColor="#18a0e4">
+                    <effect>
+                        <SepiaTone />
+                    </effect>
+                </JFXPasswordField>
+                <JFXButton layoutX="120.0" layoutY="447.0" onAction="#registerNewConsumer" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Crear" underline="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </JFXButton>
+                <Label fx:id="errorLabel" alignment="CENTER" layoutX="123.0" layoutY="412.0" prefHeight="21.0" prefWidth="225.0" text="Label" textFill="WHITE" visible="false" />
+            </children>
+        </AnchorPane>
+      <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#goBack" opacity="0.7" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@userIcon.png" />
+            <Image url="@BackArrow.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <AnchorPane layoutX="36.0" layoutY="-6.0" opacity="0.78" prefHeight="483.0" prefWidth="394.0" style="-fx-background-color: #BF0000;" />
-      <AnchorPane prefHeight="470.0" prefWidth="430.0">
-         <children>
-            <Label layoutX="158.0" layoutY="14.0" text="Crear Cuenta" textFill="WHITE">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="firstNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="84.0" maxWidth="225.0" minWidth="215.0" prefHeight="30.0" prefWidth="230.0" promptText="Nombre" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXTextField fx:id="phoneNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="188.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Celular" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXTextField fx:id="emailNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="240.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Email" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
+    </children>
 
-            <JFXButton layoutX="128.0" layoutY="411.0" onAction="#registerNewConsumer" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
-            <JFXTextField fx:id="LastNameNewUser" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="136.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Apellido" unFocusColor="#18a0e4">
-
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="292.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Contraseña" unFocusColor="#18a0e4" />
-            <JFXPasswordField fx:id="reEnterPasswordField" focusColor="WHITE" labelFloat="true" layoutX="123.0" layoutY="344.0" maxWidth="225.0" minWidth="215.0" prefHeight="31.0" prefWidth="230.0" promptText="Reinsertar contraseña" unFocusColor="#18a0e4" />
-            <Label fx:id="errorLabel" layoutX="132.0" layoutY="372.0" prefHeight="25.0" prefWidth="208.0" text="Label" textAlignment="CENTER" visible="false" wrapText="true" />
-         </children>
-      </AnchorPane>
-   </children>
 </AnchorPane>

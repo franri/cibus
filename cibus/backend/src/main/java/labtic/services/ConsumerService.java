@@ -23,4 +23,8 @@ public class ConsumerService {
         return consumer;
     }
 
+    public boolean existsByEmail(String email){
+        return consumerRepository.existsConsumerByEmail(email);
+    }
+
 }

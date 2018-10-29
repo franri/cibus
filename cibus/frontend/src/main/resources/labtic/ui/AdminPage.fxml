@@ -1,82 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.effect.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="561.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="584.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.AdminPageController">
    <children>
-      <ImageView fitHeight="603.0" fitWidth="572.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="96.0" fitWidth="583.0" pickOnBounds="true">
          <image>
-            <Image url="@restaurant.PNG" />
+            <Image url="@Milanesa2.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="29.0" opacity="0.91" prefHeight="591.0" prefWidth="515.0" style="-fx-background-color: #A03324;">
+      <AnchorPane layoutY="96.0" opacity="0.91" prefHeight="348.0" prefWidth="583.0" style="-fx-background-color: #1c1c1c;">
          <children>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="158.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="62.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="220.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="95.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="281.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="343.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="400.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para dos" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="465.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Mesa para cuatro" unFocusColor="#18a0e4">
-               <cursor>
-                  <Cursor fx:constant="TEXT" />
-               </cursor>
-            </JFXTextField>
-            <MenuButton fx:id="comidasMenu" layoutX="302.0" layoutY="133.0" mnemonicParsing="false" text="Seleccionar comidas">
                <effect>
-                  <ColorAdjust contrast="1.0" />
+                  <SepiaTone />
                </effect>
-            </MenuButton>
-            <ComboBox fx:id="barriosMenu" layoutX="297.0" layoutY="202.0" prefWidth="150.0" promptText="Elegir Barrio">
+            </JFXTextField>
+            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="119.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
                <effect>
-                  <ColorAdjust brightness="-0.28" contrast="1.0" hue="0.02" />
+                  <SepiaTone />
                </effect>
-            </ComboBox>
-            <ComboBox fx:id="capacidadMenu" layoutX="278.0" layoutY="278.0" prefHeight="25.0" prefWidth="189.0" promptText="Elegir capacidad máxima">
+            </JFXTextField>
+            <JFXTextField fx:id="rutField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="175.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
                <effect>
-                  <ColorAdjust contrast="1.0" />
+                  <SepiaTone />
                </effect>
-            </ComboBox>
-            <JFXButton layoutX="277.0" layoutY="467.0" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #E45F4D;" text="Crear" />
-            <Label layoutX="159.0" layoutY="48.0" text="Crear Restaurante" textFill="WHITE">
+            </JFXTextField>
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="241.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXPasswordField>
+            <JFXButton fx:id="confirmButton" layoutX="326.0" layoutY="223.0" onAction="#tryToRegisterRestaurant" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Crear">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
                <font>
-                  <Font name="Arial" size="24.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font></JFXButton>
+            <Label layoutX="130.0" layoutY="14.0" text="Complete TODOS los campos a continuación." textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
                </font>
             </Label>
+            <Label fx:id="title" layoutX="18.0" layoutY="316.0" prefHeight="21.0" prefWidth="532.0" text="Administrador: " textFill="WHITE" />
+            <Label fx:id="errorLabel" alignment="CENTER" layoutX="324.0" layoutY="109.0" prefHeight="21.0" prefWidth="215.0" text="Error Label" textFill="WHITE" visible="false" />
          </children>
       </AnchorPane>
+      <Label layoutX="116.0" layoutY="25.0" text="Crear Restaurante" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="40.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#goBack" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@BackArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>
