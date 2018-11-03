@@ -27,12 +27,10 @@ public class ReservationService {
     }
 
     public List<Reservation> findAccResOf(Restaurant restaurant){
-       List<Reservation> acceptedByRestaurant = reservationRepository.findAllByRestaurantAndReservationStatus_Accepted(restaurant);
-       return acceptedByRestaurant;
+        return reservationRepository.findAllByRestaurantAndReservationStatus(restaurant, ReservationStatus.ACCEPTED);
     }
 
     public List<Reservation> findPendResOf(Restaurant restaurant){
-        List<Reservation> pendingByRestaurant = reservationRepository.findAllByRestaurantAndReservationStatus_Pending(restaurant);
-        return pendingByRestaurant;
+        return reservationRepository.findAllByRestaurantAndReservationStatus(restaurant, ReservationStatus.PENDING);
     }
 }

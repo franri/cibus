@@ -182,6 +182,7 @@ public class SearchPageController implements Initializable {
             vBoxData.getChildren().addAll(rating, avgPrice);
             vBoxData.setSpacing(10);
             vBoxData.setAlignment(Pos.TOP_CENTER);
+            confirmReservation = setupButton();
             content = new HBox(new Label("Imagen"), vBoxName, vBoxData,confirmReservation);
             HBox.setHgrow(vBoxName, Priority.ALWAYS);
             content.setSpacing(15);
@@ -190,22 +191,21 @@ public class SearchPageController implements Initializable {
                     + "-fx-border-width: 2;" + "-fx-border-color: grey;");
 
 
-            confirmReservation = new JFXButton("Reservar");
+        }
 
-            confirmReservation.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    Long lugaresReservados = (Long) lugares.getSelectionModel().getSelectedItem();
-                    Reservation newReservation = new Reservation((LocalTime.now()).plusMinutes(30),restaurant,consumer,lugaresReservados,ReservationStatus.PENDING);
-                    try {
-                        bs.saveReservation(newReservation);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println(restaurant.getName());
+        private JFXButton setupButton(){
+            JFXButton confirmReservation = new JFXButton("Reservar");
+
+            confirmReservation.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                Integer lugaresReservados = (Integer) lugares.getSelectionModel().getSelectedItem();
+                Reservation newReservation = new Reservation((LocalTime.now()).plusMinutes(30),restaurant,consumer,Long.valueOf(lugaresReservados),ReservationStatus.PENDING);
+                try {
+                    bs.saveReservation(newReservation);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
                 }
             });
-
+            return confirmReservation;
         }
 
         @Override

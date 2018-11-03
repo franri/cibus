@@ -5,13 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class Reservation {
+public class Reservation implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,14 +34,7 @@ public class Reservation {
     @Column(name = "totalPeople")
     private Long groupSize;
 
-//    @Column(name = "pending")
-//    private boolean pending;
-//
-//    @Column(name = "state")
-//    private boolean reservationState;
-
-    @Column(name = "statement")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
 
     public Reservation(LocalTime dt, Restaurant restaurant, Consumer consumer, Long groupSize, ReservationStatus reservationStatus) {
