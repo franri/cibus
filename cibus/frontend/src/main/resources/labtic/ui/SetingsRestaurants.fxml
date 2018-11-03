@@ -13,16 +13,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="584.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="584.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.RestaurantDetailsController">
    <children>
       <ImageView fitHeight="96.0" fitWidth="583.0" pickOnBounds="true">
          <image>
             <Image url="@Milanesa2.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutY="96.0" opacity="0.91" prefHeight="481.0" prefWidth="583.0" style="-fx-background-color: #1c1c1c;">
+      <AnchorPane layoutY="96.0" opacity="0.91" prefHeight="381.0" prefWidth="583.0" style="-fx-background-color: #1c1c1c;">
          <children>
-            <JFXTextField fx:id="nameField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="62.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="nameField" editable="false" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="31.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -30,7 +30,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="emailField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="119.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailField" editable="false" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="81.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -38,7 +38,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="rutField" focusColor="WHITE" labelFloat="true" layoutX="18.0" layoutY="175.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="rutField" editable="false" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="131.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="RUT" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -46,7 +46,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="305.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
+            <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="231.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Contraseña" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -54,7 +54,7 @@
                   <SepiaTone />
                </effect>
             </JFXPasswordField>
-            <JFXTextField fx:id="dIrectionField" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="241.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="dIrectionField" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="181.0" maxWidth="225.0" minWidth="225.0" prefHeight="31.0" prefWidth="225.0" promptText="Direccion" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -62,7 +62,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXButton fx:id="confirmButton" layoutX="324.0" layoutY="362.0" onAction="#tryToRegisterRestaurant" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Crear">
+            <JFXButton fx:id="confirmButton" layoutX="188.0" layoutY="311.0" onAction="#fillDataOfRestaurant" prefHeight="25.0" prefWidth="215.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Crear">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -73,38 +73,33 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <Label layoutX="130.0" layoutY="14.0" text="Complete TODOS los campos a continuación." textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="324.0" layoutY="85.0" prefHeight="17.0" prefWidth="57.0" text="capacidad:" textFill="#464646">
+            <Label layoutX="329.0" layoutY="66.0" prefHeight="17.0" prefWidth="57.0" text="capacidad:" textFill="#464646">
                <effect>
                   <SepiaTone />
                </effect>
             </Label>
-            <TextField layoutX="435.0" layoutY="81.0" prefHeight="25.0" prefWidth="113.0" />
-            <Label fx:id="errorLabel" layoutX="18.0" layoutY="422.0" prefHeight="17.0" prefWidth="520.0" textFill="RED" />
-            <Label layoutX="324.0" layoutY="126.0" prefHeight="17.0" prefWidth="83.0" text="Mesas de dos" textFill="#464646">
+            <TextField layoutX="445.0" layoutY="59.0" prefHeight="25.0" prefWidth="113.0" />
+            <Label fx:id="errorLabel" layoutX="32.0" layoutY="355.0" prefHeight="17.0" prefWidth="520.0" textFill="RED" />
+            <Label layoutX="329.0" layoutY="107.0" prefHeight="17.0" prefWidth="83.0" text="Mesas de dos" textFill="#464646">
                <effect>
                   <SepiaTone />
                </effect>
             </Label>
-            <TextField layoutX="435.0" layoutY="122.0" prefHeight="25.0" prefWidth="113.0" />
-            <Label layoutX="324.0" layoutY="167.0" prefHeight="17.0" prefWidth="93.0" text="Mesas de cuatro:" textFill="#464646">
+            <TextField layoutX="445.0" layoutY="104.0" prefHeight="25.0" prefWidth="113.0" />
+            <Label layoutX="329.0" layoutY="154.0" prefHeight="17.0" prefWidth="93.0" text="Mesas de cuatro:" textFill="#464646">
                <effect>
                   <SepiaTone />
                </effect>
             </Label>
-            <TextField layoutX="435.0" layoutY="163.0" prefHeight="25.0" prefWidth="113.0" />
-            <MenuButton fx:id="listaComidas" layoutX="324.0" layoutY="206.0" mnemonicParsing="false" opacity="0.79" prefHeight="30.0" prefWidth="225.0" style="-fx-background-color: transparent; -fx-background-color: white;" text="Comidas">
+            <TextField layoutX="445.0" layoutY="149.0" prefHeight="25.0" prefWidth="113.0" />
+            <MenuButton fx:id="listaComidas" layoutX="329.0" layoutY="197.0" mnemonicParsing="false" opacity="0.79" prefHeight="30.0" prefWidth="230.0" style="-fx-background-color: transparent; -fx-background-color: white;" text="Comidas">
                <font>
                   <Font size="14.0" />
                </font>
             </MenuButton>
          </children>
       </AnchorPane>
-      <Label layoutX="116.0" layoutY="25.0" text="Crear Restaurante" textFill="WHITE">
+      <Label layoutX="226.0" layoutY="25.0" text="Ajustes" textFill="WHITE">
          <font>
             <Font name="Arial" size="40.0" />
          </font>
