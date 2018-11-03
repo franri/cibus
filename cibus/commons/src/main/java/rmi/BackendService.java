@@ -26,6 +26,11 @@ public interface BackendService extends Remote {
     void saveRestaurant(Restaurant restaurant) throws RemoteException;
     void saveAdmin(Admin admin) throws RemoteException;
     boolean existsByRut(String rut) throws RemoteException;
+    void refuseReservation(Reservation reservation) throws RemoteException;
+    void acceptReservation(Reservation reservation) throws RemoteException;
+    List<Reservation> findAccResOf(Restaurant restaurant) throws RemoteException;
+    List<Reservation> findPendResOf(Restaurant restaurant) throws RemoteException;
+
     //NO EXPONER AL RESTAURANT: DEVOLVER UN POJO QUE TENGA  LOS ATRIBUTOS, GETTERS Y SETTERS
 
 }
