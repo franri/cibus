@@ -77,9 +77,17 @@ public class LoginController{
 
     }
 
-    private void proceedToRestaurantDetailsPage(Restaurant restaurant) {
+    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {
         if(restaurant.isCanBeShown()){
-            //TODO poner pantalla de restaurante
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(AppStarter.getContext()::getBean);
+            loader.setLocation(RestaurantMainPageController.class.getResource("RestaurantMainPage.fxml"));
+            RestaurantMainPageController controller = AppStarter.getContext().getBean(RestaurantMainPageController.class);
+            controller.setRestaurant(restaurant);
+
+            Parent root = loader.load();
+            AppStarter.getMainStage().setScene(new Scene(root));
+            AppStarter.getMainStage().show();
         }else{
             //TODO poner pantalla de opciones
         }
