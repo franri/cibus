@@ -6,9 +6,7 @@ import entities.Restaurant;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -40,6 +38,18 @@ public class RestaurantMainPageController implements Initializable {
     @FXML
     private ListView<Reservation> acceptedLIst;
 
+    @FXML
+    private Spinner<Integer> cantLugaresDisponibles;
+
+    @FXML
+    private Spinner<Integer> mesas4Disponibles;
+
+    @FXML
+    private Spinner<Integer> mesas2Disponibles;
+
+    @FXML
+    private ImageView refreshButton;
+
     private Restaurant restaurant;
 
     @Autowired
@@ -51,6 +61,17 @@ public class RestaurantMainPageController implements Initializable {
 
         List<Reservation> pendingReservations = bs.findPendResOf(restaurant);
         pendingList.getItems().addAll(pendingReservations);
+
+        //Configure Spinners:
+
+        SpinnerValueFactory<Integer> cantLugaresFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,999,0);
+        this.cantLugaresDisponibles.setValueFactory(cantLugaresFactory);
+
+        SpinnerValueFactory<Integer> mesas4Factory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,999,0);
+        this.mesas4Disponibles.setValueFactory(cantLugaresFactory);
+
+        SpinnerValueFactory<Integer> mesas2Factory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,999,0);
+        this.mesas2Disponibles.setValueFactory(cantLugaresFactory);
 
     }
 
@@ -84,7 +105,6 @@ public class RestaurantMainPageController implements Initializable {
             content.setSpacing(10);
         }
 
-<<<<<<< HEAD
         @Override
         protected void updateItem(Reservation item, boolean empty) {
             super.updateItem(item, empty);
@@ -96,9 +116,8 @@ public class RestaurantMainPageController implements Initializable {
             } else {
                 setGraphic(null);
             }
-=======
 
->>>>>>> 6d3c1f1d463e0158e4d2984cc1dc2b8234a2edd5
         }
     }
+
 }
