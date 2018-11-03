@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -16,6 +17,7 @@ import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
+import javafx.event.*;
 
 import javax.naming.spi.ResolveResult;
 import java.io.File;
@@ -58,6 +60,7 @@ public class RestaurantMainPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         nombreRestaurant.setText(restaurant.getName());
 
         List<Reservation> pendingReservations = null;
@@ -125,6 +128,9 @@ public class RestaurantMainPageController implements Initializable {
 
         }
     }
+    @FXML
+    void goBack(MouseEvent event) {
 
+    }
 }
 
