@@ -91,6 +91,7 @@ public class LoginController{
         loader.setLocation(SearchPageController.class.getResource("SearchPage.fxml"));
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
         controller.setConsumer(consumer);
+
         Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();

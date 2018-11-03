@@ -20,22 +20,34 @@ public class Reservation {
     @Column(name = "reservationTime")
     private LocalTime dt;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "consumer")
     private Consumer consumer;
 
     @Column(name = "totalPeople")
-    private int groupSize;
+    private Long groupSize;
 
-    @Column(name = "pending")
-    private boolean pending;
+//    @Column(name = "pending")
+//    private boolean pending;
+//
+//    @Column(name = "state")
+//    private boolean reservationState;
 
-    @Column(name = "state")
-    private boolean reservationState;
+    @Column(name = "statement")
+    @Enumerated(EnumType.ORDINAL)
+    private ReservationStatus reservationStatus;
+
+    public Reservation(LocalTime dt, Restaurant restaurant, Consumer consumer, Long groupSize, ReservationStatus reservationStatus) {
+        this.dt = dt;
+        this.restaurant = restaurant;
+        this.consumer = consumer;
+        this.groupSize = groupSize;
+        this.reservationStatus = reservationStatus;
+    }
 }
 //necesito guardar en algun lado el email del usuario o restaurant
 //Cuando el consumer elija el restaurant que quiere reservar se usaria un SetRestaurantId (idem para consumer)

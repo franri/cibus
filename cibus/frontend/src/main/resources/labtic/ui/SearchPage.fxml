@@ -1,87 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import org.controlsfx.control.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.SearchPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="564.0" style="-fx-background-color: #1D1B1C;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.SearchPageController">
    <children>
-      <GridPane prefHeight="58.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <VBox.margin>
-            <Insets top="15.0" />
-         </VBox.margin>
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-               <children>
-                  <TextField fx:id="buscaNombre" promptText="Buscar por nombre..." />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="errorLabel" visible="false" />
-               </children>
-            </HBox>
-         </children>
-      </GridPane>
-      <HBox prefHeight="400.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-         <children>
-            <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="180.0">
-               <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="239.0" prefWidth="180.0">
-                     <children>
-                        <Label text="Comidas">
-                           <VBox.margin>
-                              <Insets bottom="5.0" top="10.0" />
-                           </VBox.margin>
-                        </Label>
-                        <MenuButton fx:id="listaComidas" mnemonicParsing="false" text="Elegir comidas">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin>
-                        </MenuButton>
-                        <Label text="Barrio">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin></Label>
-                        <MenuButton fx:id="listaBarrios" mnemonicParsing="false" prefWidth="150.0" text="Elegir barrio">
-                           <VBox.margin>
-                              <Insets bottom="15.0" />
-                           </VBox.margin></MenuButton>
-                        <Label text="Lugares">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <ComboBox fx:id="lugares" prefWidth="150.0" promptText="Elegir cantidad" />
-                     </children>
-                  </VBox>
-                  <Button mnemonicParsing="false" onAction="#cargarRestaurantes" text="Consultar" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-            </VBox>
-            <ListView fx:id="listaRestaurantes" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-         </children>
-         <VBox.margin>
-            <Insets top="20.0" />
-         </VBox.margin>
-      </HBox>
+      <ImageView fitHeight="148.0" fitWidth="578.0" layoutX="-1.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@paltoComida.jpg" />
+         </image>
+      </ImageView>
+      <ListView fx:id="listaRestaurantes" layoutX="45.0" layoutY="148.0" prefHeight="342.0" prefWidth="475.0" style="-fx-background-color: black;" />
+      <Button layoutX="195.0" layoutY="451.0" mnemonicParsing="false" onAction="#cargarRestaurantes" prefHeight="25.0" prefWidth="175.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 1000;" text="Consultar" />
+      <MenuButton fx:id="listaComidas" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" opacity="0.79" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: transparent; -fx-background-color: white;" text="Comidas">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </MenuButton>
+      <ComboBox fx:id="lugares" layoutX="381.0" layoutY="85.0" opacity="0.79" prefHeight="30.0" prefWidth="150.0" promptText="Elegir cantidad" style="-fx-background-color: white;" />
+      <MenuButton fx:id="listaBarrios" layoutX="200.0" layoutY="85.0" mnemonicParsing="false" opacity="0.79" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: transparent; -fx-background-color: white;" text="Barrios">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </MenuButton>
+      <TextField fx:id="buscaNombre" layoutX="198.0" layoutY="14.0" opacity="0.84" prefHeight="30.0" prefWidth="149.0" promptText="Busca..." style="-fx-background-color: white;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Label fx:id="errorLabel" layoutX="45.0" layoutY="160.0" prefHeight="20.0" prefWidth="521.0" style="-fx-text-alignment: centre;" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
-</VBox>
+</AnchorPane>
