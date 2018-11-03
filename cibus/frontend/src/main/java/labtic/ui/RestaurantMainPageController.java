@@ -26,15 +26,13 @@ public class RestaurantMainPageController {
     @FXML
     private ImageView settings;
 
-        private class CustomListCell extends ListCell<Reservation> {
+    private class CustomListCell extends ListCell<Reservation> {
+        File file = new File("labtic/resources/labtic/ui/confirm.png");
+        Image image = new Image(file.toURI().toString());
         private HBox content;
         private Text nombreComensal;
         private Text cantPersonas;
         private ImageView confirmarReserva;
-
-        File file = new File("labtic/resources/labtic/ui/confirm.png");
-        Image image = new Image(file.toURI().toString());
-
 
 
         public CustomListCell() {
@@ -53,8 +51,6 @@ public class RestaurantMainPageController {
             content = new HBox(vBoxName, vBoxData, confirmarReserva);
             HBox.setHgrow(vBoxName, Priority.ALWAYS);
             content.setSpacing(10);
-
-
 
 
         }
