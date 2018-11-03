@@ -83,10 +83,10 @@ public class RestaurantMainPageController implements Initializable {
         this.cantLugaresDisponibles.setValueFactory(cantLugaresFactory);
 
         SpinnerValueFactory<Integer> mesas4Factory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,999,0);
-        this.mesas4Disponibles.setValueFactory(cantLugaresFactory);
+        this.mesas4Disponibles.setValueFactory(mesas4Factory);
 
         SpinnerValueFactory<Integer> mesas2Factory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,999,0);
-        this.mesas2Disponibles.setValueFactory(cantLugaresFactory);
+        this.mesas2Disponibles.setValueFactory(mesas2Factory);
 
     }
 
@@ -176,9 +176,11 @@ public class RestaurantMainPageController implements Initializable {
 
     }
 
-
+    @FXML
     private void refresh() {
-
+        System.out.println(cantLugaresDisponibles.getValue());
+        System.out.println(mesas2Disponibles.getValue());
+        System.out.println(mesas4Disponibles.getValue());
     }
 }
 
