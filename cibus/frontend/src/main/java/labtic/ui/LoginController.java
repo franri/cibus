@@ -118,16 +118,16 @@ public class LoginController{
         AppStarter.getMainStage().show();
     }
 
-//    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setControllerFactory(AppStarter.getContext()::getBean);
-//        RestaurantDetailsController controller = AppStarter.getContext().getBean(RestaurantDetailsController.class);
-//        controller.setRestaurant(restaurant);
-//        Parent root = loader.load(RestaurantDetailsController.class.getResourceAsStream("RestaurantDetails.fxml"));
-//
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.show();
-//    }
+    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        RestaurantDetailsController controller = AppStarter.getContext().getBean(RestaurantDetailsController.class);
+       // controller.setRestaurant(restaurant);
+        Parent root = loader.load(RestaurantDetailsController.class.getResourceAsStream("RestaurantDetails.fxml"));
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 }
