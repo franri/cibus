@@ -25,13 +25,13 @@
             <Font size="14.0" />
          </font>
       </MenuButton>
-      <ComboBox fx:id="lugares" layoutX="381.0" layoutY="85.0" opacity="0.79" prefHeight="30.0" prefWidth="150.0" promptText="Elegir cantidad" style="-fx-background-color: white;" />
+      <ComboBox fx:id="lugares" layoutX="381.0" layoutY="85.0" opacity="0.79" prefHeight="30.0" prefWidth="150.0" promptText="Cantidad Personas" style="-fx-background-color: white;" />
       <MenuButton fx:id="listaBarrios" layoutX="200.0" layoutY="85.0" mnemonicParsing="false" opacity="0.79" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: transparent; -fx-background-color: white;" text="Barrios">
          <font>
             <Font size="14.0" />
          </font>
       </MenuButton>
-      <TextField fx:id="buscaNombre" layoutX="198.0" layoutY="14.0" opacity="0.84" prefHeight="30.0" prefWidth="149.0" promptText="Busca..." style="-fx-background-color: white;">
+      <TextField fx:id="buscaNombre" layoutX="198.0" layoutY="14.0" opacity="0.84" prefHeight="30.0" prefWidth="149.0" promptText="Buscar..." style="-fx-background-color: white;">
          <font>
             <Font size="18.0" />
          </font>

@@ -34,7 +34,6 @@ public class RestaurantMainPageController implements Initializable {
 
     @FXML
     private ImageView settings;
-
     @FXML
     private ListView<Reservation> pendingList;
 
@@ -57,14 +56,15 @@ public class RestaurantMainPageController implements Initializable {
 
 
     private class CustomListCell extends ListCell<Reservation> {
+
+        File file = new File("labtic/resources/labtic/ui/confirm.png");
+        Image image = new Image(file.toURI().toString());
+
         private Reservation reservation;
         private HBox content;
         private Text nombreComensal;
         private Text cantPersonas;
         private ImageView confirmarReserva;
-
-        File file = new File("labtic/resources/labtic/ui/confirm.png");
-        Image image = new Image(file.toURI().toString());
 
         public CustomListCell() {
             super();
@@ -84,6 +84,7 @@ public class RestaurantMainPageController implements Initializable {
             content.setSpacing(10);
         }
 
+<<<<<<< HEAD
         @Override
         protected void updateItem(Reservation item, boolean empty) {
             super.updateItem(item, empty);
@@ -95,6 +96,9 @@ public class RestaurantMainPageController implements Initializable {
             } else {
                 setGraphic(null);
             }
+=======
+
+>>>>>>> 6d3c1f1d463e0158e4d2984cc1dc2b8234a2edd5
         }
     }
 }
