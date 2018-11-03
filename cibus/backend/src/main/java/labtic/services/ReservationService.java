@@ -20,11 +20,19 @@ public class ReservationService {
 
     public void refuseReservation(Reservation reservation){
         reservation.setReservationStatus(ReservationStatus.DECLINED);
+        reservationRepository.save(reservation);
     }
 
     public void acceptReservation(Reservation reservation) {
         reservation.setReservationStatus(ReservationStatus.ACCEPTED);
+        reservationRepository.save(reservation);
     }
+
+    public void completeReservation(Reservation reservation) {
+        reservation.setReservationStatus(ReservationStatus.COMPLETED);
+        reservationRepository.save(reservation);
+    }
+
 
     public List<Reservation> findAccResOf(Restaurant restaurant){
         return reservationRepository.findAllByRestaurantAndReservationStatus(restaurant, ReservationStatus.ACCEPTED);

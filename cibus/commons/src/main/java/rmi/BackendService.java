@@ -28,8 +28,11 @@ public interface BackendService extends Remote {
     boolean existsByRut(String rut) throws RemoteException;
     void refuseReservation(Reservation reservation) throws RemoteException;
     void acceptReservation(Reservation reservation) throws RemoteException;
+    void completeReservation(Reservation reservation) throws RemoteException;
     List<Reservation> findAccResOf(Restaurant restaurant) throws RemoteException;
     List<Reservation> findPendResOf(Restaurant restaurant) throws RemoteException;
+
+    void reduceFree(Restaurant restaurant, Long totalPeople, Long tablesOfTwo, Long tablesOfFour) throws RemoteException;
 
     //NO EXPONER AL RESTAURANT: DEVOLVER UN POJO QUE TENGA  LOS ATRIBUTOS, GETTERS Y SETTERS
 

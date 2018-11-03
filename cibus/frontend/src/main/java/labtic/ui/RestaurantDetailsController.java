@@ -1,23 +1,19 @@
 package labtic.ui;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 import entities.Food;
 import entities.Neighbourhood;
 import entities.Restaurant;
-
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
-import exceptions.NoRestaurantFound;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import labtic.AppStarter;
@@ -29,6 +25,8 @@ import rmi.BackendService;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -46,7 +44,7 @@ public class RestaurantDetailsController implements Initializable {
     private JFXTextField rutField;
 
     @FXML
-    private JFXTextField directionField;
+    private JFXTextField address;
 
     @FXML
     private JFXButton confirmButton;
@@ -70,7 +68,18 @@ public class RestaurantDetailsController implements Initializable {
     private ComboBox<Neighbourhood> listaBarrios;
 
     @FXML
-    private ImageView backArrow;
+    private JFXButton closeSession;
+
+    @FXML
+    private JFXTimePicker horarioApertura;
+
+    @FXML
+    private JFXTimePicker horarioCierre;
+
+    private Restaurant restaurant;
+
+    @Autowired
+    private BackendService bs;
 
     @FXML
     void goBack(MouseEvent event) throws IOException {
@@ -82,26 +91,16 @@ public class RestaurantDetailsController implements Initializable {
         AppStarter.getMainStage().show();
     }
 
-    @Autowired
-    private BackendService bs;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Restaurant restaurantToUpdateGetData = null;
-
         List<Neighbourhood> barrios = null;
         List<Food> comidas = null;
 
-        try {
-            restaurantToUpdateGetData = bs.findRestaurant(emailField.getText().toString());
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        } catch (NoRestaurantFound noRestaurantFound) {
-            noRestaurantFound.printStackTrace();
-        }
-        nameField.setText(restaurantToUpdateGetData.getName());
-        emailField.setText(restaurantToUpdateGetData.getEmail());
-        rutField.setText(restaurantToUpdateGetData.getRut());
+        nameField.setText(restaurant.getName());
+        emailField.setText(restaurant.getEmail());
+        rutField.setText(restaurant.getRut());
+        String address = (restaurant.getAddress()==null || restaurant.getAddress().isEmpty()) ? null : restaurant.getAddress();
+        this.address.setText(address);
 
         try {
             comidas = bs.getListaComidas();
@@ -128,41 +127,128 @@ public class RestaurantDetailsController implements Initializable {
             }
         });
         listaBarrios.getItems().addAll(barrios);
+        listaBarrios.setValue(restaurant.getNeighbourhood());
 
         ObservableList<CustomMenuItem> comidasToAdd = FXCollections.observableArrayList();
         comidas.forEach(item -> {
             CheckBox checkBox = new CheckBox(item.getName());
             checkBox.setUserData(item);
+            if(restaurant.getFoods().contains(item)){
+            checkBox.setSelected(true);
+            }
             CustomMenuItem customMenuItem = new CustomMenuItem(checkBox, false);
             comidasToAdd.add(customMenuItem);
         });
         listaComidas.getItems().addAll(comidasToAdd);
+
+        if(restaurant.getOpeningHour()!=null) horarioApertura.setValue(restaurant.getOpeningHour());
+        if(restaurant.getClosingHour()!=null) horarioCierre.setValue(restaurant.getClosingHour());
+        if(restaurant.getMaxCapacity()!=null) maxCapacity.setText(restaurant.getMaxCapacity().toString());
+        if(restaurant.getTableForTwo()!=null) tableOfTwo.setText(restaurant.getTableForTwo().toString());
+        if(restaurant.getTableForFour()!=null) tableOfFour.setText(restaurant.getTableForFour().toString());
     }
 
     @FXML
-    void fillDataOfRestaurant(ActionEvent event) throws NoRestaurantFound, IOException {
-        Restaurant restaurantToUpdate = bs.findRestaurant(emailField.getText().toString());
-        restaurantToUpdate.setAddress(directionField.getText().toString());
-        restaurantToUpdate.setMaxCapacity(Long.parseLong(maxCapacity.getText()));
-        //restaurantToUpdate.setFoods(comidas);//TODO arreglar tema de las comidas
-        restaurantToUpdate.setTableForFour(Long.parseLong(tableOfFour.getText()));
-        restaurantToUpdate.setTableForTwo(Long.parseLong(tableOfTwo.getText()));
+    public void fillDataOfRestaurant(MouseEvent event) throws IOException {
+        if(address.getText() == null || address.getText().isEmpty()) {
+            errorLabel.setText("Ingrese dirección");
+            errorLabel.setVisible(true);
+            return;
+        }else{
+            restaurant.setAddress(address.getText());
+        }
 
-        Neighbourhood barrio = (Neighbourhood) listaBarrios.getSelectionModel().getSelectedItem();
+        LocalTime horaAbre;
+        if(horarioApertura.getValue() != null) {
+            horaAbre = horarioApertura.getValue();
+        }else{
+            errorLabel.setText("Elija horario de apertura");
+            errorLabel.setVisible(true);
+            return;
+        }
+        restaurant.setOpeningHour(horaAbre);
+
+        LocalTime horaCierra;
+        if(horarioCierre.getValue() != null) {
+            horaCierra = horarioCierre.getValue();
+        }else{
+            errorLabel.setText("Elija horario de cierre");
+            errorLabel.setVisible(true);
+            return;
+        }
+        restaurant.setClosingHour(horaCierra);
+
+        List<Food> comidas = new ArrayList<>();
+        for (MenuItem item : listaComidas.getItems()){
+            CheckBox deItem = (CheckBox) ((CustomMenuItem) item).getContent();
+            if(deItem.isSelected()){
+                comidas.add((Food)deItem.getUserData());
+            }
+        }
+        if(comidas.isEmpty()){
+            errorLabel.setText("Seleccione por lo menos una comida");
+            errorLabel.setVisible(true);
+            return;
+        }else{
+            errorLabel.setVisible(false);
+        }
+        restaurant.setFoods(comidas);
+
+        try{
+            restaurant.setMaxCapacity(Long.parseLong(maxCapacity.getText()));
+            restaurant.setTableForFour(Long.parseLong(tableOfFour.getText()));
+            restaurant.setTableForTwo(Long.parseLong(tableOfTwo.getText()));
+        }catch (NumberFormatException e){
+            errorLabel.setText("Ingrese número entero");
+            errorLabel.setVisible(true);
+            return;
+        }
+
+        try{
+            restaurant.setMaxCapacity(Long.parseLong(maxCapacity.getText()));
+            restaurant.setTableForFour(Long.parseLong(tableOfFour.getText()));
+            restaurant.setTableForTwo(Long.parseLong(tableOfTwo.getText()));
+            if(!restaurant.isCanBeShown()){
+                restaurant.setFreePlaces(Long.parseLong(maxCapacity.getText()));
+            }
+        }catch (NumberFormatException e){
+            errorLabel.setText("Ingrese número entero");
+            errorLabel.setVisible(true);
+            return;
+        }
+
+        Neighbourhood barrio = listaBarrios.getSelectionModel().getSelectedItem();
 
         if(barrio==null){
-            errorLabel.setText("Debe seleccionar cantidad de lugares");
+            errorLabel.setText("Seleccione barrio");
             errorLabel.setVisible(true);
             return;
         }else{errorLabel.setVisible(false);}
 
-        restaurantToUpdate.setNeighbourhood(barrio);
+        restaurant.setNeighbourhood(barrio);
 
-        bs.saveRestaurant(restaurantToUpdate);
+        restaurant.setCanBeShown(true);
+
+        bs.saveRestaurant(restaurant);
 
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
         loader.setLocation(LoginController.class.getResource("RestaurantMainPage.fxml"));
+        RestaurantMainPageController controller = AppStarter.getContext().getBean(RestaurantMainPageController.class);
+        controller.setRestaurant(restaurant);
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
+    }
+
+    @FXML
+    public void goToReservationsPage() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(RestaurantMainPageController.class.getResource("RestaurantMainPage.fxml"));
+        RestaurantMainPageController controller = AppStarter.getContext().getBean(RestaurantMainPageController.class);
+        controller.setRestaurant(restaurant);
+
         Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();

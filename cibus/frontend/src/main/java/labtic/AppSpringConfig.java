@@ -1,9 +1,6 @@
 package labtic;
 
 
-import entities.Food;
-import entities.Neighbourhood;
-import javafx.stage.Stage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import rmi.BackendService;
@@ -12,7 +9,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.List;
 
 
 @Configuration

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -20,6 +19,10 @@ public class Reservation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Long tableOfTwo;
+
+    private Long tableOfFour;
+
     @Column(name = "reservationTime")
     private LocalTime dt;
 
@@ -31,17 +34,16 @@ public class Reservation implements Serializable {
     @JoinColumn(name = "consumer")
     private Consumer consumer;
 
-    @Column(name = "totalPeople")
-    private Long groupSize;
+    private Long totalPeople;
 
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
 
-    public Reservation(LocalTime dt, Restaurant restaurant, Consumer consumer, Long groupSize, ReservationStatus reservationStatus) {
+    public Reservation(LocalTime dt, Restaurant restaurant, Consumer consumer, Long totalPeople, ReservationStatus reservationStatus) {
         this.dt = dt;
         this.restaurant = restaurant;
         this.consumer = consumer;
-        this.groupSize = groupSize;
+        this.totalPeople = totalPeople;
         this.reservationStatus = reservationStatus;
     }
 }

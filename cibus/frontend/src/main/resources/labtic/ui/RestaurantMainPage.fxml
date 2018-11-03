@@ -4,6 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,19 +20,29 @@
          </image>
       </ImageView>
       <ListView fx:id="pendingList" layoutX="14.0" layoutY="116.0" opacity="0.6" prefHeight="263.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
-      <ListView fx:id="acceptedLIst" layoutX="222.0" layoutY="116.0" opacity="0.6" prefHeight="263.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
-      <Label fx:id="nombreRestaurant" alignment="CENTER" layoutX="181.0" layoutY="14.0" prefHeight="76.0" prefWidth="261.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+      <ListView fx:id="acceptedList" layoutX="222.0" layoutY="116.0" opacity="0.6" prefHeight="263.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
+      <Label fx:id="nombreRestaurant" alignment="CENTER" layoutX="84.0" layoutY="13.0" prefHeight="76.0" prefWidth="261.0" text="Label" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <ImageView fx:id="settings" fitHeight="47.0" fitWidth="67.0" layoutX="539.0" layoutY="14.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="settings" fitHeight="47.0" fitWidth="67.0" layoutX="539.0" layoutY="14.0" onMouseClicked="#goToDetails" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Settings_black-512.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="40.0" surfaceScale="4.18">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
       </ImageView>
       <Label layoutX="60.0" layoutY="90.0" text="Reservas Pendientes" textFill="WHITE">
          <font>
@@ -61,9 +74,9 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Spinner fx:id="cantLugaresDisponibles" editable="true" layoutX="480.0" layoutY="116.0" prefHeight="25.0" prefWidth="70.0" />
-      <Spinner fx:id="mesas4Disponibles" editable="true" layoutX="441.0" layoutY="248.0" prefHeight="25.0" prefWidth="58.0" />
-      <Spinner fx:id="mesas2Disponibles" editable="true" layoutX="528.0" layoutY="248.0" prefHeight="25.0" prefWidth="58.0" />
+      <Spinner fx:id="cantLugaresDisponibles" editable="true" layoutX="460.0" layoutY="116.0" prefHeight="31.0" prefWidth="111.0" />
+      <Spinner fx:id="mesas4Disponibles" editable="true" layoutX="441.0" layoutY="248.0" prefHeight="31.0" prefWidth="70.0" />
+      <Spinner fx:id="mesas2Disponibles" editable="true" layoutX="528.0" layoutY="248.0" prefHeight="31.0" prefWidth="70.0" />
       <ImageView fx:id="refreshButton" fitHeight="84.0" fitWidth="58.0" layoutX="486.0" layoutY="321.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@refresh.png" />
@@ -72,5 +85,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Label fx:id="errorLabel" layoutX="359.0" layoutY="41.0" prefHeight="21.0" prefWidth="230.0" text="Label" textFill="WHITE" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

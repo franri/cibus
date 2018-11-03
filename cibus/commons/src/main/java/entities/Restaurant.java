@@ -38,7 +38,9 @@ public class Restaurant extends User implements Serializable {
     private Long tableForFour;
 
     private Long tableForTwo;
-    
+
+    private Long freePlaces;
+
     private boolean canBeShown; //default = false
 
     private LocalTime openingHour;

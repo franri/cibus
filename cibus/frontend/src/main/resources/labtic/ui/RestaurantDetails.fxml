@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -46,7 +47,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="directionField" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="181.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Direccion" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="address" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="181.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Direccion" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -54,7 +55,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXButton fx:id="confirmButton" layoutX="344.0" layoutY="252.0" onAction="#fillDataOfRestaurant" prefHeight="25.0" prefWidth="245.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Aceptar">
+            <JFXButton fx:id="confirmButton" layoutX="352.0" layoutY="307.0" onMouseClicked="#fillDataOfRestaurant" prefHeight="25.0" prefWidth="245.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Aceptar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -71,7 +72,7 @@
                </effect>
             </Label>
             <TextField fx:id="maxCapacity" layoutX="445.0" layoutY="47.0" prefHeight="25.0" prefWidth="162.0" />
-            <Label fx:id="errorLabel" layoutX="53.0" layoutY="319.0" prefHeight="17.0" prefWidth="520.0" textFill="RED" />
+            <Label fx:id="errorLabel" layoutX="35.0" layoutY="297.0" prefHeight="47.0" prefWidth="245.0" text="LALALA" textFill="RED" visible="false" />
             <Label layoutX="329.0" layoutY="95.0" prefHeight="17.0" prefWidth="83.0" text="Mesas de dos" textFill="#5d5d5d">
                <effect>
                   <SepiaTone />
@@ -83,23 +84,25 @@
                   <SepiaTone />
                </effect>
             </Label>
-            <TextField fx:id="TableOfFour" layoutX="445.0" layoutY="137.0" prefHeight="25.0" prefWidth="162.0" />
+            <TextField fx:id="tableOfFour" layoutX="445.0" layoutY="137.0" prefHeight="25.0" prefWidth="162.0" />
             <MenuButton fx:id="listaComidas" layoutX="157.0" layoutY="247.0" mnemonicParsing="false" opacity="0.79" prefHeight="31.0" prefWidth="115.0" style="-fx-background-color: white;" text="Comidas">
                <font>
                   <Font size="14.0" />
                </font>
             </MenuButton>
-            <Label layoutX="329.0" layoutY="188.0" prefHeight="17.0" prefWidth="93.0" text="Horario apertura:" textFill="#5d5d5d">
+            <Label layoutX="329.0" layoutY="199.0" prefHeight="17.0" prefWidth="93.0" text="Horario apertura:" textFill="#5d5d5d">
                <effect>
                   <SepiaTone />
                </effect>
             </Label>
-            <Label layoutX="329.0" layoutY="212.0" prefHeight="17.0" prefWidth="93.0" text="Horario cierre" textFill="#5d5d5d">
+            <Label layoutX="329.0" layoutY="247.0" prefHeight="17.0" prefWidth="93.0" text="Horario cierre" textFill="#5d5d5d">
                <effect>
                   <SepiaTone />
                </effect>
             </Label>
             <ComboBox fx:id="listaBarrios" layoutX="29.0" layoutY="247.0" opacity="0.79" prefHeight="31.0" prefWidth="115.0" promptText="Barrios" style="-fx-background-color: white;" />
+            <JFXTimePicker fx:id="horarioApertura" layoutX="436.0" layoutY="194.0" />
+            <JFXTimePicker fx:id="horarioCierre" layoutX="436.0" layoutY="242.0" />
          </children>
       </AnchorPane>
       <Label layoutX="255.0" layoutY="25.0" text="Ajustes" textFill="WHITE">
@@ -107,7 +110,7 @@
             <Font name="Arial" size="40.0" />
          </font>
       </Label>
-      <JFXButton layoutX="20.0" layoutY="33.0" onMouseClicked="#goBack" style="-fx-background-color: #A03324;" text="Cerrar Sesión" textFill="WHITE" underline="true">
+      <JFXButton fx:id="closeSession" layoutX="20.0" layoutY="33.0" onMouseClicked="#goBack" style="-fx-background-color: #A03324;" text="Cerrar Sesión" textFill="WHITE" underline="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

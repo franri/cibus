@@ -83,6 +83,11 @@ public class BackendServiceImp implements BackendService {
         resServ.acceptReservation(reservation);
     }
 
+  @Override
+    public void completeReservation(Reservation reservation) throws RemoteException {
+        resServ.completeReservation(reservation);
+    }
+
     @Override
     public List<Reservation> findAccResOf(Restaurant restaurant) throws RemoteException {
         return resServ.findAccResOf(restaurant);
@@ -91,6 +96,14 @@ public class BackendServiceImp implements BackendService {
     @Override
     public List<Reservation> findPendResOf(Restaurant restaurant) throws RemoteException {
         return resServ.findPendResOf(restaurant);
+    }
+
+    @Override
+    public void reduceFree(Restaurant restaurant, Long totalPeople, Long tablesOfTwo, Long tablesOfFour) throws RemoteException {
+        restaurant.setFreePlaces(restaurant.getFreePlaces()-totalPeople);
+        restaurant.setTableForTwo(restaurant.getTableForTwo()-tablesOfTwo);
+        restaurant.setTableForFour(restaurant.getTableForFour()-tablesOfFour);
+        rs.save(restaurant);
     }
 
     @Override

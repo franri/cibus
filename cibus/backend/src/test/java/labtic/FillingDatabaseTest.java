@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +55,9 @@ public class FillingDatabaseTest {
         r1.setOpeningHour(LocalTime.of(9,30));
         r1.setClosingHour(LocalTime.of(22,45));
         r1.setCanBeShown(true);
+        r1.setTableForTwo(40L);
+        r1.setTableForFour(40L);
+        r1.setFreePlaces(30L);
 
 
         Restaurant r2 = new Restaurant("maria@gmail.com", "maria", "Restaurante de Maria", "1111", 50L, n1);

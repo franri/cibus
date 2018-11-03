@@ -1,6 +1,7 @@
 package labtic.ui;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import entities.Admin;
 import entities.Consumer;
 import entities.Restaurant;
@@ -12,12 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import labtic.AppStarter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,7 +85,15 @@ public class LoginController{
             AppStarter.getMainStage().setScene(new Scene(root));
             AppStarter.getMainStage().show();
         }else{
-            //TODO poner pantalla de opciones
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory(AppStarter.getContext()::getBean);
+            loader.setLocation(RestaurantDetailsController.class.getResource("RestaurantDetails.fxml"));
+            RestaurantDetailsController controller = AppStarter.getContext().getBean(RestaurantDetailsController.class);
+            controller.setRestaurant(restaurant);
+
+            Parent root = loader.load();
+            AppStarter.getMainStage().setScene(new Scene(root));
+            AppStarter.getMainStage().show();
         }
     }
 
@@ -100,7 +104,7 @@ public class LoginController{
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
         controller.setConsumer(consumer);
 
-        Parent root = loader.load();
+         Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
     }

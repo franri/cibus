@@ -1,5 +1,5 @@
 package entities;
 
 public enum ReservationStatus {
-    DECLINED,PENDING,ACCEPTED;
+    DECLINED,PENDING,ACCEPTED,COMPLETED;
 }
