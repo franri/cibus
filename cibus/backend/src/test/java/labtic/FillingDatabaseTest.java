@@ -57,20 +57,43 @@ public class FillingDatabaseTest {
         r1.setClosingHour(LocalTime.of(22,45));
         r1.setCanBeShown(true);
 
+
         Restaurant r2 = new Restaurant("maria@gmail.com", "maria", "Restaurante de Maria", "1111", 50L, n1);
         r2.setFoods(new ArrayList<Food>(Arrays.asList(f1)));
         r2.setOpeningHour(LocalTime.of(9,30));
         r2.setClosingHour(LocalTime.of(22,45));
+        r2.setCanBeShown(true);
 
         Restaurant r3 = new Restaurant("juan@gmail.com","juan", "Restaurante de Juan", "4321", 50L, n2);
         r3.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
         r3.setOpeningHour(LocalTime.of(9,30));
         r3.setClosingHour(LocalTime.of(22,45));
-        r1.setCanBeShown(true);
+        r3.setCanBeShown(true);
+
+        Restaurant r4 = new Restaurant("matias@gmail.com","matias", "Restaurante de Matias", "4351", 50L, n2);
+        r4.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
+        r4.setOpeningHour(LocalTime.of(9,30));
+        r4.setClosingHour(LocalTime.of(22,45));
+        r4.setCanBeShown(true);
+
+        Restaurant r5 = new Restaurant("Agustin@gmail.com","Agustin", "Restaurante de Agustin", "4341", 50L, n2);
+        r5.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
+        r5.setOpeningHour(LocalTime.of(9,30));
+        r5.setClosingHour(LocalTime.of(22,45));
+        r5.setCanBeShown(true);
+
+        Restaurant r6 = new Restaurant("Martin@gmail.com","Martin", "Restaurante de Martin", "4332", 50L, n2);
+        r6.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
+        r6.setOpeningHour(LocalTime.of(9,30));
+        r6.setClosingHour(LocalTime.of(22,45));
+        r6.setCanBeShown(true);
 
         rs.save(r1);
         rs.save(r2);
         rs.save(r3);
+        rs.save(r4);
+        rs.save(r5);
+        rs.save(r6);
 
         Admin admin = new Admin("admin@gmail.com", "admin");
         as.save(admin);
