@@ -222,10 +222,6 @@ public class SearchPageController implements Initializable {
                 setGraphic(null);
             }
         }
-
-
-
-
     }
 }
 
