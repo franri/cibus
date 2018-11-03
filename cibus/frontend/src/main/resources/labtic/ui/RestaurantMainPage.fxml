@@ -33,7 +33,6 @@
       <Label layoutX="60.0" layoutY="90.0" text="Reservas Pendientes" textFill="WHITE" />
       <Label layoutX="432.0" layoutY="90.0" text="Reservas Aceptadas" textFill="WHITE" />
       <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="24.0" layoutY="24.0" onMouseClicked="#goBack" opacity="0.7" pickOnBounds="true" preserveRatio="true">
-         <image>
             <Image url="@BackArrow.png" />
          </image>
          <cursor>
