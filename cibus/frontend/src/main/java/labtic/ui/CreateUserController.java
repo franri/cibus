@@ -38,6 +38,7 @@ public class CreateUserController {
     private JFXTextField phoneNewUser;
     @FXML
     private JFXTextField firstNameNewUser;
+
     @FXML
     private ImageView backArrow;
 

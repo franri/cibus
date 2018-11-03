@@ -72,6 +72,8 @@ public class Restaurant extends User implements Serializable {
         this.maxCapacity = maxCapacity;
         this.neighbourhood = neighbourhood;
     }
+
+
 }
 
 

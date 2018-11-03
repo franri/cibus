@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="407.0" fitWidth="715.0" layoutX="-46.0" pickOnBounds="true" preserveRatio="true">
@@ -16,8 +15,8 @@
             <Image url="@restaurantInterior.jpg" />
          </image>
       </ImageView>
-      <ListView layoutX="14.0" layoutY="116.0" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
-      <ListView layoutX="386.0" layoutY="116.0" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
+      <ListView fx:id="pendingList" layoutX="14.0" layoutY="116.0" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
+      <ListView fx:id="acceptedLIst" layoutX="386.0" layoutY="116.0" opacity="0.5" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
       <Label fx:id="nombreRestaurant" alignment="CENTER" layoutX="181.0" layoutY="14.0" prefHeight="76.0" prefWidth="261.0" text="Label" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
@@ -32,7 +31,7 @@
          </cursor>
       </ImageView>
       <Label layoutX="60.0" layoutY="90.0" text="Reservas Pendientes" textFill="WHITE" />
-      <Label layoutX="432.0" layoutY="90.0" text="Reservas Activas" textFill="WHITE" />
+      <Label layoutX="432.0" layoutY="90.0" text="Reservas Aceptadas" textFill="WHITE" />
       <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="24.0" layoutY="24.0" onMouseClicked="#goBack" opacity="0.7" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@BackArrow.png" />
