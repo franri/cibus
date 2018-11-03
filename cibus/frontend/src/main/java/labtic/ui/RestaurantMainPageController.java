@@ -20,6 +20,7 @@ import rmi.BackendService;
 import javax.naming.spi.ResolveResult;
 import java.io.File;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -59,7 +60,12 @@ public class RestaurantMainPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         nombreRestaurant.setText(restaurant.getName());
 
-        List<Reservation> pendingReservations = bs.findPendResOf(restaurant);
+        List<Reservation> pendingReservations = null;
+        try {
+            pendingReservations = bs.findPendResOf(restaurant);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         pendingList.getItems().addAll(pendingReservations);
 
         //Configure Spinners:
@@ -121,3 +127,4 @@ public class RestaurantMainPageController implements Initializable {
     }
 
 }
+

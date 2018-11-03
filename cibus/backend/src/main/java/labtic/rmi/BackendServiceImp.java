@@ -22,7 +22,7 @@ public class BackendServiceImp implements BackendService {
     AdminService as;
 
     @Autowired
-    ReservationService bs;
+    ReservationService resServ;
 
     @Autowired
     NeighbourhoodService ns;
@@ -42,7 +42,7 @@ public class BackendServiceImp implements BackendService {
     public List<Neighbourhood> getListaBarrios(){
         List<Neighbourhood> nList = new ArrayList<>();
         List<Neighbourhood> lista = ns.findAllNeighbourhoods();
-        System.out.println("JEJE");
+        //System.out.println("JEJE");
         lista.forEach(neighbourhood -> {
             nList.add(neighbourhood);
         });
@@ -74,6 +74,26 @@ public class BackendServiceImp implements BackendService {
     }
 
     @Override
+    public void refuseReservation(Reservation reservation) throws RemoteException {
+        resServ.refuseReservation(reservation);
+    }
+
+    @Override
+    public void acceptReservation(Reservation reservation) throws RemoteException {
+        resServ.acceptReservation(reservation);
+    }
+
+    @Override
+    public List<Reservation> findAccResOf(Restaurant restaurant) throws RemoteException {
+        return resServ.findAccResOf(restaurant);
+    }
+
+    @Override
+    public List<Reservation> findPendResOf(Restaurant restaurant) throws RemoteException {
+        return resServ.findPendResOf(restaurant);
+    }
+
+    @Override
     public boolean existsConsumerByEmail(String email){
         return cs.existsByEmail(email);
     }
@@ -100,7 +120,7 @@ public class BackendServiceImp implements BackendService {
 
     @Override
     public void saveReservation(Reservation reservation) throws RemoteException {
-        bs.save(reservation);
+        resServ.save(reservation);
     }
 
     @Override
