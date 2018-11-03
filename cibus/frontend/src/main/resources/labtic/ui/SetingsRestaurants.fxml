@@ -22,25 +22,25 @@
       </ImageView>
       <AnchorPane layoutX="-6.0" layoutY="96.0" opacity="0.91" prefHeight="361.0" prefWidth="648.0" style="-fx-background-color: #1c1c1c;">
          <children>
-            <JFXTextField fx:id="nameField" editable="false" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="31.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Nombre" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="nameField" editable="false" focusColor="#18a0e4" focusTraversable="false" layoutX="29.0" layoutY="31.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
-                  <Cursor fx:constant="TEXT" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <effect>
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="emailField" editable="false" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="81.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Email" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="emailField" editable="false" focusColor="#18a0e4" focusTraversable="false" layoutX="29.0" layoutY="81.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Email" unFocusColor="#18a0e4">
                <cursor>
-                  <Cursor fx:constant="TEXT" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <effect>
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="rutField" editable="false" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="131.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="RUT" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="rutField" editable="false" focusColor="#18a0e4" focusTraversable="false" layoutX="29.0" layoutY="131.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="RUT" unFocusColor="#18a0e4">
                <cursor>
-                  <Cursor fx:constant="TEXT" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
                <effect>
                   <SepiaTone />
