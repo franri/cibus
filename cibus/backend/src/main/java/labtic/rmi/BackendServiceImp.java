@@ -64,6 +64,11 @@ public class BackendServiceImp implements BackendService {
     }
 
     @Override
+    public List<Restaurant> filtrarRestaurantsSinSeleccionarComida(String name, List<Neighbourhood> neighbourhoods, Long seatsToReserve) throws RemoteException {
+        return rs.findWithFiltersWithoutFoods(name,neighbourhoods,seatsToReserve);
+    }
+
+    @Override
     public User findUser(String email) throws NoUserFound{
         return us.findByEmail(email);
     }
@@ -103,6 +108,13 @@ public class BackendServiceImp implements BackendService {
         restaurant.setFreePlaces(restaurant.getFreePlaces()-totalPeople);
         restaurant.setTableForTwo(restaurant.getTableForTwo()-tablesOfTwo);
         restaurant.setTableForFour(restaurant.getTableForFour()-tablesOfFour);
+        rs.save(restaurant);
+    }
+
+    @Override
+    public void cobrar(Restaurant restaurant) throws RemoteException {
+        Long cobrosAlRestaurant = restaurant.getCobroDeServicio();
+        restaurant.setCobroDeServicio(cobrosAlRestaurant+20);
         rs.save(restaurant);
     }
 
