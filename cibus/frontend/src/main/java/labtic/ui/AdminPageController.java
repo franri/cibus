@@ -19,6 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import labtic.AppStarter;
@@ -144,6 +146,13 @@ public class AdminPageController implements Initializable {
 
         errorLabel.setText("Agregado con éxito");
         errorLabel.setVisible(true);
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            tryToRegisterRestaurant(null);
+        }
     }
 
 }

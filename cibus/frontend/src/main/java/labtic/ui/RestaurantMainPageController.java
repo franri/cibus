@@ -63,6 +63,9 @@ public class RestaurantMainPageController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private Label cobroPorServicios;
+
     @Autowired
     BackendService bs;
 

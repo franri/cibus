@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import labtic.AppStarter;
 import lombok.Data;
@@ -101,6 +103,13 @@ public class CreateUserController {
         bs.saveNewConsumer(newConsumser);
         errorLabel.setText("Usuario creado con éxito");
         errorLabel.setVisible(true);
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            registerNewConsumer(null);
+        }
     }
 
 
