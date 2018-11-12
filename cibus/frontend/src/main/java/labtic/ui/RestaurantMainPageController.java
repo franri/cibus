@@ -73,6 +73,7 @@ public class RestaurantMainPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         nombreRestaurant.setText(restaurant.getName());
+        cobroPorServicios.setText(restaurant.getCobroDeServicio().toString());
 
         pendingList.setCellFactory(param -> new PendingCell());
 
