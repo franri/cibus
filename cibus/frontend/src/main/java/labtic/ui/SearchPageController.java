@@ -128,7 +128,6 @@ public class SearchPageController implements Initializable {
                 comidas.add((Food)deItem.getUserData());
             }
         }
-        //TODO que pasa si la lista de comidas está vacía?
 
         List<Neighbourhood> barrios = new ArrayList<>();
         for (MenuItem item : listaBarrios.getItems()){
@@ -151,8 +150,13 @@ public class SearchPageController implements Initializable {
 
         Long size = (long) comidas.size();
 
-        List<Restaurant> restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados),
-                size);
+        List<Restaurant> restaurants;
+
+        if(size != 0){
+            restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados), size);
+        } else {
+            restaurants = bs.filtrarRestaurantsSinSeleccionarComida(nombre, barrios, Long.valueOf(lugaresReservados));
+        }
 
         listaRestaurantes.getItems().clear();
         listaRestaurantes.getItems().addAll(restaurants);

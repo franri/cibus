@@ -23,6 +23,10 @@ public class RestaurantService {
         return restaurantRepository.findWithFilters(name, foods, neighbourhoods, clients, size);
     }
 
+    public List<Restaurant> findWithFiltersWithoutFoods(String name, List<Neighbourhood> neighbourhoods, Long clients) {
+        return restaurantRepository.findWithFiltersWithoutFoods(name,neighbourhoods,clients);
+    }
+
     public Restaurant findByEmail(String email) throws NoRestaurantFound {
         Restaurant restaurant = restaurantRepository.findOneByEmail(email);
         if(restaurant == null){
