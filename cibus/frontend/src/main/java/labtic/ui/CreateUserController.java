@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import labtic.AppStarter;
 import lombok.Data;
@@ -108,6 +110,13 @@ public class CreateUserController {
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
 
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            registerNewConsumer(null);
+        }
     }
 
 

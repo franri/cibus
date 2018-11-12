@@ -14,8 +14,8 @@ public interface BackendService extends Remote {
 
     List<Neighbourhood> getListaBarrios() throws RemoteException;
     List<Food> getListaComidas() throws RemoteException;
-    List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods,
-                                        Long seatsToReserve, Long size) throws RemoteException;
+    List<Restaurant> filtrarRestaurants(String name, List<Food> foods, List<Neighbourhood> neighbourhoods,Long seatsToReserve, Long size) throws RemoteException;
+    List<Restaurant> filtrarRestaurantsSinSeleccionarComida(String name, List<Neighbourhood> neighbourhoods, Long seatsToReserve) throws  RemoteException;
     User findUser(String email) throws NoUserFound, RemoteException;
     boolean existsConsumerByEmail(String email) throws RemoteException;
     Consumer findConsumer(String email) throws RemoteException, NoConsumerFound;
@@ -31,8 +31,8 @@ public interface BackendService extends Remote {
     void completeReservation(Reservation reservation) throws RemoteException;
     List<Reservation> findAccResOf(Restaurant restaurant) throws RemoteException;
     List<Reservation> findPendResOf(Restaurant restaurant) throws RemoteException;
-
     void reduceFree(Restaurant restaurant, Long totalPeople, Long tablesOfTwo, Long tablesOfFour) throws RemoteException;
+    void cobrar(Restaurant restaurant) throws RemoteException;
 
     //NO EXPONER AL RESTAURANT: DEVOLVER UN POJO QUE TENGA  LOS ATRIBUTOS, GETTERS Y SETTERS
 

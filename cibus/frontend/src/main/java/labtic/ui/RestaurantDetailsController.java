@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import labtic.AppStarter;
@@ -281,6 +283,14 @@ public class RestaurantDetailsController implements Initializable {
         Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            fillDataOfRestaurant(null);
+            goToReservationsPage();
+        }
     }
 
 

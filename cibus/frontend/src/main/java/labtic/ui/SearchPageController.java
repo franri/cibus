@@ -13,6 +13,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -128,7 +130,6 @@ public class SearchPageController implements Initializable {
                 comidas.add((Food)deItem.getUserData());
             }
         }
-        //TODO que pasa si la lista de comidas está vacía?
 
         List<Neighbourhood> barrios = new ArrayList<>();
         for (MenuItem item : listaBarrios.getItems()){
@@ -151,8 +152,13 @@ public class SearchPageController implements Initializable {
 
         Long size = (long) comidas.size();
 
-        List<Restaurant> restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados),
-                size);
+        List<Restaurant> restaurants;
+
+        if(size != 0){
+            restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados), size);
+        } else {
+            restaurants = bs.filtrarRestaurantsSinSeleccionarComida(nombre, barrios, Long.valueOf(lugaresReservados));
+        }
 
         listaRestaurantes.getItems().clear();
         listaRestaurantes.getItems().addAll(restaurants);
@@ -233,6 +239,13 @@ public class SearchPageController implements Initializable {
             } else {
                 setGraphic(null);
             }
+        }
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            cargarRestaurantes(null);
         }
     }
 }
