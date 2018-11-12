@@ -38,6 +38,9 @@ public class RestaurantDetailsController implements Initializable {
     private JFXTextField nameField;
 
     @FXML
+    private JFXTextField phoneNumber;
+
+    @FXML
     private JFXTextField emailField;
 
     @FXML
@@ -158,6 +161,24 @@ public class RestaurantDetailsController implements Initializable {
             restaurant.setAddress(address.getText());
         }
 
+        if(phoneNumber.getText() == null || phoneNumber.getText().isEmpty()) {
+            errorLabel.setText("Ingrese numero de telefono");
+            errorLabel.setVisible(true);
+            return;
+        }else{
+
+            try {
+                long Telefonoparce = Long.parseLong(phoneNumber.getText());
+            } catch(NumberFormatException e) {
+                errorLabel.setText("solo puede ingresar numeros eneteros en el numero de telefono");
+                errorLabel.setVisible(true);
+                return;
+            }
+
+            restaurant.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
+        }
+
+
         LocalTime horaAbre;
         if(horarioApertura.getValue() != null) {
             horaAbre = horarioApertura.getValue();
@@ -224,6 +245,14 @@ public class RestaurantDetailsController implements Initializable {
             errorLabel.setVisible(true);
             return;
         }else{errorLabel.setVisible(false);}
+
+        try {
+             long maxCapaciti = Long.parseLong(maxCapacity.getText());
+        } catch(NumberFormatException e) {
+            errorLabel.setText("solo puede ingresar numeros eneteros en capasidad");
+            errorLabel.setVisible(true);
+            return;
+        }
 
         restaurant.setNeighbourhood(barrio);
 
