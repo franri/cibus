@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="641.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.RestaurantDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleEnterPressed" prefHeight="460.0" prefWidth="641.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.RestaurantDetailsController">
    <children>
       <ImageView fitHeight="96.0" fitWidth="641.0" pickOnBounds="true">
          <image>
@@ -85,7 +85,7 @@
                </effect>
             </Label>
             <TextField fx:id="tableOfFour" layoutX="445.0" layoutY="137.0" prefHeight="25.0" prefWidth="162.0" />
-            <MenuButton fx:id="listaComidas" layoutX="157.0" layoutY="247.0" mnemonicParsing="false" opacity="0.79" prefHeight="31.0" prefWidth="115.0" style="-fx-background-color: white;" text="Comidas">
+            <MenuButton fx:id="listaComidas" layoutX="158.0" layoutY="276.0" mnemonicParsing="false" opacity="0.79" prefHeight="31.0" prefWidth="115.0" style="-fx-background-color: white;" text="Comidas">
                <font>
                   <Font size="14.0" />
                </font>
@@ -100,9 +100,17 @@
                   <SepiaTone />
                </effect>
             </Label>
-            <ComboBox fx:id="listaBarrios" layoutX="29.0" layoutY="247.0" opacity="0.79" prefHeight="31.0" prefWidth="115.0" promptText="Barrios" style="-fx-background-color: white;" />
+            <ComboBox fx:id="listaBarrios" layoutX="29.0" layoutY="276.0" opacity="0.79" prefHeight="31.0" prefWidth="115.0" promptText="Barrios" style="-fx-background-color: white;" />
             <JFXTimePicker fx:id="horarioApertura" layoutX="436.0" layoutY="194.0" />
             <JFXTimePicker fx:id="horarioCierre" layoutX="436.0" layoutY="242.0" />
+            <JFXTextField fx:id="phoneNumber" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="227.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Telefono" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXTextField>
          </children>
       </AnchorPane>
       <Label layoutX="255.0" layoutY="25.0" text="Ajustes" textFill="WHITE">

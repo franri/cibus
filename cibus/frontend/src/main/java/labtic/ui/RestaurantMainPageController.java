@@ -63,6 +63,9 @@ public class RestaurantMainPageController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private Label cobroPorServicios;
+
     @Autowired
     BackendService bs;
 
@@ -70,6 +73,7 @@ public class RestaurantMainPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         nombreRestaurant.setText(restaurant.getName());
+        cobroPorServicios.setText(restaurant.getCobroDeServicio().toString());
 
         pendingList.setCellFactory(param -> new PendingCell());
 

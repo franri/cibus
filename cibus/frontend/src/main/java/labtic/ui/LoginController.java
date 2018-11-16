@@ -14,6 +14,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
 import labtic.AppStarter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -128,6 +132,13 @@ public class LoginController{
         Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+        tryToLogin(null);
+        }
     }
 
 //    private void proceedToRestaurantDetailsPage(Restaurant restaurant) throws IOException {

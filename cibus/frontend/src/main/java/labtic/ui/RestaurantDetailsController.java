@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import labtic.AppStarter;
@@ -36,6 +38,9 @@ public class RestaurantDetailsController implements Initializable {
 
     @FXML
     private JFXTextField nameField;
+
+    @FXML
+    private JFXTextField phoneNumber;
 
     @FXML
     private JFXTextField emailField;
@@ -158,6 +163,24 @@ public class RestaurantDetailsController implements Initializable {
             restaurant.setAddress(address.getText());
         }
 
+        if(phoneNumber.getText() == null || phoneNumber.getText().isEmpty()) {
+            errorLabel.setText("Ingrese numero de telefono");
+            errorLabel.setVisible(true);
+            return;
+        }else{
+
+            try {
+                long Telefonoparce = Long.parseLong(phoneNumber.getText());
+            } catch(NumberFormatException e) {
+                errorLabel.setText("solo puede ingresar numeros eneteros en el numero de telefono");
+                errorLabel.setVisible(true);
+                return;
+            }
+
+            restaurant.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
+        }
+
+
         LocalTime horaAbre;
         if(horarioApertura.getValue() != null) {
             horaAbre = horarioApertura.getValue();
@@ -225,6 +248,14 @@ public class RestaurantDetailsController implements Initializable {
             return;
         }else{errorLabel.setVisible(false);}
 
+        try {
+             long maxCapaciti = Long.parseLong(maxCapacity.getText());
+        } catch(NumberFormatException e) {
+            errorLabel.setText("solo puede ingresar numeros eneteros en capasidad");
+            errorLabel.setVisible(true);
+            return;
+        }
+
         restaurant.setNeighbourhood(barrio);
 
         restaurant.setCanBeShown(true);
@@ -252,6 +283,14 @@ public class RestaurantDetailsController implements Initializable {
         Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            fillDataOfRestaurant(null);
+            goToReservationsPage();
+        }
     }
 
 
