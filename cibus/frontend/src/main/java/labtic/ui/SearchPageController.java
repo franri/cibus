@@ -15,11 +15,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import labtic.AppStarter;
 import lombok.Data;
@@ -131,7 +134,6 @@ public class SearchPageController implements Initializable {
                 comidas.add((Food)deItem.getUserData());
             }
         }
-        //TODO que pasa si la lista de comidas está vacía? SOLUCIONADO POR PEPE
 
         List<Neighbourhood> barrios = new ArrayList<>();
         for (MenuItem item : listaBarrios.getItems()){
@@ -154,8 +156,13 @@ public class SearchPageController implements Initializable {
 
         Long size = (long) comidas.size();
 
-        List<Restaurant> restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados),
-                size);
+        List<Restaurant> restaurants;
+
+        if(size != 0){
+            restaurants = bs.filtrarRestaurants(nombre, comidas, barrios, Long.valueOf(lugaresReservados), size);
+        } else {
+            restaurants = bs.filtrarRestaurantsSinSeleccionarComida(nombre, barrios, Long.valueOf(lugaresReservados));
+        }
 
         listaRestaurantes.getItems().clear();
         listaRestaurantes.getItems().addAll(restaurants);
@@ -182,30 +189,41 @@ public class SearchPageController implements Initializable {
         private Text avgPrice;
         private Text workingHours;
         private JFXButton confirmReservation;
+        private JFXButton masInfo;
         private Text mensaje;
 
         public CustomListCell() {
             super();
             name = new Text();
-            rating = new Text();
-            avgPrice = new Text();
+            rating = new Text("Rating: ");
+            avgPrice = new Text("$");
             workingHours = new Text();
             mensaje = new Text();
             mensaje.setVisible(false);
             profilePicture = new ImageView(new Image(getClass().getResourceAsStream("CibusLogo.png"), 60, 60, true, true));
+
             VBox vBoxPicture = new VBox();
             vBoxPicture.setAlignment(Pos.CENTER);
             vBoxPicture.getChildren().add(profilePicture);
             VBox.setVgrow(profilePicture, Priority.NEVER);
+
+            HBox hBoxNameAndInfo = new HBox();
+            hBoxNameAndInfo.setAlignment(Pos.CENTER);
+            hBoxNameAndInfo.setSpacing(10);
+            masInfo = setupInfoButton();
+            hBoxNameAndInfo.getChildren().addAll(name, masInfo);
+
             VBox vBoxName = new VBox();
             vBoxName.setAlignment(Pos.TOP_CENTER);
-            vBoxName.getChildren().addAll(name, workingHours);
-            VBox.setVgrow(name, Priority.ALWAYS);
+            vBoxName.getChildren().addAll(hBoxNameAndInfo, workingHours);
+            VBox.setVgrow(hBoxNameAndInfo, Priority.ALWAYS);
             VBox.setVgrow(workingHours, Priority.ALWAYS);
+
             VBox vBoxData = new VBox();
             vBoxData.getChildren().addAll(rating, avgPrice);
             vBoxData.setSpacing(10);
             vBoxData.setAlignment(Pos.TOP_CENTER);
+
             confirmReservation = setupButton();
             VBox vBoxConfirmButton = new VBox();
             vBoxConfirmButton.getChildren().addAll(confirmReservation, mensaje);
@@ -221,6 +239,35 @@ public class SearchPageController implements Initializable {
                     + "-fx-border-width: 2;" + "-fx-border-color: grey;");
 
 
+        }
+
+        private JFXButton setupInfoButton(){
+            JFXButton masInfo = new JFXButton("+ info");
+            masInfo.setStyle("-jfx-button-type: RAISED;" +
+                    "-fx-background-color: #1865a0;" +
+                    "-fx-text-fill: white;");
+            masInfo.setPrefSize(70, 10);
+
+            masInfo.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setControllerFactory(AppStarter.getContext()::getBean);
+                loader.setLocation(ExtraInfoRestaurantController.class.getResource("ExtraInfoRestaurant.fxml"));
+                ExtraInfoRestaurantController controller = AppStarter.getContext().getBean(ExtraInfoRestaurantController.class);
+                controller.setRestaurant(restaurant);
+                controller.setConsumer(consumer);
+                controller.setCantidad(Long.valueOf((Integer)lugares.getSelectionModel().getSelectedItem()));
+
+                Parent root = null;
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            });
+            return masInfo;
         }
 
         private JFXButton setupButton(){
@@ -254,13 +301,20 @@ public class SearchPageController implements Initializable {
                     );
                 }
                 name.setText(item.getName());
-                rating.setText(item.getRating().toString());
-                avgPrice.setText(item.getAvgPrice().toString());
+                rating.setText("Rating: " + item.getRating().toString());
+                avgPrice.setText("$" + item.getAvgPrice().toString());
                 workingHours.setText(item.getOpeningHour().toString().concat(" - ").concat(item.getClosingHour().toString()));
                 setGraphic(content);
             } else {
                 setGraphic(null);
             }
+        }
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            cargarRestaurantes(null);
         }
     }
 }

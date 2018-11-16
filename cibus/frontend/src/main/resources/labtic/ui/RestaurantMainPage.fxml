@@ -18,8 +18,8 @@
             <Image url="@restaurantInterior.jpg" />
          </image>
       </ImageView>
-      <ListView fx:id="pendingList" layoutX="14.0" layoutY="116.0" opacity="0.6" prefHeight="263.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
-      <ListView fx:id="acceptedList" layoutX="222.0" layoutY="116.0" opacity="0.6" prefHeight="263.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
+      <ListView fx:id="pendingList" layoutX="11.0" layoutY="108.0" opacity="0.6" prefHeight="263.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
+      <ListView fx:id="acceptedList" layoutX="219.0" layoutY="108.0" opacity="0.6" prefHeight="263.0" prefWidth="200.0" style="-fx-background-color: #1c1c1c;" />
       <Label fx:id="nombreRestaurant" alignment="CENTER" layoutX="84.0" layoutY="13.0" prefHeight="76.0" prefWidth="261.0" text="Label" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="36.0" />
@@ -40,11 +40,11 @@
             </Lighting>
          </effect>
       </ImageView>
-      <Label layoutX="60.0" layoutY="90.0" text="Reservas Pendientes" textFill="WHITE">
+      <Label layoutX="61.0" layoutY="81.0" text="Reservas Pendientes" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Label layoutX="259.0" layoutY="90.0" text="Reservas Aceptadas" textFill="WHITE">
+      <Label layoutX="256.0" layoutY="81.0" text="Reservas Aceptadas" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
@@ -70,9 +70,9 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Spinner fx:id="cantLugaresDisponibles" editable="true" layoutX="460.0" layoutY="116.0" prefHeight="31.0" prefWidth="111.0" />
-      <Spinner fx:id="mesas4Disponibles" editable="true" layoutX="441.0" layoutY="248.0" prefHeight="31.0" prefWidth="70.0" />
-      <Spinner fx:id="mesas2Disponibles" editable="true" layoutX="528.0" layoutY="248.0" prefHeight="31.0" prefWidth="70.0" />
+      <Spinner fx:id="cantLugaresDisponibles" editable="true" layoutX="457.0" layoutY="116.0" prefHeight="31.0" prefWidth="111.0" />
+      <Spinner fx:id="mesas4Disponibles" editable="true" layoutX="434.0" layoutY="248.0" prefHeight="31.0" prefWidth="70.0" />
+      <Spinner fx:id="mesas2Disponibles" editable="true" layoutX="521.0" layoutY="248.0" prefHeight="31.0" prefWidth="70.0" />
       <ImageView fx:id="refreshButton" fitHeight="84.0" fitWidth="58.0" layoutX="486.0" layoutY="321.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@refresh.png" />
@@ -86,5 +86,7 @@
             <Font size="16.0" />
          </font>
       </Label>
+      <Label layoutX="17.0" layoutY="378.0" text="Saldo a pagar: $" textFill="WHITE" />
+      <Label fx:id="cobroPorServicios" layoutX="124.0" layoutY="378.0" text="Label" textFill="WHITE" />
    </children>
 </AnchorPane>

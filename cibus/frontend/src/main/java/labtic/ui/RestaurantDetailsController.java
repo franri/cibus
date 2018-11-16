@@ -1,6 +1,7 @@
 package labtic.ui;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import entities.Food;
@@ -14,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
@@ -43,6 +46,9 @@ public class RestaurantDetailsController implements Initializable {
     private JFXTextField nameField;
 
     @FXML
+    private JFXTextField phone;
+
+    @FXML
     private JFXTextField emailField;
 
     @FXML
@@ -55,16 +61,16 @@ public class RestaurantDetailsController implements Initializable {
     private JFXButton confirmButton;
 
     @FXML
-    private TextField maxCapacity;
+    private JFXTextField maxCapacity;
 
     @FXML
-    private Label errorLabel;
+    private JFXTextArea errorLabel;
 
     @FXML
-    private TextField tableOfTwo;
+    private JFXTextField tableOfTwo;
 
     @FXML
-    private TextField tableOfFour;
+    private JFXTextField tableOfFour;
 
     @FXML
     private MenuButton listaComidas;
@@ -112,6 +118,7 @@ public class RestaurantDetailsController implements Initializable {
         nameField.setText(restaurant.getName());
         emailField.setText(restaurant.getEmail());
         rutField.setText(restaurant.getRut());
+        phone.setText(restaurant.getPhoneNumber().toString());
         String address = (restaurant.getAddress()==null || restaurant.getAddress().isEmpty()) ? null : restaurant.getAddress();
         this.address.setText(address);
 
@@ -184,6 +191,24 @@ public class RestaurantDetailsController implements Initializable {
             restaurant.setAddress(address.getText());
         }
 
+        if(phone.getText() == null || phone.getText().isEmpty()) {
+            errorLabel.setText("Ingrese numero de telefono");
+            errorLabel.setVisible(true);
+            return;
+        }else{
+
+            try {
+                long Telefonoparce = Long.parseLong(phone.getText());
+            } catch(NumberFormatException e) {
+                errorLabel.setText("solo puede ingresar numeros eneteros en el numero de telefono");
+                errorLabel.setVisible(true);
+                return;
+            }
+
+            restaurant.setPhoneNumber(Long.parseLong(phone.getText()));
+        }
+
+
         LocalTime horaAbre;
         if(horarioApertura.getValue() != null) {
             horaAbre = horarioApertura.getValue();
@@ -238,7 +263,7 @@ public class RestaurantDetailsController implements Initializable {
                 restaurant.setFreePlaces(Long.parseLong(maxCapacity.getText()));
             }
         }catch (NumberFormatException e){
-            errorLabel.setText("Ingrese número entero");
+            errorLabel.setText("Ingrese números enteros en los campos correspondientes");
             errorLabel.setVisible(true);
             return;
         }
@@ -293,6 +318,14 @@ public class RestaurantDetailsController implements Initializable {
         Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            fillDataOfRestaurant(null);
+            goToReservationsPage();
+        }
     }
 
 

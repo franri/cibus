@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="641.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.RestaurantDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#handleEnterPressed" prefHeight="522.0" prefWidth="641.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.RestaurantDetailsController">
    <children>
       <ImageView fitHeight="96.0" fitWidth="641.0" pickOnBounds="true">
          <image>
@@ -47,7 +47,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXTextField fx:id="address" focusColor="WHITE" labelFloat="true" layoutX="29.0" layoutY="181.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Direccion" unFocusColor="#18a0e4">
+            <JFXTextField fx:id="address" focusColor="WHITE" layoutX="29.0" layoutY="181.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Direccion" style="-fx-text-inner-color: WHITE;" unFocusColor="#18a0e4">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
@@ -66,26 +66,17 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <Label layoutX="329.0" layoutY="54.0" prefHeight="17.0" prefWidth="69.0" text="Capacidad:" textFill="#5d5d5d">
+            <Label layoutX="329.0" layoutY="95.0" prefHeight="17.0" prefWidth="83.0" text="Mesas de 2" textFill="#5d5d5d">
                <effect>
                   <SepiaTone />
                </effect>
             </Label>
-            <TextField fx:id="maxCapacity" layoutX="445.0" layoutY="47.0" prefHeight="25.0" prefWidth="162.0" />
-            <Label fx:id="errorLabel" layoutX="35.0" layoutY="331.0" prefHeight="47.0" prefWidth="245.0" text="LALALA" textFill="RED" visible="false" />
-            <Label layoutX="329.0" layoutY="95.0" prefHeight="17.0" prefWidth="83.0" text="Mesas de dos" textFill="#5d5d5d">
+            <Label layoutX="329.0" layoutY="140.0" prefHeight="17.0" prefWidth="93.0" text="Mesas de 4" textFill="#5d5d5d">
                <effect>
                   <SepiaTone />
                </effect>
             </Label>
-            <TextField fx:id="tableOfTwo" layoutX="445.0" layoutY="92.0" prefHeight="25.0" prefWidth="162.0" />
-            <Label layoutX="329.0" layoutY="140.0" prefHeight="17.0" prefWidth="93.0" text="Mesas de cuatro:" textFill="#5d5d5d">
-               <effect>
-                  <SepiaTone />
-               </effect>
-            </Label>
-            <TextField fx:id="tableOfFour" layoutX="445.0" layoutY="137.0" prefHeight="25.0" prefWidth="162.0" />
-            <MenuButton fx:id="listaComidas" layoutX="157.0" layoutY="247.0" mnemonicParsing="false" opacity="0.79" prefHeight="31.0" prefWidth="115.0" style="-fx-background-color: white;" text="Comidas">
+            <MenuButton fx:id="listaComidas" layoutX="158.0" layoutY="303.0" mnemonicParsing="false" opacity="0.79" prefHeight="31.0" prefWidth="115.0" style="-fx-background-color: white;" text="Comidas">
                <font>
                   <Font size="14.0" />
                </font>
@@ -100,9 +91,9 @@
                   <SepiaTone />
                </effect>
             </Label>
-            <ComboBox fx:id="listaBarrios" layoutX="29.0" layoutY="247.0" opacity="0.79" prefHeight="31.0" prefWidth="115.0" promptText="Barrios" style="-fx-background-color: white;" />
-            <JFXTimePicker fx:id="horarioApertura" layoutX="436.0" layoutY="194.0" />
-            <JFXTimePicker fx:id="horarioCierre" layoutX="436.0" layoutY="242.0" />
+            <ComboBox fx:id="listaBarrios" layoutX="29.0" layoutY="305.0" opacity="0.79" prefHeight="31.0" prefWidth="115.0" promptText="Barrios" style="-fx-background-color: white;" />
+            <JFXTimePicker fx:id="horarioApertura" layoutX="436.0" layoutY="194.0" style="-fx-text-inner-color: WHITE;" />
+            <JFXTimePicker fx:id="horarioCierre" layoutX="436.0" layoutY="242.0" style="-fx-text-inner-color: WHITE;" />
             <JFXButton fx:id="imageLoader" layoutX="297.0" layoutY="318.0" onAction="#loadImage" onMouseClicked="#fillDataOfRestaurant" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Cargar imágen">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -115,6 +106,44 @@
                </font>
             </JFXButton>
             <Label fx:id="fileLocation" alignment="CENTER_RIGHT" layoutX="436.0" layoutY="320.0" prefHeight="21.0" prefWidth="189.0" text="Foto no seleccionada" textFill="WHITE" />
+            <JFXTextField fx:id="phone" focusColor="WHITE" layoutX="29.0" layoutY="232.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Teléfono" style="-fx-text-inner-color: WHITE;" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXTextField>
+            <Label layoutX="329.0" layoutY="52.0" prefHeight="17.0" prefWidth="83.0" text="Capacidad" textFill="#5d5d5d">
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </Label>
+            <JFXTextField fx:id="maxCapacity" focusColor="WHITE" layoutX="443.0" layoutY="47.0" maxWidth="245.0" minWidth="162.0" prefHeight="31.0" prefWidth="162.0" promptText="Inserte capacidad" style="-fx-text-inner-color: WHITE;" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXTextField>
+            <JFXTextArea fx:id="errorLabel" editable="false" focusColor="RED" layoutX="29.0" layoutY="351.0" prefHeight="61.0" prefWidth="245.0" style="-fx-text-inner-color: RED;" unFocusColor="RED" visible="false" />
+            <JFXTextField fx:id="tableOfTwo" focusColor="WHITE" layoutX="443.0" layoutY="90.0" maxWidth="245.0" minWidth="162.0" prefHeight="31.0" prefWidth="162.0" promptText="Inserte  cantidad" style="-fx-text-inner-color: WHITE;" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXTextField>
+            <JFXTextField fx:id="tableOfFour" focusColor="WHITE" layoutX="443.0" layoutY="135.0" maxWidth="245.0" minWidth="162.0" prefHeight="31.0" prefWidth="162.0" promptText="Inserte  cantidad" style="-fx-text-inner-color: WHITE;" unFocusColor="#18a0e4">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+            </JFXTextField>
          </children>
       </AnchorPane>
       <Label layoutX="255.0" layoutY="25.0" text="Ajustes" textFill="WHITE">

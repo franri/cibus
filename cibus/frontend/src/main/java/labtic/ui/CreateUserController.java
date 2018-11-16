@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import labtic.AppStarter;
 import lombok.Data;
@@ -60,7 +62,7 @@ public class CreateUserController {
     }
 
     @FXML
-    void registerNewConsumer(ActionEvent event) throws RemoteException{
+    void registerNewConsumer(ActionEvent event) throws IOException {
         Long longPhoneNumber = null;
         if(reEnterPasswordField == null || "".equals(reEnterPasswordField.getText())|| passwordField == null || "".equals(passwordField.getText()) || emailNewUser == null || "".equals(emailNewUser.getText()) || phoneNewUser == null || "".equals(phoneNewUser.getText())
         ){
@@ -101,6 +103,20 @@ public class CreateUserController {
         bs.saveNewConsumer(newConsumser);
         errorLabel.setText("Usuario creado con éxito");
         errorLabel.setVisible(true);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(LoginController.class.getResource("Login.fxml"));
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
+
+    }
+
+    @FXML
+    public void handleEnterPressed(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            registerNewConsumer(null);
+        }
     }
 
 

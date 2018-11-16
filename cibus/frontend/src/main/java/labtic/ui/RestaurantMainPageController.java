@@ -63,6 +63,9 @@ public class RestaurantMainPageController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private Label cobroPorServicios;
+
     @Autowired
     BackendService bs;
 
@@ -70,6 +73,7 @@ public class RestaurantMainPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         nombreRestaurant.setText(restaurant.getName());
+        cobroPorServicios.setText(restaurant.getCobroDeServicio().toString());
 
         pendingList.setCellFactory(param -> new PendingCell());
 
@@ -207,7 +211,8 @@ public class RestaurantMainPageController implements Initializable {
                     reservation.setReservationStatus(ReservationStatus.ACCEPTED);
                     bs.saveReservation(reservation);
                     bs.reduceFree(restaurant, reservation.getTotalPeople(), Long.valueOf(mesas2.getText()), Long.valueOf(mesas4.getText()));
-                    refresh();
+                    bs.cobrar(restaurant);
+                    refreshAfterConfirm();
                 } catch (RemoteException e) {
                     errorLabel.setText("Error de conexión");
                     errorLabel.setVisible(true);
@@ -315,30 +320,9 @@ public class RestaurantMainPageController implements Initializable {
 
     @FXML
     private void refresh() throws IOException {
-        if(cantLugaresDisponibles.getValue().longValue() == restaurant.getFreePlaces().longValue() &&
-                mesas2Disponibles.getValue().longValue() == restaurant.getTableForTwo().longValue() &&
-                mesas4Disponibles.getValue().longValue() == restaurant.getTableForTwo().longValue()
-        ) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(AppStarter.getContext()::getBean);
-            loader.setLocation(RestaurantMainPageController.class.getResource("RestaurantMainPage.fxml"));
-            RestaurantMainPageController controller = AppStarter.getContext().getBean(RestaurantMainPageController.class);
-            try {
-                controller.setRestaurant(bs.findRestaurant(restaurant.getEmail()));
-            } catch (NoRestaurantFound noRestaurantFound) {
-                noRestaurantFound.printStackTrace();
-            }
-
-            Parent root = loader.load();
-            AppStarter.getMainStage().setScene(new Scene(root));
-            AppStarter.getMainStage().show();
-        }else {
-
             restaurant.setFreePlaces(Long.valueOf(cantLugaresDisponibles.getValue()));
             restaurant.setTableForTwo(Long.valueOf(mesas2Disponibles.getValue()));
             restaurant.setTableForFour(Long.valueOf(mesas4Disponibles.getValue()));
-//            refresh();  //TODO MUCHA RECURSIVIDAD B-)
-//              STACK OVERFLOW ... :,(
 
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AppStarter.getContext()::getBean);
@@ -353,7 +337,23 @@ public class RestaurantMainPageController implements Initializable {
             Parent root = loader.load();
             AppStarter.getMainStage().setScene(new Scene(root));
             AppStarter.getMainStage().show();
+
+    }
+
+    private void refreshAfterConfirm() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(RestaurantMainPageController.class.getResource("RestaurantMainPage.fxml"));
+        RestaurantMainPageController controller = AppStarter.getContext().getBean(RestaurantMainPageController.class);
+        try {
+            controller.setRestaurant(bs.findRestaurant(restaurant.getEmail()));
+        } catch (NoRestaurantFound noRestaurantFound) {
+            noRestaurantFound.printStackTrace();
         }
+
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 }
 
