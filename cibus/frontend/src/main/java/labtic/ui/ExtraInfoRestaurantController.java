@@ -84,7 +84,7 @@ public class ExtraInfoRestaurantController implements Initializable {
         maxCapLabel.setText(Long.toString(restaurant.getMaxCapacity()));
         openTimeLabel.setText(restaurant.getOpeningHour().toString());
         closingTimeLabel.setText(restaurant.getClosingHour().toString());
-        
+
         numberOfPeopleLabel.setText(numberOfPeopleReservation.toString());
 
         List<Food> comidas = restaurant.getFoods();
@@ -93,7 +93,7 @@ public class ExtraInfoRestaurantController implements Initializable {
 
     @FXML
     void reserveRestaurant(ActionEvent event) {
-        Reservation newReservation = new Reservation((LocalTime.now()).plusMinutes(30),restaurant,consumer,Long.valueOf(numberOfPeopleToDinner), ReservationStatus.PENDING);
+        Reservation newReservation = new Reservation((LocalTime.now()).plusMinutes(30),restaurant,consumer,Long.valueOf(numberOfPeopleReservation), ReservationStatus.PENDING);
         try {
             bs.saveReservation(newReservation);
         } catch (RemoteException e) {
