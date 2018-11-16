@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="641.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.RestaurantDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="641.0" style="-fx-background-color: #221311;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.RestaurantDetailsController">
    <children>
       <ImageView fitHeight="96.0" fitWidth="641.0" pickOnBounds="true">
          <image>
             <Image url="@Milanesa2.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="-6.0" layoutY="96.0" opacity="0.91" prefHeight="361.0" prefWidth="648.0" style="-fx-background-color: #1c1c1c;">
+      <AnchorPane layoutX="-6.0" layoutY="96.0" opacity="0.91" prefHeight="427.0" prefWidth="648.0" style="-fx-background-color: #1c1c1c;">
          <children>
             <JFXTextField fx:id="nameField" editable="false" focusColor="#18a0e4" focusTraversable="false" layoutX="29.0" layoutY="31.0" maxWidth="245.0" minWidth="225.0" prefHeight="31.0" prefWidth="245.0" promptText="Nombre" unFocusColor="#18a0e4">
                <cursor>
@@ -55,7 +55,7 @@
                   <SepiaTone />
                </effect>
             </JFXTextField>
-            <JFXButton fx:id="confirmButton" layoutX="352.0" layoutY="307.0" onMouseClicked="#fillDataOfRestaurant" prefHeight="25.0" prefWidth="245.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Aceptar">
+            <JFXButton fx:id="confirmButton" layoutX="364.0" layoutY="374.0" onMouseClicked="#fillDataOfRestaurant" prefHeight="25.0" prefWidth="245.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Aceptar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -72,7 +72,7 @@
                </effect>
             </Label>
             <TextField fx:id="maxCapacity" layoutX="445.0" layoutY="47.0" prefHeight="25.0" prefWidth="162.0" />
-            <Label fx:id="errorLabel" layoutX="35.0" layoutY="297.0" prefHeight="47.0" prefWidth="245.0" text="LALALA" textFill="RED" visible="false" />
+            <Label fx:id="errorLabel" layoutX="35.0" layoutY="331.0" prefHeight="47.0" prefWidth="245.0" text="LALALA" textFill="RED" visible="false" />
             <Label layoutX="329.0" layoutY="95.0" prefHeight="17.0" prefWidth="83.0" text="Mesas de dos" textFill="#5d5d5d">
                <effect>
                   <SepiaTone />
@@ -103,6 +103,18 @@
             <ComboBox fx:id="listaBarrios" layoutX="29.0" layoutY="247.0" opacity="0.79" prefHeight="31.0" prefWidth="115.0" promptText="Barrios" style="-fx-background-color: white;" />
             <JFXTimePicker fx:id="horarioApertura" layoutX="436.0" layoutY="194.0" />
             <JFXTimePicker fx:id="horarioCierre" layoutX="436.0" layoutY="242.0" />
+            <JFXButton fx:id="imageLoader" layoutX="297.0" layoutY="318.0" onAction="#loadImage" onMouseClicked="#fillDataOfRestaurant" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 200;" text="Cargar imágen">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <SepiaTone />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="fileLocation" alignment="CENTER_RIGHT" layoutX="436.0" layoutY="320.0" prefHeight="21.0" prefWidth="189.0" text="Foto no seleccionada" textFill="WHITE" />
          </children>
       </AnchorPane>
       <Label layoutX="255.0" layoutY="25.0" text="Ajustes" textFill="WHITE">

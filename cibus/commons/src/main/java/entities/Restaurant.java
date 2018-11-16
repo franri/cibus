@@ -57,6 +57,10 @@ public class Restaurant extends User implements Serializable {
     @JoinColumn(name = "neighbourhood")
     private Neighbourhood neighbourhood;
 
+
+    @Lob
+    private byte[] profilePicture;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Food> foods = new ArrayList<>();
 

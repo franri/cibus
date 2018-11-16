@@ -277,6 +277,7 @@ public class RestaurantMainPageController implements Initializable {
             //diseño buttons
             VBox holderDarDeBaja = new VBox(darDeBaja); holderDarDeBaja.setAlignment(Pos.CENTER);
             content = new HBox(info, holderDarDeBaja);
+            content.setOpacity(1);
         }
         private Button configureDarDeBajaButton() {
             Image image = new Image(getClass().getResourceAsStream("decline.png"), 30, 30, false, false);
@@ -332,6 +333,7 @@ public class RestaurantMainPageController implements Initializable {
             AppStarter.getMainStage().setScene(new Scene(root));
             AppStarter.getMainStage().show();
         }else {
+
             restaurant.setFreePlaces(Long.valueOf(cantLugaresDisponibles.getValue()));
             restaurant.setTableForTwo(Long.valueOf(mesas2Disponibles.getValue()));
             restaurant.setTableForFour(Long.valueOf(mesas4Disponibles.getValue()));

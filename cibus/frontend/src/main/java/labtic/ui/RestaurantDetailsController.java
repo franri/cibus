@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import labtic.AppStarter;
 import lombok.Data;
@@ -22,6 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -78,6 +83,14 @@ public class RestaurantDetailsController implements Initializable {
 
     private Restaurant restaurant;
 
+    @FXML
+    private Label fileLocation;
+
+    @FXML
+    private JFXButton imageLoader;
+
+    private File profilePicture;
+
     @Autowired
     private BackendService bs;
 
@@ -121,6 +134,7 @@ public class RestaurantDetailsController implements Initializable {
                             setGraphic(null);
                         } else {
                             setText(item.getName());
+                            listaBarrios.setPromptText(item.getName());
                         }
                     }
                 } ;
@@ -147,6 +161,18 @@ public class RestaurantDetailsController implements Initializable {
         if(restaurant.getTableForTwo()!=null) tableOfTwo.setText(restaurant.getTableForTwo().toString());
         if(restaurant.getTableForFour()!=null) tableOfFour.setText(restaurant.getTableForFour().toString());
     }
+
+    @FXML
+    public void loadImage(){
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg");
+        fc.getExtensionFilters().addAll(imageFilter);
+        profilePicture = fc.showOpenDialog(AppStarter.getMainStage());
+        if(profilePicture != null) {
+            fileLocation.setText(profilePicture.getPath());
+        }
+    }
+
 
     @FXML
     public void fillDataOfRestaurant(MouseEvent event) throws IOException {
@@ -227,6 +253,21 @@ public class RestaurantDetailsController implements Initializable {
 
         restaurant.setNeighbourhood(barrio);
 
+        if(profilePicture == null) { //hay imagen seleccionada?
+            if (restaurant.getProfilePicture() == null) { //NO. Ahora, hay imagen guardada?
+                errorLabel.setText("Seleccione foto"); //NO. Pedir que elija
+                errorLabel.setVisible(true);
+                return;
+            }
+            //SI. Ya tiene elegida, no tiene por qué elegir otra
+        } else {
+            BufferedImage bufferedPic = ImageIO.read(profilePicture);
+            ByteArrayOutputStream picStream = new ByteArrayOutputStream();
+            ImageIO.write(bufferedPic, "jpg", picStream);
+            byte[] bytedProfPicture = picStream.toByteArray();
+            restaurant.setProfilePicture(bytedProfPicture);
+        }
+
         restaurant.setCanBeShown(true);
 
         bs.saveRestaurant(restaurant);
@@ -253,7 +294,6 @@ public class RestaurantDetailsController implements Initializable {
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
     }
-
 
 
 }

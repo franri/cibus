@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
@@ -28,7 +27,7 @@
       </Label>
       <ImageView fx:id="settings" fitHeight="47.0" fitWidth="67.0" layoutX="539.0" layoutY="14.0" onMouseClicked="#goToDetails" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Settings_black-512.png" />
+            <Image url="@DefaultRestaurantImage.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -38,9 +37,6 @@
                <bumpInput>
                   <Shadow />
                </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
             </Lighting>
          </effect>
       </ImageView>

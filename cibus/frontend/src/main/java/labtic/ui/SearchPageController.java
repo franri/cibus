@@ -13,6 +13,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -25,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -128,7 +131,7 @@ public class SearchPageController implements Initializable {
                 comidas.add((Food)deItem.getUserData());
             }
         }
-        //TODO que pasa si la lista de comidas está vacía?
+        //TODO que pasa si la lista de comidas está vacía? SOLUCIONADO POR PEPE
 
         List<Neighbourhood> barrios = new ArrayList<>();
         for (MenuItem item : listaBarrios.getItems()){
@@ -173,11 +176,13 @@ public class SearchPageController implements Initializable {
     private class CustomListCell extends ListCell<Restaurant>{
         private Restaurant restaurant;
         private HBox content;
+        private ImageView profilePicture;
         private Text name;
         private Text rating;
         private Text avgPrice;
         private Text workingHours;
         private JFXButton confirmReservation;
+        private Text mensaje;
 
         public CustomListCell() {
             super();
@@ -185,6 +190,13 @@ public class SearchPageController implements Initializable {
             rating = new Text();
             avgPrice = new Text();
             workingHours = new Text();
+            mensaje = new Text();
+            mensaje.setVisible(false);
+            profilePicture = new ImageView(new Image(getClass().getResourceAsStream("CibusLogo.png"), 60, 60, true, true));
+            VBox vBoxPicture = new VBox();
+            vBoxPicture.setAlignment(Pos.CENTER);
+            vBoxPicture.getChildren().add(profilePicture);
+            VBox.setVgrow(profilePicture, Priority.NEVER);
             VBox vBoxName = new VBox();
             vBoxName.setAlignment(Pos.TOP_CENTER);
             vBoxName.getChildren().addAll(name, workingHours);
@@ -195,8 +207,14 @@ public class SearchPageController implements Initializable {
             vBoxData.setSpacing(10);
             vBoxData.setAlignment(Pos.TOP_CENTER);
             confirmReservation = setupButton();
-            content = new HBox(new Label("Imagen"), vBoxName, vBoxData,confirmReservation);
+            VBox vBoxConfirmButton = new VBox();
+            vBoxConfirmButton.getChildren().addAll(confirmReservation, mensaje);
+            vBoxData.setSpacing(10);
+            vBoxData.setAlignment(Pos.CENTER);
+            content = new HBox(vBoxPicture, vBoxName, vBoxData,vBoxConfirmButton);
+            HBox.setHgrow(vBoxPicture, Priority.NEVER);
             HBox.setHgrow(vBoxName, Priority.ALWAYS);
+            HBox.setHgrow(profilePicture, Priority.NEVER);
             content.setSpacing(15);
             content.setPadding(new Insets(15, 12, 15, 12));
             content.setStyle("-fx-border-style: solid inside;"
@@ -207,6 +225,9 @@ public class SearchPageController implements Initializable {
 
         private JFXButton setupButton(){
             JFXButton confirmReservation = new JFXButton("Reservar");
+            confirmReservation.setStyle("-jfx-button-type: RAISED;" +
+                    "-fx-background-color: #A03324;" +
+                    "-fx-text-fill: white;");
 
             confirmReservation.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
                 Integer lugaresReservados = (Integer) lugares.getSelectionModel().getSelectedItem();
@@ -216,6 +237,8 @@ public class SearchPageController implements Initializable {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
+                mensaje.setText("Pasate en 30'!");
+                mensaje.setVisible(true);
             });
             return confirmReservation;
         }
@@ -225,6 +248,11 @@ public class SearchPageController implements Initializable {
             super.updateItem(item, empty);
             if (item != null && !empty) { // <== test for null item and empty parameter
                 restaurant = item;
+                if (restaurant.getProfilePicture() != null) {
+                    profilePicture.setImage(
+                            new Image(new ByteArrayInputStream(restaurant.getProfilePicture()), 60, 60, true, true)
+                    );
+                }
                 name.setText(item.getName());
                 rating.setText(item.getRating().toString());
                 avgPrice.setText(item.getAvgPrice().toString());
