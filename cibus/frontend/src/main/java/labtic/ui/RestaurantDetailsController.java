@@ -20,6 +20,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import labtic.AppStarter;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,7 +142,6 @@ public class RestaurantDetailsController implements Initializable {
                             setGraphic(null);
                         } else {
                             setText(item.getName());
-                            listaBarrios.setPromptText(item.getName());
                         }
                     }
                 } ;
@@ -149,6 +149,19 @@ public class RestaurantDetailsController implements Initializable {
         });
         listaBarrios.getItems().addAll(barrios);
         listaBarrios.setValue(restaurant.getNeighbourhood());
+        listaBarrios.setConverter(new StringConverter<Neighbourhood>(){
+
+            @Override
+            public String toString(Neighbourhood object) {
+                return object == null ? null : object.getName();
+            }
+
+            @Override
+            public Neighbourhood fromString(String string) {
+                return listaBarrios.getItems().stream().filter(i -> i.getName().equals(string)).findAny().orElse(null);
+            }
+
+        });
 
         ObservableList<CustomMenuItem> comidasToAdd = FXCollections.observableArrayList();
         comidas.forEach(item -> {

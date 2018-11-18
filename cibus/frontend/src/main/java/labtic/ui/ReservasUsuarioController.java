@@ -1,7 +1,6 @@
 package labtic.ui;
 
 import entities.Consumer;
-import entities.Food;
 import entities.Reservation;
 import entities.ReservationStatus;
 import javafx.fxml.FXML;
@@ -18,6 +17,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
+
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -67,6 +67,8 @@ public class ReservasUsuarioController implements Initializable {
                             estadoParaMostrar = "Reserva declinada";
                         } else if (estado == ReservationStatus.COMPLETED){
                             estadoParaMostrar = "Reserva completada";
+                        } else if(estado == ReservationStatus.PENDING){
+                            estadoParaMostrar = "Reserva pendiente";
                         }
                         setText(item.getRestaurant().getName()+ " - " + estadoParaMostrar);
                     }

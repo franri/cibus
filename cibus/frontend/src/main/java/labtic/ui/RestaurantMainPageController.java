@@ -210,7 +210,10 @@ public class RestaurantMainPageController implements Initializable {
                     reservation.setTableOfFour(Long.valueOf(mesas4.getText()));
                     reservation.setReservationStatus(ReservationStatus.ACCEPTED);
                     bs.saveReservation(reservation);
-                    bs.reduceFree(restaurant, reservation.getTotalPeople(), Long.valueOf(mesas2.getText()), Long.valueOf(mesas4.getText()));
+                    restaurant.setFreePlaces(restaurant.getFreePlaces()-reservation.getTotalPeople());
+                    restaurant.setTableForTwo(restaurant.getTableForTwo()-Long.valueOf(mesas2.getText()));
+                    restaurant.setTableForFour(restaurant.getTableForFour()-Long.valueOf(mesas4.getText()));
+                    bs.saveRestaurant(restaurant);
                     restaurant = bs.findRestaurant(restaurant.getEmail());
                     bs.cobrar(restaurant);
                     refreshAfterConfirm();
@@ -273,9 +276,10 @@ public class RestaurantMainPageController implements Initializable {
             VBox infoArriba = new VBox(nombreComensal, new HBox(new Label("n°: "), cantPersonas));
 
             HBox infoAbajo;
-            two = new Text("2"); two.maxWidth(20); two.minWidth(20);
-            four = new Text("4"); four.maxWidth(20); four.minWidth(20);
+            two = new Text("n°2: "); two.maxWidth(20); two.minWidth(20);
+            four = new Text("n°4: "); four.maxWidth(20); four.minWidth(20);
             infoAbajo = new HBox(two, four);
+            infoAbajo.setSpacing(20);
             infoAbajo.maxWidth(200);
 
             VBox info = new VBox(infoArriba, infoAbajo); info.setMaxWidth(130);
@@ -293,10 +297,10 @@ public class RestaurantMainPageController implements Initializable {
             button.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> {
                 try {
                     bs.completeReservation(reservation);
-                    bs.reduceFree(restaurant,
-                            -1*reservation.getTotalPeople(),
-                            -1*reservation.getTableOfTwo(),
-                            -1*reservation.getTableOfFour());
+                    restaurant.setFreePlaces(restaurant.getFreePlaces()+reservation.getTotalPeople());
+                    restaurant.setTableForTwo(restaurant.getTableForTwo()+reservation.getTableOfTwo());
+                    restaurant.setTableForFour(restaurant.getTableForFour()+reservation.getTableOfFour());
+                    bs.saveRestaurant(restaurant);
                     restaurant = bs.findRestaurant(restaurant.getEmail());
                     refresh();
                 } catch (IOException | NoRestaurantFound e) {
@@ -313,6 +317,8 @@ public class RestaurantMainPageController implements Initializable {
                 reservation = item;
                 nombreComensal.setText(item.getConsumer().getFirstName().concat(" ").concat(item.getConsumer().getLastName()));
                 cantPersonas.setText(item.getTotalPeople().toString());
+                two.setText("n°2: " + reservation.getTableOfTwo());
+                four.setText("n°4: " + reservation.getTableOfFour());
                 setGraphic(content);
             } else {
                 setGraphic(null);

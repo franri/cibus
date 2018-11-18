@@ -324,8 +324,8 @@ public class SearchPageController implements Initializable {
     void goToReservationsHistory(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setControllerFactory(AppStarter.getContext()::getBean);
-        loader.setLocation(SearchPageController.class.getResource("ReservasUsuario.fxml"));
-        SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
+        loader.setLocation(ReservasUsuarioController.class.getResource("ReservasUsuario.fxml"));
+        ReservasUsuarioController controller = AppStarter.getContext().getBean(ReservasUsuarioController.class);
         controller.setConsumer(consumer);
 
         Parent root = loader.load();

@@ -20,6 +20,7 @@ public class AppConfig {
 
     @Bean
     public BackendService loadServer(@Autowired BackendServiceImp bsImp) throws RemoteException {
+        System.setProperty("java.rmi.server.hostname", "192.168.0.110");
         String name = "backend";
         BackendService bs = bsImp;
         BackendService oStub = (BackendService) UnicastRemoteObject.exportObject(bs, 0);
