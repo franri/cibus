@@ -125,6 +125,16 @@ public class BackendServiceImp implements BackendService {
     }
 
     @Override
+    public List<Reservation> getListOfReservationsByRestaurant(Restaurant restaurant) throws RemoteException {
+        return resServ.findReservationByRestaurant(restaurant);
+    }
+
+    @Override
+    public List<Restaurant> getRestaurants() throws RemoteException {
+        return rs.findAllRestaurants();
+    }
+
+    @Override
     public boolean existsConsumerByEmail(String email){
         return cs.existsByEmail(email);
     }
@@ -163,4 +173,5 @@ public class BackendServiceImp implements BackendService {
     public void saveAdmin(Admin admin){
         as.save(admin);
     }
+
 }

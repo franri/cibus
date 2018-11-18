@@ -46,4 +46,8 @@ public class ReservationService {
     public List<Reservation> findReservationsOfConsumer(Consumer consumer){
         return reservationRepository.findAllByConsumer(consumer);
     }
+
+    public List<Reservation> findReservationByRestaurant(Restaurant restaurant){
+        return reservationRepository.findAllByRestaurant(restaurant);
+    }
 }

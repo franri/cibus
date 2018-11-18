@@ -34,7 +34,8 @@ public interface BackendService extends Remote {
     void reduceFree(Restaurant restaurant, Long totalPeople, Long tablesOfTwo, Long tablesOfFour) throws RemoteException;
     void cobrar(Restaurant restaurant) throws RemoteException;
     List<Reservation> getListOfReservationsFromConsumer(Consumer consumer) throws RemoteException;
-
+    List<Reservation> getListOfReservationsByRestaurant(Restaurant restaurant) throws RemoteException;
+    List<Restaurant> getRestaurants() throws RemoteException;
     //NO EXPONER AL RESTAURANT: DEVOLVER UN POJO QUE TENGA  LOS ATRIBUTOS, GETTERS Y SETTERS
 
 }

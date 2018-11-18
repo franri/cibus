@@ -21,4 +21,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, String> 
 
     boolean existsByRut(String rut);
 
+    List<Restaurant> findAll();
+
 }

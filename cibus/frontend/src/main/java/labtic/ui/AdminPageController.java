@@ -63,6 +63,9 @@ public class AdminPageController implements Initializable {
     private Label errorLabel;
 
     @FXML
+    private ImageView verPagos;
+
+    @FXML
     private ImageView backArrow;
 
     @Autowired
@@ -155,4 +158,13 @@ public class AdminPageController implements Initializable {
         }
     }
 
+    @FXML
+    void verPagos(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(ReservasUsuarioController.class.getResource("PagoAdministrador.fxml"));
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
+    }
 }
