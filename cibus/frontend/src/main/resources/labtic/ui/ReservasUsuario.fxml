@@ -12,12 +12,12 @@
    <children>
       <ImageView fitHeight="296.0" fitWidth="543.0" layoutX="-5.0" layoutY="173.0" opacity="0.48" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../../../../../Pictures/Saved%20Pictures/listas-no-blog.jpg" />
+            <Image url="@listas-no-blog.jpg" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="538.0" opacity="0.63" pickOnBounds="true">
          <image>
-            <Image url="@../../../../../../../../../../Pictures/Saved%20Pictures/El-tenedor-facilita-la-reserva-online-restaurante1.jpg" />
+            <Image url="@El-tenedor-facilita-la-reserva-online-restaurante1.jpg" />
          </image>
       </ImageView>
       <Label layoutX="177.0" layoutY="40.0" prefHeight="58.0" prefWidth="252.0" text="Reservas" textFill="WHITE">
