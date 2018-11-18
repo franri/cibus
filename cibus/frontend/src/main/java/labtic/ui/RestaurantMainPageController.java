@@ -211,12 +211,13 @@ public class RestaurantMainPageController implements Initializable {
                     reservation.setReservationStatus(ReservationStatus.ACCEPTED);
                     bs.saveReservation(reservation);
                     bs.reduceFree(restaurant, reservation.getTotalPeople(), Long.valueOf(mesas2.getText()), Long.valueOf(mesas4.getText()));
+                    restaurant = bs.findRestaurant(restaurant.getEmail());
                     bs.cobrar(restaurant);
                     refreshAfterConfirm();
                 } catch (RemoteException e) {
                     errorLabel.setText("Error de conexión");
                     errorLabel.setVisible(true);
-                } catch (IOException e) {
+                } catch (IOException | NoRestaurantFound e) {
                     e.printStackTrace();
                 }
             });
@@ -296,8 +297,9 @@ public class RestaurantMainPageController implements Initializable {
                             -1*reservation.getTotalPeople(),
                             -1*reservation.getTableOfTwo(),
                             -1*reservation.getTableOfFour());
+                    restaurant = bs.findRestaurant(restaurant.getEmail());
                     refresh();
-                } catch (IOException e) {
+                } catch (IOException | NoRestaurantFound e) {
                     e.printStackTrace();
                 }
             });
@@ -323,6 +325,7 @@ public class RestaurantMainPageController implements Initializable {
             restaurant.setFreePlaces(Long.valueOf(cantLugaresDisponibles.getValue()));
             restaurant.setTableForTwo(Long.valueOf(mesas2Disponibles.getValue()));
             restaurant.setTableForFour(Long.valueOf(mesas4Disponibles.getValue()));
+            bs.saveRestaurant(restaurant);
 
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AppStarter.getContext()::getBean);

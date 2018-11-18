@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1D1B1C;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.ExtraInfoRestaurantController">
    <children>
-      <ImageView fitHeight="207.0" fitWidth="603.0" layoutY="-57.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="200.0" fitWidth="600.0" layoutY="-57.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@fondoExtrainfoRest.png" />
          </image>
@@ -34,5 +34,6 @@
       <JFXListView fx:id="foodList" layoutX="344.0" layoutY="169.0" opacity="0.5" prefHeight="128.0" prefWidth="186.0" />
       <Label layoutX="13.0" layoutY="344.0" prefHeight="26.0" prefWidth="147.0" text="Email" textFill="WHITE" />
       <Label fx:id="email" layoutX="161.0" layoutY="344.0" prefHeight="26.0" prefWidth="186.0" text="Label Email" textFill="WHITE" />
+      <ImageView fx:id="profilePicture" fitHeight="119.0" fitWidth="200.0" layoutX="389.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

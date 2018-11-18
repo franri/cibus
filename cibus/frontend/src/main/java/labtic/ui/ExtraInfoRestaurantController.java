@@ -2,17 +2,21 @@ package labtic.ui;
 
 import com.jfoenix.controls.JFXListView;
 import entities.*;
+import exceptions.NoRestaurantFound;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
 
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.time.LocalTime;
@@ -48,6 +52,9 @@ public class ExtraInfoRestaurantController implements Initializable {
     @FXML
     private JFXListView<Food> foodList;
 
+    @FXML
+    private ImageView profilePicture;
+
     @Autowired
     private BackendService bs;
 
@@ -65,6 +72,16 @@ public class ExtraInfoRestaurantController implements Initializable {
         email.setText(restaurant.getEmail());
         maxCapacity.setText(Long.toString(restaurant.getMaxCapacity()));
         horario.setText(restaurant.getOpeningHour().toString().concat(" - ").concat(restaurant.getClosingHour().toString()));
+
+        if(restaurant.getProfilePicture() != null) {
+            profilePicture.setImage(
+                    new Image(new ByteArrayInputStream(restaurant.getProfilePicture()), 600, 200, true, true)
+            );
+        }else{
+            profilePicture.setImage(
+            new Image(getClass().getResourceAsStream("CibusLogo.png"), 60, 60, true, true)
+            );
+        }
 
         reserveButton.setText("Reservar para " + cantidad);
 
@@ -85,14 +102,18 @@ public class ExtraInfoRestaurantController implements Initializable {
     }
 
     @FXML
-    void reserveRestaurant(ActionEvent event) {
-        Reservation newReservation = new Reservation((LocalTime.now()).plusMinutes(30),restaurant,consumer,cantidad, ReservationStatus.PENDING);
-        try {
-            bs.saveReservation(newReservation);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+    void reserveRestaurant(ActionEvent event) throws NoRestaurantFound, RemoteException {
+        if(bs.findRestaurant(restaurant.getEmail()).getFreePlaces()>=cantidad) {
+            Reservation newReservation = new Reservation((LocalTime.now()).plusMinutes(30), restaurant, consumer, cantidad, ReservationStatus.PENDING);
+            try {
+                bs.saveReservation(newReservation);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            reserveButton.setText(reserveButton.getText() + "✔");
+        }else{
+            reserveButton.setText(reserveButton.getText() + "✘");
         }
-        reserveButton.setText(reserveButton.getText()+"✔");
     }
 
 
