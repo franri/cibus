@@ -71,7 +71,7 @@
             <Label fx:id="errorLabel" alignment="CENTER" layoutX="324.0" layoutY="109.0" prefHeight="21.0" prefWidth="215.0" text="Error Label" textFill="WHITE" visible="false" />
             <ImageView fx:id="verPagos" fitHeight="47.0" fitWidth="67.0" layoutX="415.0" layoutY="238.0" onMouseClicked="#verPagos" opacity="0.7" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@BackArrow.png" />
+                  <Image url="@money.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

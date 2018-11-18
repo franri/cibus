@@ -15,7 +15,7 @@
             <Image url="@factura-con-importe-cero.png" />
          </image>
       </ImageView>
-      <ListView fx:id="listaRestaurantesQuePagan" layoutX="1.0" layoutY="170.0" opacity="0.59" prefHeight="333.0" prefWidth="564.0" style="-fx-background-color: black;" />
+      <ListView fx:id="listaRestaurantesQuePagan" layoutX="1.0" layoutY="170.0" opacity="0.8" prefHeight="333.0" prefWidth="564.0" style="-fx-background-color: black;" />
       <ImageView fitHeight="178.0" fitWidth="592.0" layoutX="1.0" opacity="0.55" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@dia-escribano.jpg" />
