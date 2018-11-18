@@ -76,6 +76,9 @@ public class ReservasUsuarioController implements Initializable {
             });
         try {
             List<Reservation> listaReservas = bs.getListOfReservationsFromConsumer(consumer);
+            for(int i=listaReservas.size()-1; i>-1; i--){
+                listViewReservas.getItems().add(listaReservas.get(i));
+            }
             listViewReservas.getItems().addAll(listaReservas);
         } catch (RemoteException e) {
             e.printStackTrace();
