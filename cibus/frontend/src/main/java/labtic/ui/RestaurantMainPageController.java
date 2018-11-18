@@ -211,12 +211,13 @@ public class RestaurantMainPageController implements Initializable {
                     reservation.setReservationStatus(ReservationStatus.ACCEPTED);
                     bs.saveReservation(reservation);
                     bs.reduceFree(restaurant, reservation.getTotalPeople(), Long.valueOf(mesas2.getText()), Long.valueOf(mesas4.getText()));
+                    restaurant = bs.findRestaurant(restaurant.getEmail());
                     bs.cobrar(restaurant);
-                    refresh();
+                    refreshAfterConfirm();
                 } catch (RemoteException e) {
                     errorLabel.setText("Error de conexión");
                     errorLabel.setVisible(true);
-                } catch (IOException e) {
+                } catch (IOException | NoRestaurantFound e) {
                     e.printStackTrace();
                 }
             });
@@ -282,6 +283,7 @@ public class RestaurantMainPageController implements Initializable {
             //diseño buttons
             VBox holderDarDeBaja = new VBox(darDeBaja); holderDarDeBaja.setAlignment(Pos.CENTER);
             content = new HBox(info, holderDarDeBaja);
+            content.setOpacity(1);
         }
         private Button configureDarDeBajaButton() {
             Image image = new Image(getClass().getResourceAsStream("decline.png"), 30, 30, false, false);
@@ -295,8 +297,9 @@ public class RestaurantMainPageController implements Initializable {
                             -1*reservation.getTotalPeople(),
                             -1*reservation.getTableOfTwo(),
                             -1*reservation.getTableOfFour());
+                    restaurant = bs.findRestaurant(restaurant.getEmail());
                     refresh();
-                } catch (IOException e) {
+                } catch (IOException | NoRestaurantFound e) {
                     e.printStackTrace();
                 }
             });
@@ -319,27 +322,10 @@ public class RestaurantMainPageController implements Initializable {
 
     @FXML
     private void refresh() throws IOException {
-        if(cantLugaresDisponibles.getValue().longValue() == restaurant.getFreePlaces().longValue() &&
-                mesas2Disponibles.getValue().longValue() == restaurant.getTableForTwo().longValue() &&
-                mesas4Disponibles.getValue().longValue() == restaurant.getTableForTwo().longValue()
-        ) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(AppStarter.getContext()::getBean);
-            loader.setLocation(RestaurantMainPageController.class.getResource("RestaurantMainPage.fxml"));
-            RestaurantMainPageController controller = AppStarter.getContext().getBean(RestaurantMainPageController.class);
-            try {
-                controller.setRestaurant(bs.findRestaurant(restaurant.getEmail()));
-            } catch (NoRestaurantFound noRestaurantFound) {
-                noRestaurantFound.printStackTrace();
-            }
-
-            Parent root = loader.load();
-            AppStarter.getMainStage().setScene(new Scene(root));
-            AppStarter.getMainStage().show();
-        }else {
             restaurant.setFreePlaces(Long.valueOf(cantLugaresDisponibles.getValue()));
             restaurant.setTableForTwo(Long.valueOf(mesas2Disponibles.getValue()));
             restaurant.setTableForFour(Long.valueOf(mesas4Disponibles.getValue()));
+            bs.saveRestaurant(restaurant);
 
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory(AppStarter.getContext()::getBean);
@@ -354,7 +340,23 @@ public class RestaurantMainPageController implements Initializable {
             Parent root = loader.load();
             AppStarter.getMainStage().setScene(new Scene(root));
             AppStarter.getMainStage().show();
+
+    }
+
+    private void refreshAfterConfirm() throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(RestaurantMainPageController.class.getResource("RestaurantMainPage.fxml"));
+        RestaurantMainPageController controller = AppStarter.getContext().getBean(RestaurantMainPageController.class);
+        try {
+            controller.setRestaurant(bs.findRestaurant(restaurant.getEmail()));
+        } catch (NoRestaurantFound noRestaurantFound) {
+            noRestaurantFound.printStackTrace();
         }
+
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 }
 

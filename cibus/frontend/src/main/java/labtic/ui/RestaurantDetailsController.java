@@ -1,6 +1,7 @@
 package labtic.ui;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import entities.Food;
@@ -17,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import labtic.AppStarter;
 import lombok.Data;
@@ -24,6 +26,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import rmi.BackendService;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.rmi.RemoteException;
@@ -40,7 +46,7 @@ public class RestaurantDetailsController implements Initializable {
     private JFXTextField nameField;
 
     @FXML
-    private JFXTextField phoneNumber;
+    private JFXTextField phone;
 
     @FXML
     private JFXTextField emailField;
@@ -55,16 +61,16 @@ public class RestaurantDetailsController implements Initializable {
     private JFXButton confirmButton;
 
     @FXML
-    private TextField maxCapacity;
+    private JFXTextField maxCapacity;
 
     @FXML
-    private Label errorLabel;
+    private JFXTextArea errorLabel;
 
     @FXML
-    private TextField tableOfTwo;
+    private JFXTextField tableOfTwo;
 
     @FXML
-    private TextField tableOfFour;
+    private JFXTextField tableOfFour;
 
     @FXML
     private MenuButton listaComidas;
@@ -82,6 +88,14 @@ public class RestaurantDetailsController implements Initializable {
     private JFXTimePicker horarioCierre;
 
     private Restaurant restaurant;
+
+    @FXML
+    private Label fileLocation;
+
+    @FXML
+    private JFXButton imageLoader;
+
+    private File profilePicture;
 
     @Autowired
     private BackendService bs;
@@ -104,6 +118,7 @@ public class RestaurantDetailsController implements Initializable {
         nameField.setText(restaurant.getName());
         emailField.setText(restaurant.getEmail());
         rutField.setText(restaurant.getRut());
+        phone.setText(restaurant.getPhoneNumber().toString());
         String address = (restaurant.getAddress()==null || restaurant.getAddress().isEmpty()) ? null : restaurant.getAddress();
         this.address.setText(address);
 
@@ -126,6 +141,7 @@ public class RestaurantDetailsController implements Initializable {
                             setGraphic(null);
                         } else {
                             setText(item.getName());
+                            listaBarrios.setPromptText(item.getName());
                         }
                     }
                 } ;
@@ -154,6 +170,18 @@ public class RestaurantDetailsController implements Initializable {
     }
 
     @FXML
+    public void loadImage(){
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg");
+        fc.getExtensionFilters().addAll(imageFilter);
+        profilePicture = fc.showOpenDialog(AppStarter.getMainStage());
+        if(profilePicture != null) {
+            fileLocation.setText(profilePicture.getPath());
+        }
+    }
+
+
+    @FXML
     public void fillDataOfRestaurant(MouseEvent event) throws IOException {
         if(address.getText() == null || address.getText().isEmpty()) {
             errorLabel.setText("Ingrese dirección");
@@ -163,21 +191,21 @@ public class RestaurantDetailsController implements Initializable {
             restaurant.setAddress(address.getText());
         }
 
-        if(phoneNumber.getText() == null || phoneNumber.getText().isEmpty()) {
+        if(phone.getText() == null || phone.getText().isEmpty()) {
             errorLabel.setText("Ingrese numero de telefono");
             errorLabel.setVisible(true);
             return;
         }else{
 
             try {
-                long Telefonoparce = Long.parseLong(phoneNumber.getText());
+                long Telefonoparce = Long.parseLong(phone.getText());
             } catch(NumberFormatException e) {
                 errorLabel.setText("solo puede ingresar numeros eneteros en el numero de telefono");
                 errorLabel.setVisible(true);
                 return;
             }
 
-            restaurant.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
+            restaurant.setPhoneNumber(Long.parseLong(phone.getText()));
         }
 
 
@@ -235,7 +263,7 @@ public class RestaurantDetailsController implements Initializable {
                 restaurant.setFreePlaces(Long.parseLong(maxCapacity.getText()));
             }
         }catch (NumberFormatException e){
-            errorLabel.setText("Ingrese número entero");
+            errorLabel.setText("Ingrese números enteros en los campos correspondientes");
             errorLabel.setVisible(true);
             return;
         }
@@ -248,15 +276,22 @@ public class RestaurantDetailsController implements Initializable {
             return;
         }else{errorLabel.setVisible(false);}
 
-        try {
-             long maxCapaciti = Long.parseLong(maxCapacity.getText());
-        } catch(NumberFormatException e) {
-            errorLabel.setText("solo puede ingresar numeros eneteros en capasidad");
-            errorLabel.setVisible(true);
-            return;
-        }
-
         restaurant.setNeighbourhood(barrio);
+
+        if(profilePicture == null) { //hay imagen seleccionada?
+            if (restaurant.getProfilePicture() == null) { //NO. Ahora, hay imagen guardada?
+                errorLabel.setText("Seleccione foto"); //NO. Pedir que elija
+                errorLabel.setVisible(true);
+                return;
+            }
+            //SI. Ya tiene elegida, no tiene por qué elegir otra
+        } else {
+            BufferedImage bufferedPic = ImageIO.read(profilePicture);
+            ByteArrayOutputStream picStream = new ByteArrayOutputStream();
+            ImageIO.write(bufferedPic, "jpg", picStream);
+            byte[] bytedProfPicture = picStream.toByteArray();
+            restaurant.setProfilePicture(bytedProfPicture);
+        }
 
         restaurant.setCanBeShown(true);
 
@@ -292,7 +327,6 @@ public class RestaurantDetailsController implements Initializable {
             goToReservationsPage();
         }
     }
-
 
 
 }
