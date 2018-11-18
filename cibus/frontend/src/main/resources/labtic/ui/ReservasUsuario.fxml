@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="469.0" prefWidth="538.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.ReservasUsuario">
+   <children>
+      <ImageView fitHeight="296.0" fitWidth="543.0" layoutX="-5.0" layoutY="173.0" opacity="0.48" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../../../../../../Pictures/Saved%20Pictures/listas-no-blog.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="538.0" opacity="0.63" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../../../../../../Pictures/Saved%20Pictures/El-tenedor-facilita-la-reserva-online-restaurante1.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="177.0" layoutY="40.0" prefHeight="58.0" prefWidth="252.0" text="Reservas" textFill="WHITE">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <ListView layoutY="173.0" opacity="0.37" prefHeight="296.0" prefWidth="538.0" style="-fx-background-color: #1c1c1c;" />
+   </children>
+</AnchorPane>
