@@ -108,7 +108,7 @@ public class LoginController{
         SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
         controller.setConsumer(consumer);
 
-         Parent root = loader.load();
+        Parent root = loader.load();
         AppStarter.getMainStage().setScene(new Scene(root));
         AppStarter.getMainStage().show();
     }

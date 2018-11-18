@@ -1,5 +1,6 @@
 package labtic.database;
 
+import entities.Consumer;
 import entities.Reservation;
 import entities.ReservationStatus;
 import entities.Restaurant;
@@ -16,4 +17,5 @@ public interface ReservationRepository extends JpaRepository<Reservation,Long> {
 
     List<Reservation> findAllByRestaurantAndReservationStatus(Restaurant restaurant, ReservationStatus reservationStatus);
 
+    List<Reservation> findAllByConsumer(Consumer consumer);
 }

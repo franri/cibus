@@ -48,6 +48,8 @@ public class SearchPageController implements Initializable {
     @FXML
     Label errorLabel;
 
+    @FXML
+    private ImageView usuarioReservas;
 
     @FXML
     private TextField buscaNombre;
@@ -316,6 +318,19 @@ public class SearchPageController implements Initializable {
         if (event.getCode() == KeyCode.ENTER) {
             cargarRestaurantes(null);
         }
+    }
+
+    @FXML
+    void goToReservationsHistory(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(AppStarter.getContext()::getBean);
+        loader.setLocation(SearchPageController.class.getResource("ReservasUsuario.fxml"));
+        SearchPageController controller = AppStarter.getContext().getBean(SearchPageController.class);
+        controller.setConsumer(consumer);
+
+        Parent root = loader.load();
+        AppStarter.getMainStage().setScene(new Scene(root));
+        AppStarter.getMainStage().show();
     }
 }
 

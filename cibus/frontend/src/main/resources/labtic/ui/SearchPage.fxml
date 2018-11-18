@@ -26,7 +26,7 @@
          </image>
       </ImageView>
       <ListView fx:id="listaRestaurantes" layoutX="-6.0" layoutY="159.0" opacity="0.67" prefHeight="382.0" prefWidth="576.0" style="-fx-background-color: black;" />
-      <Button layoutX="195.0" layoutY="485.0" mnemonicParsing="false" onAction="#cargarRestaurantes" prefHeight="25.0" prefWidth="175.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 1000;" text="Consultar"></Button>
+      <Button layoutX="195.0" layoutY="485.0" mnemonicParsing="false" onAction="#cargarRestaurantes" prefHeight="25.0" prefWidth="175.0" style="-fx-background-color: #ffbb32; -fx-background-radius: 1000;" text="Consultar" />
       <MenuButton fx:id="listaComidas" layoutX="14.0" layoutY="85.0" mnemonicParsing="false" opacity="0.79" prefHeight="25.0" prefWidth="145.0" style="-fx-background-color: transparent; -fx-background-color: white;" text="Comidas">
          <font>
             <Font size="14.0" />
@@ -49,6 +49,14 @@
          </font>
       </Label>
       <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="14.0" layoutY="10.0" onMouseClicked="#goBack" opacity="0.53" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@BackArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView fx:id="usuarioReservas" fitHeight="47.0" fitWidth="67.0" layoutX="484.0" layoutY="14.0" onMouseClicked="#goToReservationsHistory" opacity="0.53" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@BackArrow.png" />
          </image>

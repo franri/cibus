@@ -119,6 +119,12 @@ public class BackendServiceImp implements BackendService {
     }
 
     @Override
+    public List<Reservation> getListOfReservationsFromConsumer(Consumer consumer) throws RemoteException {
+        List<Reservation> exitList = resServ.findReservationsOfConsumer(consumer);
+        return exitList;
+    }
+
+    @Override
     public boolean existsConsumerByEmail(String email){
         return cs.existsByEmail(email);
     }

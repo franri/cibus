@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
@@ -7,15 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="469.0" prefWidth="538.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.ReservasUsuario">
+<AnchorPane prefHeight="469.0" prefWidth="538.0" style="-fx-background-color: #1c1c1c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labtic.ui.ReservasUsuarioController">
    <children>
       <ImageView fitHeight="296.0" fitWidth="543.0" layoutX="-5.0" layoutY="173.0" opacity="0.48" pickOnBounds="true">
          <image>
             <Image url="@listas-no-blog.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="538.0" opacity="0.63" pickOnBounds="true">
+      <ImageView fitHeight="174.0" fitWidth="538.0" opacity="0.63" pickOnBounds="true">
          <image>
             <Image url="@El-tenedor-facilita-la-reserva-online-restaurante1.jpg" />
          </image>
@@ -25,6 +25,14 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <ListView layoutY="173.0" opacity="0.37" prefHeight="296.0" prefWidth="538.0" style="-fx-background-color: #1c1c1c;" />
+      <ListView fx:id="listViewReservas" layoutY="173.0" opacity="0.37" prefHeight="296.0" prefWidth="538.0" style="-fx-background-color: #1c1c1c;" />
+      <ImageView fx:id="backArrow" fitHeight="47.0" fitWidth="67.0" layoutX="24.0" layoutY="20.0" onMouseClicked="#goBack" opacity="0.53" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@BackArrow.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

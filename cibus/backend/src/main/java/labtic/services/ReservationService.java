@@ -1,5 +1,6 @@
 package labtic.services;
 
+import entities.Consumer;
 import entities.Reservation;
 import entities.ReservationStatus;
 import entities.Restaurant;
@@ -40,5 +41,9 @@ public class ReservationService {
 
     public List<Reservation> findPendResOf(Restaurant restaurant){
         return reservationRepository.findAllByRestaurantAndReservationStatus(restaurant, ReservationStatus.PENDING);
+    }
+
+    public List<Reservation> findReservationsOfConsumer(Consumer consumer){
+        return reservationRepository.findAllByConsumer(consumer);
     }
 }
