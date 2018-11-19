@@ -302,7 +302,7 @@ public class RestaurantMainPageController implements Initializable {
                     restaurant.setTableForFour(restaurant.getTableForFour()+reservation.getTableOfFour());
                     bs.saveRestaurant(restaurant);
                     restaurant = bs.findRestaurant(restaurant.getEmail());
-                    refresh();
+                    refreshAfterConfirm();
                 } catch (IOException | NoRestaurantFound e) {
                     e.printStackTrace();
                 }

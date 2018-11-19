@@ -56,9 +56,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fx:id="usuarioReservas" fitHeight="47.0" fitWidth="67.0" layoutX="484.0" layoutY="14.0" onMouseClicked="#goToReservationsHistory" opacity="0.53" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="usuarioReservas" fitHeight="47.0" fitWidth="67.0" layoutX="503.0" layoutY="24.0" onMouseClicked="#goToReservationsHistory" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@BackArrow.png" />
+            <Image url="@falg.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />

@@ -3,7 +3,6 @@ package labtic.ui;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import entities.Consumer;
-import exceptions.NoConsumerFound;
 import exceptions.PasswordsDontMatch;
 import exceptions.UserAlreadyRegistered;
 import javafx.event.ActionEvent;
@@ -23,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import rmi.BackendService;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 
 @Data
 @Controller
@@ -88,7 +86,7 @@ public class CreateUserController {
             }
 
             if (!passwordField.getText().equals(reEnterPasswordField.getText())) {
-                throw new PasswordsDontMatch("Las contraseñas no son coinciden");
+                throw new PasswordsDontMatch("Las contraseñas no coinciden");
             }
 
         } catch (UserAlreadyRegistered | PasswordsDontMatch error) {

@@ -64,7 +64,7 @@ public class PagoAdministradorController implements Initializable {
             if (empty || item == null) {
                 setText(null);
             } else {
-               setText(item.getName()+item.getCobroDeServicio().toString());
+               setText(item.getName()+"  "+ "debe: " +item.getCobroDeServicio().toString() );
             }
         }
         });

@@ -1,10 +1,7 @@
 package labtic;
 
 
-import entities.Consumer;
-import entities.Food;
-import entities.Neighbourhood;
-import entities.Restaurant;
+import entities.*;
 import labtic.services.*;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -90,7 +87,7 @@ public class FillingDatabaseTest {
         ra.setEmail("ra");
         ra.setRut("1");
         ra.setPassword("ra");
-        ra.setAddress("adress");
+        ra.setAddress("address");
         ra.setPhoneNumber(27008989L);
         ra.setNeighbourhood(n1);
         ra.getFoods().addAll(Arrays.asList(f1, f2, f3, f4, f5, f6));
@@ -109,7 +106,7 @@ public class FillingDatabaseTest {
         rb.setEmail("rb");
         rb.setRut("2");
         rb.setPassword("rb");
-        rb.setAddress("adress");
+        rb.setAddress("address");
         rb.setPhoneNumber(27008989L);
         rb.setNeighbourhood(n1);
         rb.getFoods().addAll(Arrays.asList(f1, f2, f3));
@@ -127,7 +124,7 @@ public class FillingDatabaseTest {
         rc.setEmail("rc");
         rc.setRut("3");
         rc.setPassword("rc");
-        rc.setAddress("adress");
+        rc.setAddress("address");
         rc.setPhoneNumber(27008989L);
         rc.setNeighbourhood(n1);
         rc.getFoods().addAll(Arrays.asList(f4, f5, f6));
@@ -145,7 +142,7 @@ public class FillingDatabaseTest {
         rd.setEmail("rd");
         rd.setRut("4");
         rd.setPassword("rd");
-        rd.setAddress("adress");
+        rd.setAddress("address");
         rd.setPhoneNumber(27008989L);
         rd.setNeighbourhood(n2);
         rd.getFoods().addAll(Arrays.asList(f3, f4, f5));
@@ -209,6 +206,12 @@ public class FillingDatabaseTest {
         cs.save(cb);
         cs.save(cc);
         cs.save(cd);
+
+        Admin admin = new Admin();
+        admin.setEmail("ad");
+        admin.setPassword("ad");
+
+        as.save(admin);
 
     }
 

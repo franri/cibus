@@ -50,4 +50,8 @@ public class ReservationService {
     public List<Reservation> findReservationByRestaurant(Restaurant restaurant){
         return reservationRepository.findAllByRestaurant(restaurant);
     }
+
+    public Reservation findReservationById(Long id){
+        return reservationRepository.findReservationById(id);
+    }
 }

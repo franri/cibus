@@ -174,4 +174,7 @@ public class BackendServiceImp implements BackendService {
         as.save(admin);
     }
 
+    @Override
+    public Reservation findReservationById(Long id){ return resServ.findReservationById(id); }
+
 }
