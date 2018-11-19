@@ -267,6 +267,8 @@ public class SearchPageController implements Initializable {
                 }
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("../ui/CibusLogo.png")));
+                stage.setTitle("+ Info");
                 stage.show();
             });
             return masInfo;

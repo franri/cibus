@@ -44,6 +44,9 @@ public class ExtraInfoRestaurantController implements Initializable {
     private Label email;
 
     @FXML
+    private Label barrio;
+
+    @FXML
     private Label LabelRestaurantName;
 
     @FXML
@@ -70,6 +73,7 @@ public class ExtraInfoRestaurantController implements Initializable {
         address.setText(restaurant.getAddress());
         LabelRestaurantName.setText(restaurant.getName());
         email.setText(restaurant.getEmail());
+        barrio.setText(restaurant.getNeighbourhood().getName());
         maxCapacity.setText(Long.toString(restaurant.getMaxCapacity()));
         horario.setText(restaurant.getOpeningHour().toString().concat(" - ").concat(restaurant.getClosingHour().toString()));
 

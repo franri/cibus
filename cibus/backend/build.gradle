@@ -4,9 +4,11 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+		jcenter()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath 'com.bmuschko:gradle-izpack-plugin:3.0'
 	}
 }
 
@@ -14,6 +16,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.bmuschko.izpack'
 
 group = ''
 version = '0.0.1-SNAPSHOT'
@@ -33,5 +36,9 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok:1.18.2'
 	annotationProcessor "org.projectlombok:lombok:1.18.2"
+
+	izpack 'org.codehaus.izpack:izpack-standalone-compiler:4.3.4'
+
+	compile 'com.bmuschko:gradle-izpack-plugin:3.0'
 }
 

@@ -19,12 +19,12 @@
       <Label layoutX="14.0" layoutY="190.0" prefHeight="26.0" prefWidth="147.0" text="Direccion" textFill="WHITE" />
       <Label layoutX="14.0" layoutY="233.0" prefHeight="26.0" prefWidth="147.0" text="Horario" textFill="WHITE" />
       <Label layoutX="13.0" layoutY="305.0" prefHeight="26.0" prefWidth="147.0" text="Capacidad Maxima" textFill="WHITE" />
-      <Label layoutX="13.0" layoutY="272.0" prefHeight="26.0" prefWidth="147.0" text="Email" textFill="WHITE" />
+      <Label layoutX="13.0" layoutY="272.0" prefHeight="26.0" prefWidth="147.0" text="Barrio" textFill="WHITE" />
       <Label fx:id="phone" layoutX="161.0" layoutY="149.0" prefHeight="26.0" prefWidth="130.0" text="Label Telefono" textFill="WHITE" />
       <Label fx:id="address" layoutX="161.0" layoutY="190.0" prefHeight="26.0" prefWidth="130.0" text="Label Direccion" textFill="WHITE" />
       <Label fx:id="horario" layoutX="161.0" layoutY="233.0" prefHeight="26.0" prefWidth="130.0" text="Label Horario" textFill="WHITE" />
       <Label fx:id="maxCapacity" layoutX="161.0" layoutY="305.0" prefHeight="26.0" prefWidth="186.0" text="Label Cap Max" textFill="WHITE" />
-      <Label fx:id="email" layoutX="160.0" layoutY="272.0" prefHeight="26.0" prefWidth="186.0" text="Label Email" textFill="WHITE" />
+      <Label fx:id="barrio" layoutX="160.0" layoutY="272.0" prefHeight="26.0" prefWidth="186.0" text="Label Barrio" textFill="WHITE" />
       <Label fx:id="LabelRestaurantName" layoutX="86.0" layoutY="14.0" prefHeight="106.0" prefWidth="443.0" text="Label Nombre Restaurant" textFill="WHITE">
          <font>
             <Font name="Noto Mono" size="24.0" />

@@ -119,9 +119,9 @@ public class RestaurantDetailsController implements Initializable {
         nameField.setText(restaurant.getName());
         emailField.setText(restaurant.getEmail());
         rutField.setText(restaurant.getRut());
-        phone.setText(restaurant.getPhoneNumber().toString());
+        phone.setText((restaurant.getPhoneNumber()==null) ? null : restaurant.getPhoneNumber().toString());
         String address = (restaurant.getAddress()==null || restaurant.getAddress().isEmpty()) ? null : restaurant.getAddress();
-        this.address.setText(address);
+        this.address.setText(restaurant.getAddress());
 
         try {
             comidas = bs.getListaComidas();

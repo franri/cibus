@@ -1,17 +1,26 @@
 package labtic;
 
 
-import entities.*;
+import entities.Consumer;
+import entities.Food;
+import entities.Neighbourhood;
+import entities.Restaurant;
 import labtic.services.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
@@ -34,75 +43,181 @@ public class FillingDatabaseTest {
     ConsumerService cs;
 
     @Before
-    public void filling(){
+    public void filling() throws IOException, URISyntaxException {
 
         Food f1 = new Food("Papas");
         Food f2 = new Food("Asado");
         Food f3 = new Food("Hamburguesa");
+        Food f4 = new Food("Sushi");
+        Food f5 = new Food("Pasta");
+        Food f6 = new Food("Ensalada");
         fs.save(f1);
         fs.save(f2);
         fs.save(f3);
+        fs.save(f4);
+        fs.save(f5);
+        fs.save(f6);
 
         Neighbourhood n1 = new Neighbourhood("Ciudad Vieja");
         Neighbourhood n2 = new Neighbourhood("Centro");
         Neighbourhood n3 = new Neighbourhood("Pocitos");
+        Neighbourhood n4 = new Neighbourhood("Cordón");
+        Neighbourhood n5 = new Neighbourhood("Buceo");
+        Neighbourhood n6 = new Neighbourhood("Carrasco");
+        Neighbourhood n7 = new Neighbourhood("Malvín");
+        Neighbourhood n8 = new Neighbourhood("Aguada");
         ns.save(n1);
         ns.save(n2);
         ns.save(n3);
+        ns.save(n4);
+        ns.save(n5);
+        ns.save(n6);
+        ns.save(n7);
+        ns.save(n8);
 
-        Restaurant r1 = new Restaurant("pepe@gmail.com", "pepe", "Restaurante de Pepe", "1234", 50L, n1);
-        r1.setFoods(new ArrayList<Food>(Arrays.asList(f1,f2,f3)));
-        r1.setOpeningHour(LocalTime.of(9,30));
-        r1.setClosingHour(LocalTime.of(22,45));
-        r1.setCanBeShown(true);
-        r1.setTableForTwo(40L);
-        r1.setTableForFour(40L);
-        r1.setFreePlaces(30L);
+        LocalTime oh = LocalTime.of(8,0);
+        LocalTime ch = LocalTime.of(22,0);
+
+        byte[] la = getBytesOfImage(new File(getClass().getClassLoader().getResource("letterIcons/A.png").getFile()));
+        byte[] lb = getBytesOfImage(new File(getClass().getClassLoader().getResource("letterIcons/B.png").getFile()));
+        byte[] lc = getBytesOfImage(new File(getClass().getClassLoader().getResource("letterIcons/C.png").getFile()));
+        byte[] ld = getBytesOfImage(new File(getClass().getClassLoader().getResource("letterIcons/D.png").getFile()));
+        byte[] le = getBytesOfImage(new File(getClass().getClassLoader().getResource("letterIcons/E.png").getFile()));
+        byte[] lf = getBytesOfImage(new File(getClass().getClassLoader().getResource("letterIcons/F.png").getFile()));
+
+        Restaurant ra = new Restaurant();
+        ra.setName("RA");
+        ra.setEmail("ra");
+        ra.setRut("1");
+        ra.setPassword("ra");
+        ra.setAddress("adress");
+        ra.setPhoneNumber(27008989L);
+        ra.setNeighbourhood(n1);
+        ra.getFoods().addAll(Arrays.asList(f1, f2, f3, f4, f5, f6));
+        ra.setMaxCapacity(95L);
+        ra.setFreePlaces(95L);
+        ra.setTableForTwo(30L);
+        ra.setTableForFour(20L);
+        ra.setOpeningHour(oh);
+        ra.setClosingHour(ch);
+        ra.setProfilePicture(la);
+        ra.setCanBeShown(true);
 
 
-        Restaurant r2 = new Restaurant("maria@gmail.com", "maria", "Restaurante de Maria", "1111", 50L, n1);
-        r2.setFoods(new ArrayList<Food>(Arrays.asList(f1)));
-        r2.setOpeningHour(LocalTime.of(9,30));
-        r2.setClosingHour(LocalTime.of(22,45));
-        r2.setCanBeShown(true);
+        Restaurant rb = new Restaurant();
+        rb.setName("RB");
+        rb.setEmail("rb");
+        rb.setRut("2");
+        rb.setPassword("rb");
+        rb.setAddress("adress");
+        rb.setPhoneNumber(27008989L);
+        rb.setNeighbourhood(n1);
+        rb.getFoods().addAll(Arrays.asList(f1, f2, f3));
+        rb.setMaxCapacity(95L);
+        rb.setFreePlaces(95L);
+        rb.setTableForTwo(30L);
+        rb.setTableForFour(20L);
+        rb.setOpeningHour(oh);
+        rb.setClosingHour(ch);
+        rb.setProfilePicture(lb);
+        rb.setCanBeShown(true);
 
-        Restaurant r3 = new Restaurant("juan@gmail.com","juan", "Restaurante de Juan", "4321", 50L, n2);
-        r3.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
-        r3.setOpeningHour(LocalTime.of(9,30));
-        r3.setClosingHour(LocalTime.of(22,45));
-        r3.setCanBeShown(true);
+        Restaurant rc = new Restaurant();
+        rc.setName("RC");
+        rc.setEmail("rc");
+        rc.setRut("3");
+        rc.setPassword("rc");
+        rc.setAddress("adress");
+        rc.setPhoneNumber(27008989L);
+        rc.setNeighbourhood(n1);
+        rc.getFoods().addAll(Arrays.asList(f4, f5, f6));
+        rc.setMaxCapacity(95L);
+        rc.setFreePlaces(95L);
+        rc.setTableForTwo(30L);
+        rc.setTableForFour(20L);
+        rc.setOpeningHour(oh);
+        rc.setClosingHour(ch);
+        rc.setProfilePicture(lc);
+        rc.setCanBeShown(true);
 
-        Restaurant r4 = new Restaurant("matias@gmail.com","matias", "Restaurante de Matias", "4351", 50L, n2);
-        r4.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
-        r4.setOpeningHour(LocalTime.of(9,30));
-        r4.setClosingHour(LocalTime.of(22,45));
-        r4.setCanBeShown(true);
+        Restaurant rd = new Restaurant();
+        rd.setName("RD");
+        rd.setEmail("rd");
+        rd.setRut("4");
+        rd.setPassword("rd");
+        rd.setAddress("adress");
+        rd.setPhoneNumber(27008989L);
+        rd.setNeighbourhood(n2);
+        rd.getFoods().addAll(Arrays.asList(f3, f4, f5));
+        rd.setMaxCapacity(95L);
+        rd.setFreePlaces(95L);
+        rd.setTableForTwo(30L);
+        rd.setTableForFour(20L);
+        rd.setOpeningHour(oh);
+        rd.setClosingHour(ch);
+        rd.setProfilePicture(ld);
+        rd.setCanBeShown(true);
 
-        Restaurant r5 = new Restaurant("Agustin@gmail.com","Agustin", "Restaurante de Agustin", "4341", 50L, n2);
-        r5.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
-        r5.setOpeningHour(LocalTime.of(9,30));
-        r5.setClosingHour(LocalTime.of(22,45));
-        r5.setCanBeShown(true);
+        Restaurant re = new Restaurant();
+        re.setName("RE");
+        re.setEmail("re");
+        re.setRut("5");
+        re.setPassword("re");
 
-        Restaurant r6 = new Restaurant("Martin@gmail.com","Martin", "Restaurante de Martin", "4332", 50L, n2);
-        r6.setFoods(new ArrayList<Food>(Arrays.asList(f1,f3)));
-        r6.setOpeningHour(LocalTime.of(9,30));
-        r6.setClosingHour(LocalTime.of(22,45));
-        r6.setCanBeShown(true);
+        Restaurant rf = new Restaurant();
+        rf.setName("RF");
+        rf.setEmail("rf");
+        rf.setRut("6");
+        rf.setPassword("rf");
 
-        rs.save(r1);
-        rs.save(r2);
-        rs.save(r3);
-        rs.save(r4);
-        rs.save(r5);
-        rs.save(r6);
+        rs.save(ra);
+        rs.save(rb);
+        rs.save(rc);
+        rs.save(rd);
+        rs.save(re);
+        rs.save(rf);
 
-        Admin admin = new Admin("admin@gmail.com", "admin");
-        as.save(admin);
+        Consumer ca = new Consumer();
+        ca.setFirstName("Ca");
+        ca.setLastName("Ca");
+        ca.setPhoneNumber(1L);
+        ca.setEmail("ca");
+        ca.setPassword("ca");
 
-        Consumer consumer = new Consumer("consumer@gmail.com", "consumer", "Juan", "Gómez", 91444555L);
-        cs.save(consumer);
+        Consumer cb = new Consumer();
+        cb.setFirstName("Cb");
+        cb.setLastName("Cb");
+        cb.setPhoneNumber(1L);
+        cb.setEmail("cb");
+        cb.setPassword("cb");
 
+        Consumer cc = new Consumer();
+        cc.setFirstName("Cc");
+        cc.setLastName("Cc");
+        cc.setPhoneNumber(1L);
+        cc.setEmail("cc");
+        cc.setPassword("cc");
+
+        Consumer cd = new Consumer();
+        cd.setFirstName("Cd");
+        cd.setLastName("Cd");
+        cd.setPhoneNumber(1L);
+        cd.setEmail("cd");
+        cd.setPassword("cd");
+
+        cs.save(ca);
+        cs.save(cb);
+        cs.save(cc);
+        cs.save(cd);
+
+    }
+
+    @Ignore
+    private byte[] getBytesOfImage(File file) throws IOException, URISyntaxException {
+        BufferedImage bufferedPic = ImageIO.read(file);
+        ByteArrayOutputStream picStream = new ByteArrayOutputStream();
+        ImageIO.write(bufferedPic, "jpg", picStream);
+        return picStream.toByteArray();
     }
 
     @Test
